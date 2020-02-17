@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="../../layui/css/layui.css">
+	<style>
+		.layui-upload-drag,
+		#upload {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			border: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="layui-upload-drag" id="upload">
+		<i class="layui-icon"></i>
+		<p>点击选择文件导入，或将文件拖拽到此处</p>
+	</div>
+	<script src="../../layui/layui.js"></script>
+	<script>
+		layui.use(['upload', 'layer', 'element', 'jquery'], function () {
+			var upload = layui.upload;
+			var layer = layui.layer;
+			var element = layui.element;
+			var $ = layui.jquery;
+			var load = null;
+			//执行实例
+			var uploadInst = upload.render({
+				elem: '#upload' //绑定元素
+				,
+				url: '../servlet/scoreupload' //上传接口
+				,
+				accept: 'file',
+				acceptMime: 'application/vnd.ms-excel',
+				exts: 'xls',
+				done: function (res) {
+					if (res.code == "true") {
+						layer.open({
+							title: '导入成功',
+							content: '导入成功！',
+							icon: 0,
+							btn: '确定'
+						});
+					}
+					else {
+						layer.open({
+							title: '导入失败',
+							content: '导入失败！',
+							icon: 2,
+							btn: '确定'
+						})
+					}
+					layer.close(load);
+					$("#upload").removeClass("layui-hide");
+				},
+				before: function () {
+					load = layer.load(1);
+					$("#upload").addClass("layui-hide");
+				},
+				error: function () {
+					layer.open({
+						title: '导入失败',
+						content: '导入失败！',
+						icon: 2,
+						btn: '确定'
+					});
+					$("#upload").removeClass("layui-hide");
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>

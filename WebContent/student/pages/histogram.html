@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>折线堆叠图</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main" style="width: 100%;height:100%;"></div>
+    <script src="../../echarts/echarts.min.js"></script>
+    <script src="../../layui/layui.js"></script>
+    <script type="text/javascript">
+        layui.use(['layer', 'jquery'], function () {
+            var myChart = echarts.init(document.getElementById('main'));
+            var $ = layui.jquery;
+            $.ajax({
+                type: "get",
+                dateType: "json",
+                url: "json/histogram.json",
+                success: function (data) {
+                    myChart.title = '最近一次考核成绩与全队平均成绩对比';
+                    var option = {
+                        title: {
+                            text: '最近一次考核成绩与全队平均成绩对比',
+                            subtext: '数据来自最近一次考核成绩'
+                        },
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'shadow'
+                            }
+                        },
+                        legend: {
+                            data: ['自己的成绩', '全队平均成绩']
+                        },
+                        grid: {
+                            left: '3%',
+                            right: '4%',
+                            bottom: '3%',
+                            containLabel: true
+                        },
+                        xAxis: {
+                            type: 'value',
+                            boundaryGap: [0, 0.01]
+                        },
+                        yAxis: {
+                            type: 'category',
+                            data: ['3000米', '仰卧起坐', '蛇形跑', '引体向上']
+                        },
+                        series: [
+                            {
+                                name: '自己的成绩',
+                                type: 'bar',
+                                data: data.self
+                            },
+                            {
+                                name: '全队平均成绩',
+                                type: 'bar',
+                                data: data.average
+                            }
+                        ]
+                    };
+                    myChart.setOption(option);
+                },
+                error: function (error) { }
+            });
+            window.addEventListener("resize", function () {
+                myChart.resize();
+            });
+        });
+    </script>
+</body>
+
+</html>

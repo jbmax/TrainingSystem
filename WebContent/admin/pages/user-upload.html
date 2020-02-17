@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="../../layui/css/layui.css">
+	<style>
+		.container {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			border: none;
+		}
+
+		.role {
+			margin-bottom:10px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="role layui-form">
+			<select name="role" lay-verify="" lay-filter="role">
+				<option value="">请选择要导入的角色</option>
+				<option value="0">学员</option>
+				<option value="1">队干部</option>
+				<option value="2">教务参谋</option>
+			</select>
+		</div>
+		<div class="layui-upload-drag layui-hide" id="user-upload">
+			<i class="layui-icon"></i>
+			<p>点击选择文件导入，或将文件拖拽到此处</p>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<script src="../../layui/layui.js"></script>
+	<script>
+		layui.use(['upload', 'layer', 'element', 'jquery', 'form'], function () {
+			var upload = layui.upload;
+			var layer = layui.layer;
+			var element = layui.element;
+			var $ = layui.jquery;
+			var load = null;
+			var form = layui.form;
+			form.on('select(role)',function(data){
+				if(data.value!="")
+					$("#user-upload").removeClass("layui-hide");
+				else
+					$("#user-upload").addClass("layui-hide");	
+			});
+			//执行实例
+			var uploadInst = upload.render({
+				elem: '#user-upload' //绑定元素
+				,
+				url: '../servlet/userupload' //上传接口
+				,
+				accept: 'file',
+				acceptMime: 'application/vnd.ms-excel',
+				exts: 'xls',
+				done: function (res) {
+					if (res.code == 0) {
+						if (res.existUsername.length > 0)
+							layer.open({
+								title: '提示',
+								content: '部分导入成功，下列人员姓名：<br>'
+									+ res.existUsername.join(" ")
+									+ "<br>数据库中已经存在，无法导入！",
+								icon: 0,
+								btn: '确定'
+							});
+						else
+							layer.open({
+								title: '导入成功',
+								content: '导入成功！',
+								icon: 0,
+								btn: '确定'
+							});
+					}
+					else {
+						layer.open({
+							title: '导入失败',
+							content: '导入失败！',
+							icon: 2,
+							btn: '确定'
+						})
+					}
+					layer.close(load);
+					$("#user-upload").removeClass("layui-hide");
+				},
+				before: function () {
+					load = layer.load(1);
+					$("#user-upload").addClass("layui-hide");
+				},
+				error: function () {
+					layer.open({
+						title: '导入失败',
+						content: '导入失败！',
+						icon: 2,
+						btn: '确定'
+					});
+					$("#user-upload").removeClass("layui-hide");
+					layer.close(load);
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>

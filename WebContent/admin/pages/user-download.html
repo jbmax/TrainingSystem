@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="../../layui/css/layui.css">
+	<style>
+		.container {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			border: none;
+		}
+
+		.role {
+			margin-bottom: 10px;
+		}
+
+		#user-download {
+			width: 100%;
+			box-sizing: border-box;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- <div class="layui-upload-drag" id="user-download">
+		<i class="layui-icon layui-icon-download-circle"></i>
+		<p>点击此处，开始导出</p>
+	</div> -->
+	<div class="container">
+		<div class="role layui-form">
+			<select name="role" lay-verify="" lay-filter="role">
+				<option value="">请选择要导出的角色</option>
+				<option value="0">全部</option>
+				<option value="1">学员</option>
+				<option value="2">队干部</option>
+				<option value="3">教务参谋</option>
+			</select>
+		</div>
+		<div class="layui-upload-drag layui-hide" id="user-download">
+			<i class="layui-icon layui-icon-download-circle"></i>
+			<p>点击此处，开始导出</p>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<script src="../../layui/layui.js"></script>
+	<script>
+		layui.use(['form', 'jquery'], function () {
+			var form = layui.form;
+			var $ = layui.jquery;
+			var role = "";
+			form.on('select(role)', function (data) {
+				if (data.value != "") {
+					$("#user-download").removeClass("layui-hide");
+					role = data.value;
+				}
+				else {
+					$("#user-download").addClass("layui-hide");
+					role = "";
+				}
+			});
+			$("#user-download").click(function () {
+				$.ajax({
+					type: "post",
+					url: "../servlet/userdownload",
+					dataType: "text",
+					data: "role=" + role,
+					success: function (data) {
+						if (data == "true") {
+							window.open('../temp/user.xls');
+						} else {
+
+						}
+					},
+					error: function (err) {
+
+					}
+				});
+			});
+		});
+	</script>
+</body>
+
+</html>

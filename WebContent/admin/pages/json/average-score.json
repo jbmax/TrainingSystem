@@ -1,0 +1,40 @@
+{
+    "code": 0,
+    "count": 3,
+    "msg": "",
+    "data": [
+        {
+            "id": 1,
+            "name": "CZL",
+            "3K":70,
+            "snake":70,
+            "sit_up":80,
+            "pull_up":80,
+            "weight":"50%",
+            "score": 50,
+            "pass": "50%"
+        },
+        {
+            "id": 2,
+            "name": "CZL",
+            "3K":70,
+            "snake":70,
+            "sit_up":80,
+            "pull_up":80,
+            "weight":"50%",
+            "score": 50,
+            "pass": "50%"
+        },
+        {
+            "id": 3,
+            "name": "CZL",
+            "3K":70,
+            "snake":70,
+            "sit_up":80,
+            "pull_up":80,
+            "weight":"50%",
+            "score": 50,
+            "pass": "50%"
+        }
+    ]
+}

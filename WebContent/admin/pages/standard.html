@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+    <style>
+        .layui-form input,
+        .layui-form select {
+            width: 200px;
+        }
+        th{
+            background-color: #009688 !important;
+            color:white;
+        }
+        .layui-container{
+            padding-top:15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layui-container">
+        <div class="layui-row">
+            <div class="layui-form layui-col-md12 ok-search">
+                <div class="layui-inline">
+                    <select name="sex" lay-verify="required">
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </div>
+                <div class="layui-inline">
+                    <select name="sort" lay-verify="required">
+                        <option value="一类">一类</option>
+                        <option value="二类">二类</option>
+                        <option value="三类">三类</option>
+                    </select>
+                </div>
+                <div class="layui-inline">
+                    <input class="layui-input" placeholder="年龄" autocomplete="off" name="age" lay-verify="required|number">
+                </div>
+                <button class="layui-btn" lay-submit="" lay-filter="search">
+                    <i class="layui-icon">&#xe615;</i>
+                </button>
+            </div>
+        </div>
+        <div class="layui-row">
+            <table id="standard" lay-filter="standard" class="layui-table">
+                <colgroup>
+                    <col width="50%">
+                    <col width="50%">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>体重</th>
+                        <th>评分</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>贤心</td>
+                        <td>人生就像是一场修行</td>
+                    </tr>
+                    <tr>
+                        <td>许闲心</td>
+                        <td>2016-11-28</td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>3000米</th>
+                        <th>评分</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <script src="../../layui/layui.js"></script>
+    <script>
+        layui.use('form', function () {
+            var form = layui.form;
+
+        });
+    </script>
+</body>
+
+</html>

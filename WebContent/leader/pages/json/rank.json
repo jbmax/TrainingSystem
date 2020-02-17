@@ -1,0 +1,28 @@
+{
+    "code": 0,
+    "count": 3,
+    "msg": "",
+    "data": [
+        {
+            "id": 1,
+            "username": "CZL",
+            "average": "50",
+            "pass": "50%",
+            "sort": "三类人员"
+        },
+        {
+            "id": 2,
+            "username": "CZL",
+            "average": "50",
+            "pass": "50%",
+            "sort": "三类人员"
+        },
+        {
+            "id": 3,
+            "username": "CZL",
+            "average": "50",
+            "pass": "50%",
+            "sort": "三类人员"
+        }
+    ]
+}

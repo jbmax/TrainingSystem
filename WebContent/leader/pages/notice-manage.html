@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            padding-top: 10px;
+        }
+
+        .layui-table,
+        .layui-table-view {
+            margin: 0;
+        }
+
+        .layui-table-header,
+        .layui-table-page,
+        .layui-border-box {
+            border: none;
+        }
+
+        .add-notice,
+        .clear-notice {
+            float: right;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layui-container">
+        <div class="layui-row" style="margin-bottom: 10px;">
+            <button class="layui-btn clear-notice layui-bg-red">清空公告信息</button>
+            <button class="layui-btn add-notice layui-bg-blue">发布新公告</button>
+        </div>
+        <table class="layui-table" lay-skin="nob" lay-filter="notice" id="notice">
+        </table>
+    </div>
+    <script src="../../layui/layui.js"></script>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs layui-btn-info" lay-event="check">查看</a>
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="alter">修改</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+    <script>
+        layui.use(["jquery", "table"], function () {
+            var $ = layui.jquery;
+            var table = layui.table;
+            table.render({
+                elem: '#notice'
+                , height: "full-60"
+                , url: '../../student/pages/json/newslist.json' //数据接口
+                , page: true //开启分页
+                , limit: 10
+                , limits: [8, 9, 10, 11, 12, 13, 14, 15, 16]
+                , skin: "nob"
+                , cols: [[ //表头
+                    { field: 'title', title: '题目', width: '60%' }
+                    , { field: 'date', title: '日期', width: '20%' }
+                    , { align: 'center', toolbar: '#barDemo', width: "20%" }
+                ]]
+            });
+            table.on('tool(notice)', function (obj) {
+                var data = obj.data; //获得当前行数据
+                var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+                var tr = obj.tr; //获得当前行 tr 的DOM对象
+                if (layEvent === 'del') { //删除
+                    layer.confirm('真的删除行么', function (index) {
+                        layer.close(index);
+                        $.ajax({
+                            type: "post",
+                            dataType: "text",
+                            data: "manage_id=" + data.id,
+                            url: "../servlet/deletenoticebyid",
+                            success: function (data) {
+                                if (data = "true") {
+                                    obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                                    layer.msg("删除成功！");
+                                } else
+                                    layer.msg("删除失败！");
+                            },
+                            error: function (err) {
+                                layer.msg("删除失败！");
+                            }
+                        });
+                    });
+                }
+                if (layEvent === 'check') { //查看
+                    layer.open({
+                        title: '公告内容'
+                        , type: 2
+                        , area: ['100%', '100%']
+                        , content: 'show-notice.html?news_id=' + data.id
+                    });
+                }
+                if (layEvent === 'alter') {
+                    layer.open({
+                        title: '修改公告'
+                        , type: 2
+                        , area: ['100%', '100%']
+                        , content: 'notice-alter.html?news_id=' + data.id
+                    });
+                }
+            });
+            $(".add-notice").click(function () {
+                layer.open({
+                    title: '添加公告'
+                    , type: 2
+                    , area: ['100%', '100%']
+                    , content: "notice.html"
+                    , end: function () {
+                        window.location.reload();
+                    }
+                });
+            });
+            $(".clear-notice").click(function () {
+                layer.confirm('真的清空公告数据库吗？', function (index) {
+                    layer.close(index);
+                    $.ajax({
+                        type: "post",
+                        dataType: "text",
+                        data: "user_id=" + data.id,
+                        url: "../servlet/deletenotices",
+                        success: function (data) {
+                            if (data = "true") {
+                                obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                                layer.msg("清空成功！");
+                            } else
+                                layer.msg("清空失败！");
+                        },
+                        error: function (err) {
+                            layer.msg("清空失败！");
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

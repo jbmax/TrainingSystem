@@ -1,0 +1,25 @@
+{
+    "code": 0,
+    "count": 3,
+    "msg": "",
+    "data": [
+        {
+            "id":1,
+            "team_name":"XX队",
+            "leader":"asfdfas",
+            "amount":20
+        },
+        {
+            "id":2,
+            "team_name":"XX队",
+            "leader":"asfdfas",
+            "amount":20
+        },
+        {
+            "id":3,
+            "team_name":"XX队",
+            "leader":"asfdfas",
+            "amount":20
+        }
+    ]
+}

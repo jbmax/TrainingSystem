@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>添加训练管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../css/oksub.css">
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+</head>
+
+<body class="childrenBody seting-pass">
+    <form class="layui-form changePwd" action="../servlt/add-manage" type="get">
+        <div class="layui-form-item">
+            <label class="layui-form-label">日期</label>
+            <div class="layui-input-block">
+                <input type="text" value="" class="layui-input" lay-verify="required" id="date" placeholder="请选择时间">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">考核场地</label>
+            <div class="layui-input-block">
+                <input type="text" value="" placeholder="考核场地" lay-verify="required" class="layui-input" id="address">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">参加人员</label>
+            <div class="layui-input-block">
+                <input type="text" value="" placeholder="参加人员" lay-verify="required" id="attend"
+                    class="layui-input pwd">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">组织人员</label>
+            <div class="layui-input-block">
+                <input type="password" value="" placeholder="组织人员" lay-verify="required" class="layui-input" id="incharge">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="add-manage">添加</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" src="../../layui/layui.js"></script>
+    <script>
+        layui.use(['form', 'layer', 'laydate'], function () {
+            var form = layui.form,
+                layer = layui.layer,
+                $ = layui.jquery,
+                $form = $('form'),
+                laydate = layui.laydate;
+            laydate.render({
+                elem: '#date',
+                type: "datetime"
+            });
+            form.on("submit(add-manage)", function (data) {
+                
+            });
+        });
+    </script>
+</body>
+
+</html>

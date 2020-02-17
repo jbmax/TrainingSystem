@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="../../layui/css/layui.css">
+	<style>
+		body {
+			padding: 10px;
+			background: white !important;
+		}
+
+		.clear-user,
+		.search-user {
+			height: 40px;
+			padding: 5px 10px;
+			box-sizing: border-box;
+			float: right;
+			margin-right: 10px;
+			cursor: pointer;
+			border: none;
+		}
+
+		#username,
+		#date {
+			height: 40px;
+			box-sizing: border-box;
+			padding: 3px;
+			float: right;
+			margin-right: 10px;
+		}
+
+		.search-user {
+			padding: 5px 15px;
+		}
+	</style>
+	<script>
+
+
+	</script>
+</head>
+
+<body>
+	<div class="layui-container">
+		<div class="layui-row">
+			<button class="search-user layui-bg-green">搜索</button>
+			<input type="text" placeholder="请输入学员名称" id="username">
+			<input type="text" placeholder="请选择考核日期" id="date">
+			<button class="clear-user layui-bg-red">清空成绩数据库</button>
+		</div>
+		<table id="score-table" lay-filter="score-table" lay-skin="line"></table>
+	</div>
+	<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+  </script>
+	<script src="../../layui/layui.js"></script>
+	<script>
+		layui.use(['table', 'layer', 'jquery', 'laydate'], function () {
+			var table = layui.table;
+			var layer = layui.layer;
+			var $ = layui.jquery;
+			var laydate = layui.laydate;
+			var plan_date = "";
+			laydate.render({
+				elem: '#date',
+				done: function (value, date, endDate) {
+					plan_date = value;
+				}
+			});
+			var scoreTable = table.render({
+				elem: '#score-table',
+				skin: 'line' //行边框风格
+				,
+				even: true,
+				url: 'json/score-info.json' //数据接口
+				,
+				page: true //开启分页
+				,
+				text: {
+					none: '暂无相关数据'
+				},
+				limit: 12,
+				limits: [12, 13, 14, 15, 16, 17, 18, 19, 20],
+				method: 'get',
+				cols: [[ //表头
+					{
+						field: 'num',
+						title: '序号',
+						fixed: 'left',
+						type: "numbers",
+						width: "5%"
+					}, {
+						field: 'id',
+						title: '学号',
+						// width:"5%"
+					}, {
+						field: 'username',
+						title: '用户名',
+						// width:"5%"
+					}
+					, {
+						field: 'age',
+						title: '年龄',
+						// width:"5%"
+					}, {
+						field: 'sex',
+						title: '性别',
+						// width:"5%"
+					}, {
+						field: 'score1',
+						title: '引体向上',
+						width: "8%"
+					}, {
+						field: 'score2',
+						title: '蛇形跑',
+						// width:"5%"
+					}, {
+						field: 'score3',
+						title: '仰卧起坐',
+						width: "8%"
+					}, {
+						field: 'score4',
+						title: '三公里',
+						// width:"5%"
+					}, {
+						field: 'score5',
+						title: '体型',
+						// width:"5%"
+					},
+
+					{
+						field: 'plan_number',
+						title: '训练号',
+						width: "10%"
+					}, {
+						field: 'score',
+						title: '总分',
+						// width:"5%"
+					},
+					{
+						field: 'rank',
+						title: '评级',
+						// width:"5%"
+					}
+					, {
+						align: 'center',
+						toolbar: '#barDemo',
+						width: "10%"
+					}]]
+			});
+			table.on('tool(score-table)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+				var data = obj.data; //获得当前行数据
+				var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+				var tr = obj.tr; //获得当前行 tr 的DOM对象
+
+				if (layEvent === 'edit') { //编辑
+					layer.open({
+						type: 2,
+						title: '修改成绩信息',
+						maxmin: true,
+						shadeClose: true, //点击遮罩关闭层
+						area: ['60%', '90%'],
+						content: 'alter-score.html?score_id=' + data.score_id
+					});
+				}
+				if (layEvent === 'del') { //删除
+					layer.confirm('真的删除行么', function (index) {
+						layer.close(index);
+						$.ajax({
+							type: "post",
+							dataType: "text",
+							data: "user_id=" + data.id,
+							url: "../servlet/deleteuser",
+							success: function (data) {
+								if (data = "true") {
+									obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+									layer.msg("删除成功！");
+								} else
+									layer.msg("删除失败！");
+							},
+							error: function (err) {
+								layer.msg("删除失败！");
+							}
+						});
+					});
+
+				}
+			});
+			$(".search-user").click(
+				function () {
+					console.log(plan_date)
+					if ($("#username").val() != "" || plan_date != "") {
+						scoreTable.reload({
+							elem: '#score-table',
+							skin: 'line' //行边框风格
+							,
+							even: true,
+							url: '../servlet/getscorerbyname?username=' + $("#username").val() + "&date=" + date //数据接口,同时考虑用户名或者日期是否为空情况
+							,
+							page: true //开启分页
+							,
+							text: {
+								none: '暂无相关数据'
+							},
+							method: 'post',
+							cols: [[ //表头
+								{
+									field: 'num',
+									title: '序号',
+									fixed: 'left',
+									type: "numbers",
+									width: "5%"
+								}, {
+									field: 'id',
+									title: '学号',
+									// width:"5%"
+								}, {
+									field: 'username',
+									title: '用户名',
+									// width:"5%"
+								}
+								, {
+									field: 'age',
+									title: '年龄',
+									// width:"5%"
+								}, {
+									field: 'sex',
+									title: '性别',
+									// width:"5%"
+								}, {
+									field: 'score1',
+									title: '引体向上',
+									width: "8%"
+								}, {
+									field: 'score2',
+									title: '蛇形跑',
+									// width:"5%"
+								}, {
+									field: 'score3',
+									title: '仰卧起坐',
+									width: "8%"
+								}, {
+									field: 'score4',
+									title: '三公里',
+									// width:"5%"
+								},
+								{
+									field: 'time',
+									title: '时间',
+									width: "10%"
+								}, {
+									field: 'score',
+									title: '总分',
+									// width:"5%"
+								},
+								{
+									field: 'rank',
+									title: '评级',
+									// width:"5%"
+								}
+								, {
+									align: 'center',
+									toolbar: '#barDemo',
+									width: "10%"
+								}]]
+						});
+					} else {
+						layer.msg("请填写学员名或者选择考核日期");
+					}
+				});
+			$(".clear-user").click(function () {
+				layer.confirm('真的要清空成绩数据库么', function (index) {
+					layer.close(index);
+					$.ajax({
+						type: "post",
+						dataType: "text",
+						url: "../servlet/emptyuser",
+						success: function (data) {
+							if (data = "true") {
+								layer.msg("清空成绩数据库成功！");
+								userTable.reload({
+									elem: '#score-table',
+									skin: 'line' //行边框风格
+									,
+									even: true,
+									url: '../servlet/getusers' //数据接口
+									,
+									page: false //开启分页
+									,
+									text: {
+										none: '暂无相关数据'
+									}
+								});
+							} else
+								layer.msg("清空成绩数据库失败！");
+						},
+						error: function (err) {
+							layer.msg("清空成绩数据库失败！");
+						}
+					});
+				});
+			});
+
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+{
+    "code": 0,
+    "count": 3,
+    "msg": "",
+    "data": [
+        {
+            "id": 1,
+            "username": "CZL",
+            "birthday": "2019-12-12",
+            "nation": "汉族",
+            "address": "asdfsadf",
+            "occupy": "DZ",
+            "team":"XX队"
+        },
+        {
+            "id": 2,
+            "username": "CZL",
+            "birthday": "2019-12-12",
+            "nation": "汉族",
+            "address": "asdfsadf",
+            "occupy": "JDY",
+            "team":"XX队"
+        },
+        {
+            "id": 3,
+            "username": "CZL",
+            "birthday": "2019-12-12",
+            "nation": "汉族",
+            "address": "asdfsadf",
+            "occupy": "JDY",
+            "team":"XX队"
+        }
+    ]
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="../../layui/css/layui.css">
+	<style>
+		body {
+			padding: 10px;
+			background: white !important;
+		}
+
+		.clear-user,
+		.search-user {
+			height: 40px;
+			padding: 5px 10px;
+			box-sizing: border-box;
+			float: right;
+			margin-right: 10px;
+			cursor: pointer;
+			border: none;
+		}
+
+		#username {
+			height: 40px;
+			box-sizing: border-box;
+			padding: 3px;
+			float: right;
+			margin-right: 10px;
+		}
+
+		.search-user {
+			padding: 5px 15px;
+		}
+	</style>
+	<script>
+
+
+	</script>
+</head>
+
+<body>
+	<div class="layui-container">
+		<table id="user-table" lay-filter="user-table" lay-skin="line"></table>
+	</div>
+	<script src="../../layui/layui.js"></script>
+	<script>
+		layui.use(['table', 'layer', 'jquery'], function () {
+			var table = layui.table;
+			var layer = layui.layer;
+			var $ = layui.jquery;
+			var userTable = table.render({
+				elem: '#user-table',
+				skin: 'line' //行边框风格
+				,
+				even: true,
+				url: 'json/rank.json' //数据接口
+				,
+				page: true //开启分页
+				,
+				text: {
+					none: '暂无相关数据'
+				},
+				limit: 12,
+				limits: [12, 13, 14, 15, 16, 17, 18, 19, 20],
+				method: 'get',
+				cols: [[ //表头
+					{
+						field: 'num',
+						title: '排名',
+						fixed: 'left',
+						type: "numbers",
+						width: "10%"
+					}, {
+						field: 'id',
+						title: '学号',
+						width: "25%"
+					}, {
+						field: 'username',
+						title: '用户名',
+						width: "20%"
+					}, {
+						field: 'sort',
+						title: '人员类别',
+						wdith: "15%"
+					},
+					{
+						field: 'average',
+						title: '平均分',
+						wdith: "15%"
+					},
+					{
+						field: 'pass',
+						title: '及格率',
+						wdith: "15%"
+					}]]
+			});
+		});
+	</script>
+</body>
+
+</html>

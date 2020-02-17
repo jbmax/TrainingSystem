@@ -1,0 +1,31 @@
+{
+    "code": 0,
+    "count": 3,
+    "msg": "",
+    "data": [
+        {
+            "id": 1,
+            "username": "CZL",
+            "birthday": "2019-12-12",
+            "nation": "汉族",
+            "address": "asdfsadf",
+            "sort": "三类人员"
+        },
+        {
+            "id": 2,
+            "username": "CZL",
+            "birthday": "2019-12-12",
+            "nation": "汉族",
+            "address": "asdfsadf",
+            "sort": "三类人员"
+        },
+        {
+            "id": 3,
+            "username": "CZL",
+            "birthday": "2019-12-12",
+            "nation": "汉族",
+            "address": "asdfsadf",
+            "sort": "三类人员"
+        }
+    ]
+}

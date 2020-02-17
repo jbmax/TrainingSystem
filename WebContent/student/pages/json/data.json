@@ -1,0 +1,10 @@
+{
+    "data": [
+        {"id":1,"name":"CZL","3K":"12′20″","snake":"12′20″","sit_up":50,"pull_up":10,"date":"2019-12-27","score":90,"rank":1},
+        {"id":2,"name":"CZL","3K":"12′20″","snake":"12′20″","sit_up":50,"pull_up":10,"date":"2019-12-27","score":90,"rank":1},
+        {"id":3,"name":"CZL","3K":"12′20″","snake":"12′20″","sit_up":50,"pull_up":10,"date":"2019-12-27","score":90,"rank":1},
+        {"id":4,"name":"CZL","3K":"12′20″","snake":"12′20″","sit_up":50,"pull_up":10,"date":"2019-12-27","score":90,"rank":1},
+        {"id":5,"name":"CZL","3K":"12′20″","snake":"12′20″","sit_up":50,"pull_up":10,"date":"2019-12-27","score":90,"rank":1},
+        {"id":6,"name":"CZL","3K":"12′20″","snake":"12′20″","sit_up":50,"pull_up":10,"date":"2019-12-27","score":90,"rank":1}
+    ]
+}

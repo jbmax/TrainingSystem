@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="../../layui/css/layui.css">
+	<style>
+		body {
+			padding: 10px;
+			background: white !important;
+		}
+
+		.clear-user,
+		.search-user {
+			height: 40px;
+			padding: 5px 10px;
+			box-sizing: border-box;
+			margin-right: 10px;
+			cursor: pointer;
+			border: none;
+			float: right;
+		}
+
+		#username {
+			height: 40px;
+			box-sizing: border-box;
+			padding: 3px;
+			margin-right: 10px;
+			float: right;
+
+		}
+
+		.search-user {
+			padding: 5px 15px;
+		}
+
+		.inline-block {
+			display: inline-block;
+			float: right;
+			margin-right: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="layui-container">
+		<div class="layui-row">
+			<button class="search-user layui-bg-green">搜索</button>
+			<input type="text" placeholder="请输入用户名" id="username">
+			<div class="inline-block  layui-form">
+				<select name="team" lay-verify="team" id="team" lay-filter="team">
+					<option value="">可以指定队别</option>
+					<option value="010">XX队</option>
+					<option value="021">XX队</option>
+					<option value="0571">XX队</option>
+				</select>
+			</div>
+			<button class="clear-user layui-bg-red">清空学员数据库</button>
+		</div>
+		<table id="user-table" lay-filter="user-table"></table>
+	</div>
+	<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="reset">重置密码</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+  </script>
+	<script src="../../layui/layui.js"></script>
+	<script>
+		layui.use(['table', 'layer', 'jquery', 'form'], function () {
+			var table = layui.table;
+			var layer = layui.layer;
+			var $ = layui.jquery;
+			var form = layui.form;
+			var userTable = table.render({
+				elem: '#user-table',
+				skin: 'line' //行边框风格
+				,
+				even: true,
+				url: 'json/student-info.json' //数据接口
+				,
+				page: true //开启分页
+				,
+				text: {
+					none: '暂无相关数据'
+				},
+				limit: 12,
+				limits: [12, 13, 14, 15, 16, 17, 18, 19, 20],
+				method: 'get',
+				cols: [[ //表头
+					{
+						field: 'num',
+						title: '序号',
+						fixed: 'left',
+						type: "numbers",
+						width: "10%"
+					}, {
+						field: 'id',
+						title: '学号',
+						width: "15%"
+					}, {
+						field: 'username',
+						title: '用户名',
+						width: "10%"
+					}, {
+						field: 'birthday',
+						title: '出生年月',
+						width: "10%"
+					}, {
+						field: 'nation',
+						title: '民族',
+						wdith: "5%"
+					}, {
+						field: 'address',
+						title: '籍贯',
+						wdith: "10%"
+					}, {
+						field: 'sort',
+						title: '人员类别',
+						wdith: "10%"
+					}, {
+						field: 'team',
+						title: '队别',
+						wdith: "10%"
+					}, {
+						width: 150,
+						align: 'center',
+						toolbar: '#barDemo',
+						width: "20%"
+					}]]
+			});
+			table.on('tool(user-table)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+				var data = obj.data; //获得当前行数据
+				var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+				var tr = obj.tr; //获得当前行 tr 的DOM对象
+
+				if (layEvent === 'edit') { //编辑
+					layer.open({
+						type: 2,
+						title: '修改个人信息',
+						maxmin: true,
+						shadeClose: true, //点击遮罩关闭层
+						area: ['60%', '90%'],
+						content: 'alter-student.html?student_id=' + data.id
+					});
+				}
+				if (layEvent === 'del') { //删除
+					layer.confirm('真的删除行么', function (index) {
+						layer.close(index);
+						$.ajax({
+							type: "post",
+							dataType: "text",
+							data: "user_id=" + data.id,
+							url: "../servlet/deleteuser",
+							success: function (data) {
+								if (data = "true") {
+									obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+									layer.msg("删除成功！");
+								} else
+									layer.msg("删除失败！");
+							},
+							error: function (err) {
+								layer.msg("删除失败！");
+							}
+						});
+					});
+
+				}
+				if (layEvent === 'reset') { //重置密码
+					layer.confirm('真的重置密码么', function (index) {
+						layer.close(index);
+						$.ajax({
+							type: "post",
+							dataType: "text",
+							data: "user_id=" + data.id,
+							url: "../servlet/resetpassword",
+							success: function (data) {
+								if (data = "true")
+									layer.msg("重置密码成功！");
+								else
+									layer.msg("重置密码失败！");
+							},
+							error: function (err) {
+								layer.msg("重置密码失败！");
+							}
+						});
+					});
+
+				}
+			});
+			var team = "";
+			form.on('select(team)', function (data) {
+				team = data.value;
+			});
+			$(".search-user").click(
+				function () {
+					if ($("#username").val() != "" || team != "") {
+						userTable.reload({
+							elem: '#user-table',
+							skin: 'line' //行边框风格
+							,
+							even: true,
+							url: '../servlet/getstudentbyname?username='+ $("#username").val()+"&team="+team //数据接口
+							,
+							page: false //开启分页
+							,
+							text: {
+								none: '暂无相关数据'
+							},
+							method: 'get',
+							cols: [[ //表头
+								{
+									field: 'num',
+									title: '序号',
+									fixed: 'left',
+									type: "numbers",
+									width: "10%"
+								}, {
+									field: 'id',
+									title: '学号',
+									width: "15%"
+								}, {
+									field: 'username',
+									title: '用户名',
+									width: "10%"
+								}, {
+									field: 'birthday',
+									title: '出生年月',
+									width: "10%"
+								}, {
+									field: 'nation',
+									title: '民族',
+									wdith: "5%"
+								}, {
+									field: 'address',
+									title: '籍贯',
+									wdith: "10%"
+								}, {
+									field: 'sort',
+									title: '人员类别',
+									wdith: "10%"
+								}, {
+									field: 'team',
+									title: '队别',
+									wdith: "10%"
+								}, {
+									width: 150,
+									align: 'center',
+									toolbar: '#barDemo',
+									width: "20%"
+								}]]
+						});
+					} else {
+						layer.msg("请填写用户名或者选择队别！");
+					}
+				});
+			$(".clear-user").click(function () {
+				layer.confirm('真的要清空用户数据库么', function (index) {
+					layer.close(index);
+					$.ajax({
+						type: "post",
+						dataType: "text",
+						url: "../servlet/emptystudent",
+						success: function (data) {
+							if (data = "true") {
+								layer.msg("清空学员数据库成功！");
+								userTable.reload({//清空表格数据，下述url为获取所有用户的servlet即可
+									elem: '#user-table',
+									skin: 'line' //行边框风格
+									,
+									even: true,
+									url: '../servlet/getstudents' //数据接口
+									,
+									page: false //开启分页
+									,
+									text: {
+										none: '暂无相关数据'
+									}
+								});
+							} else
+								layer.msg("清空用户数据库失败！");
+						},
+						error: function (err) {
+							layer.msg("清空用户数据库失败！");
+						}
+					});
+				});
+			});
+
+		});
+	</script>
+</body>
+
+</html>

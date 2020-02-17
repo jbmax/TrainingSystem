@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="../..//layui/css/layui.css" media="all">
+  <style>
+    html,body{
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layui-container">
+    <table lay-filter="score-table" id="score-table">
+
+    </table>
+  </div>
+
+  <script src="../../layui/layui.js"></script>
+  <script>
+    layui.use('table', function () {
+      var table = layui.table;
+      table.render({
+        elem: '#score-table'
+        , height: '100%'
+        , page: true
+        , limit: 8
+        , limits: [8, 9, 10, 11, 12, 13, 14, 15, 16]
+        , url: '/TrainingSystem/Ajaxscore?Student_ID=19020001' //数据接口
+        ,height:"full-40"
+        , cols: [[
+          { field: 'sID', title: '学号',  fixed: 'left' }
+          , { field: 'sName', title: '姓名', }
+          , { field: 'run3k', title: '3000米', }
+          , { field: 'snake', title: '蛇形跑',  }
+          , { field: 'situp', title: '仰卧起坐',  }
+          , { field: 'pullup', title: '引体向上', }
+          , { field: 'date', title: '考核日期',}
+          //, { field: 'score', title: '得分', }
+          //, { field: 'rank', title: '排名', }
+        ]]
+      });
+    });
+  </script>
+</body>
+
+</html>

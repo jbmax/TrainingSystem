@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>折线堆叠图</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main" style="width: 100%;height:100%;"></div>
+    <script src="../../echarts/echarts.min.js"></script>
+    <script src="../../layui/layui.js"></script>
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('main'));
+        myChart.title = "今年以来参加训练情况";
+        layui.use("jquery", function () {
+            var $ = layui.jquery;
+            $.ajax({
+                type: "get",
+                dateType: "json",
+                url: "json/training.json",
+                success: function (data) {
+                    var month = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+                    var cur_month = 12;
+                    for (var i = cur_month; i < 12; i++)
+                        month.pop();
+                    var total = [];
+                    var attend = [];
+                    month.forEach(function (ele, index) {
+                        total.push(data[ele][0]);
+                        attend.push(data[ele][1]);
+                    });
+                    var option = {
+                        xAxis: {
+                            type: 'category',
+                            data: month
+                        },
+                        yAxis: {
+                            type: 'value'
+                        },
+                        legend: {
+                            data: ['总组织次数', '参加次数']
+                        },
+                        tooltip: {
+                            trigger: 'axis',
+                            formatter: function (params, ticket, callback) {
+                                return params[0].name + '共组织训练' + data[params[0].name][0] + '次<br />参加' + data[params[0].name][1] + '次<br />缺考' + (data[params[0].name][0] - data[params[0].name][1]) + '次';
+                            }
+                        },
+                        series: [{
+                            name:'参加次数',
+                            data: attend,
+                            type: 'line',
+                            smooth: true,
+                        }, {
+                            name:'总组织次数',
+                            data: total,
+                            type: 'line',
+                            smooth: true,
+                        }]
+                    };
+                    myChart.setOption(option);
+                    window.addEventListener("resize", function () {
+                        myChart.resize();
+                    });
+                },
+                error: function (error) { }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+{
+    "data": [
+        {
+            "datetime": "2020-2-4 14:00",
+            "plan_number": "20200204",
+            "remark": "asfh;dsafkjfksakk",
+            "done": [
+                "XX队",
+                "YY队",
+                "YY队",
+                "YY队",
+                "YY队",
+                "YY队"
+            ],
+            "none": [
+                "XX队",
+                "YY队",
+                "YY队",
+                "YY队",
+                "YY队",
+                "YY队"
+            ]
+        },
+        {
+            "datetime": "2020-2-4 14:00",
+            "plan_number": "20200204",
+            "remark": "asfh;dsafkjfksakk",
+            "done": [
+                "XX队",
+                "YY队",
+                "YY队",
+                "YY队",
+                "YY队",
+                "YY队"
+            ],
+            "none": [
+                "XX队",
+                "YY队",
+                "YY队",
+                "YY队",
+                "YY队",
+                "YY队"
+            ]
+        },
+        {
+            "datetime": "2020-2-4 14:00",
+            "plan_number": "20200204",
+            "remark": "asfh;dsafkjfksakk",
+            "done": [
+                "XX队",
+                "YY队",
+                "YY队",
+                "YY队",
+                "YY队",
+                "YY队"
+            ],
+            "none": [
+                "XX队",
+                "YY队",
+                "YY队",
+                "YY队",
+                "YY队",
+                "YY队"
+            ]
+        }
+    ]
+}

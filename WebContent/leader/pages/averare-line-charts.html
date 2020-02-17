@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main" style="width: 100%;height:100%;"></div>
+    <script src="../../echarts/echarts.min.js"></script>
+    <script src="../../layui/layui.js"></script>
+    <script src=""></script>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        layui.use(['jquery'], function () {
+            var $ = layui.jquery;
+            var myChart = echarts.init(document.getElementById('main'));
+            $.ajax({
+                type: "get",
+                dateType: "json",
+                url: "json/linechartsdatasource.json",
+                success: function (data) {
+                    // 指定图表的配置项和数据
+                    var option = {
+                        title: {
+                            text: '总成绩平均分趋势图',
+                            subtext: '数据来源于最近10次成绩',
+                            top: -5,
+                            left: 10
+                        },
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        xAxis: {
+                            type: 'category',
+                            data: data.date
+                        },
+                        yAxis: {
+                            type: 'value'
+                        },
+                        series: [{
+                            data: data.value,
+                            type: 'line'
+                        }]
+                    };
+                    myChart.setOption(option);
+                },
+                error: function (error) {
+
+                }
+            });
+            window.addEventListener("resize", function () {
+                myChart.resize();
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+{
+    "code": 0,
+    "count": 3,
+    "msg": "",
+    "data": [
+        {
+            "id":1,
+            "place_name":"XX队"
+        },
+        {
+            "id":2,
+            "place_name":"XX队"
+        },
+        {
+            "id":3,
+            "place_name":"XX队"
+        }
+    ]
+}
