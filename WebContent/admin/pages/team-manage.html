@@ -37,7 +37,7 @@
 <body>
     <div class="layui-container">
         <div class="layui-row" style="margin-bottom: 10px;">
-            <button class="layui-btn clear-notice layui-bg-red">清空学员队信息</button>
+            <!-- button class="layui-btn clear-notice layui-bg-red">清空学员队信息</button> -->
             <button class="layui-btn add-notice layui-bg-blue">添加学员队</button>
         </div>
         <table class="layui-table" lay-even lay-skin="nob" lay-filter="notice" id="notice">
@@ -55,16 +55,17 @@
             table.render({
                 elem: '#notice'
                 , height: "full-70"
-                , url: 'json/teamlist.json' //数据接口
+                , url: '/TrainingSystem/AjaxGroupList' //数据接口
                 , page: true //开启分页
                 , limit: 10
-                , limits: [8, 9, 10, 11, 12, 13, 14, 15, 16]
+                , limits: [10, 20]
                 , cols: [[ //表头
-                    { title: '序号', type: "numbers", width: "10%" }
-                    , { field: 'team_name', title: '队别', width: '30%' }
-                    , { field: 'leader', title: '队干部', width: '30%' }
-                    , { field: 'amount', title: '现有人数', width: '10%' }
-                    , { align: 'center', toolbar: '#barDemo', width: "20%" }
+                    { title: '序号', type: "numbers", width: "10%"  }
+                    , { field: 'GID', title: '队别'/* , width: '30%'  */}
+                    , { field: 'GName', title: '队名'/* , width: '30%'  */}
+                    , { field: 'Date', title: '创建时间'/* , width: '30%'  */}
+                    , { field: 'Num', title: '现有人数'/* , width: '10%'  */}
+                    , { align: 'center', toolbar: '#barDemo'/* , width: "20%"  */}
                 ]]
             });
             table.on('tool(notice)', function (obj) {
@@ -77,10 +78,10 @@
                         $.ajax({
                             type: "post",
                             dataType: "text",
-                            data: "id=" + data.id,
-                            url: "../servlet/deleteteambyid",
+                            //data: "gid=" + data.GID,
+                            url: "/TrainingSystem/AjaxAlterGroup?del=1&gid="+data.GID,
                             success: function (data) {
-                                if (data = "true") {
+                                if (data == true || data == "true") {
                                     obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
                                     layer.msg("删除成功！");
                                 } else
@@ -97,7 +98,7 @@
                         title: '修改队别'
                         , type: 2
                         , area: ['100%', '100%']
-                        , content: 'alter-team.html?id=' + data.id
+                        , content: 'alter-team.jsp?gid=' + data.GID
                     });
                 }
             });

@@ -9,22 +9,6 @@ import com.TrainingSystem.util.Dbconn;
 import com.TrainingSystem.entity.*;
 
 public class Studentdao {
-	public static int insert(Studentinfo s)
-	{
-		String sql = "insert into StudentInfo values(?, ?, ?, ?, ?, ?)";
-		
-		Object[] params = {
-				s.getStudent_ID(),
-				s.getStudent_Name(),
-				s.getStudent_Password(),
-				s.getStudent_Gender(),
-				s.getStudent_Birthday(),
-				s.getGroup_ID()
-		};
-		
-		return Dbconn.exectuIUD(sql, params);
-	}
-	
 	public static Studentinfo selectbyid(String id)
 	{
 		//声明结果集
@@ -38,7 +22,8 @@ public class Studentdao {
 		String sql = "";
 		try {
 			
-			sql = "select * from StudentInfo where Student_ID=?";
+			sql = "select * from StudentInfo where Student_ID=?"
+					+ " AND Is_Del = 0";
 		
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, id);
@@ -79,5 +64,19 @@ public class Studentdao {
 		};
 		
 		return Dbconn.exectuIUD(sql, params);
+	}
+	
+	public static Studentinfo verifyPass(String uid, String password) throws Exception
+	{
+		Studentinfo si = selectbyid(uid);
+		
+		if (si != null) {
+			if (password.equals(si.getStudent_Password()))
+			{
+				return si;
+			}
+		}
+
+		return null;
 	}
 }

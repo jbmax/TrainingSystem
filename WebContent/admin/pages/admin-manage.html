@@ -47,10 +47,11 @@
 
 <body>
 	<div class="layui-container">
-		<div class="layui-row">
-			<button class="search-user layui-bg-green">搜索</button>
+ 		<div class="layui-row">
+<!-- 			<button class="search-user layui-bg-green">搜索</button>
 			<input type="text" placeholder="请输入用户名" id="username">
-			<button class="clear-user layui-bg-red">清空教务人员数据库</button>
+			<button class="clear-user layui-bg-red">清空教务人员数据库</button> -->
+			<!-- <button class="layui-btn add-notice layui-bg-blue">添加管理员</button> -->
 		</div>
 		<table id="user-table" lay-filter="user-table"></table>
 	</div>
@@ -71,15 +72,15 @@
 				skin: 'line' //行边框风格
 				,
 				even: true,
-				url: 'json/admin-info.json' //数据接口
+				url: '/TrainingSystem/AjaxAdminList' //数据接口
 				,
 				page: true //开启分页
 				,
 				text: {
 					none: '暂无相关数据'
 				},
-				limit: 12,
-				limits: [12, 13, 14, 15, 16, 17, 18, 19, 20],
+				limit: 10,
+				limits: [10, 20],
 				method: 'get',
 				cols: [[ //表头
 					{
@@ -89,14 +90,14 @@
 						type: "numbers",
 						width: "10%"
 					}, {
-						field: 'id',
-						title: '工号',
-						width: "15%"
+						field: 'ID',
+						title: '管理员账号',
+						/* width: "15%" */
 					}, {
-						field: 'username',
-						title: '用户名',
-						width: "10%"
-					}, {
+						field: 'Name',
+						title: '管理员姓名',
+						/* width: "20%" */
+					},/*  {
 						field: 'birthday',
 						title: '出生年月',
 						width: "10%"
@@ -112,11 +113,11 @@
 						field: 'occupy',
 						title: '职务',
 						wdith: "10%"
-					}, {
-						width: 150,
-						align: 'center',
+					}, */ {
+						/* width: 150, */
+						align: 'right',
 						toolbar: '#barDemo',
-						width: "20%"
+						/* width: "15%" */
 					}]]
 			});
 			table.on('tool(user-table)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
@@ -131,7 +132,7 @@
 						maxmin: true,
 						shadeClose: true, //点击遮罩关闭层
 						area: ['60%', '90%'],
-						content: 'alter-admin.html?admin_id=' + data.id
+						content: 'alter-admin.jsp?id=' + data.ID + "&name=" + data.Name
 					});
 				}
 				if (layEvent === 'del') { //删除
@@ -140,10 +141,10 @@
 						$.ajax({
 							type: "post",
 							dataType: "text",
-							data: "user_id=" + data.id,
-							url: "../servlet/deleteuser",
+							//data: "user_id=" + data.id,
+							url: "/TrainingSystem/AjaxAlterAdmin?del=1&id="+data.ID,
 							success: function (data) {
-								if (data = "true") {
+								if (data == true || data == "true") {
 									obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
 									layer.msg("删除成功！");
 								} else
@@ -162,10 +163,10 @@
 						$.ajax({
 							type: "post",
 							dataType: "text",
-							data: "user_id=" + data.id,
-							url: "../servlet/resetpassword",
+							//data: "user_id=" + data.id,
+							url: "/TrainingSystem/AjaxAlterAdmin?pwd=1&id="+data.ID,
 							success: function (data) {
-								if (data = "true")
+								if (data == true || data == "true")
 									layer.msg("重置密码成功！");
 								else
 									layer.msg("重置密码失败！");

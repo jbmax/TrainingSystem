@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+    <style>
+        body {
+            padding: 10px;
+            background: white !important;
+        }
+
+        .add-manage,
+        .clear-manage,
+        .upload {
+            height: 40px;
+            padding: 5px 10px;
+            box-sizing: border-box;
+            float: right;
+            margin-right: 10px;
+            cursor: pointer;
+            border: none;
+        }
+
+        #username {
+            height: 40px;
+            box-sizing: border-box;
+            padding: 3px;
+            float: right;
+            margin-right: 10px;
+        }
+
+        .search-user {
+            padding: 5px 15px;
+        }
+    </style>
+    <script>
+
+
+    </script>
+</head>
+
+<body>
+    <div class="layui-container">
+        <!-- <div class="layui-row">
+            <button class="add-manage layui-bg-green">添加</button>
+            <button class="upload layui-bg-green">导入成绩</button>
+            <button class="clear-manage layui-bg-red">清空训练数据库</button>
+        </div> -->
+        <table id="manage-table" lay-filter="manage-table" lay-skin="line"></table>
+    </div>
+    <script src="../../layui/layui.js"></script>
+    <!-- <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="change">改变状态</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script> -->
+    <script>
+        layui.use(['table', 'layer', 'jquery'], function () {
+            var table = layui.table;
+            var layer = layui.layer;
+            var $ = layui.jquery;
+            var userTable = table.render({
+                elem: '#manage-table',
+                skin: 'line',
+                even: true,
+                url: '/TrainingSystem/AjaxTrainList',
+                page: true,
+                text: {
+                    none: '暂无相关数据'
+                },
+                limit: 10,
+                limits: [10, 20],
+                cols: [[ //表头
+                	{ field: 'Date', title: '时间', width: '15%' }
+                	, { field: 'TID', title: '训练编号', width: '15%' }
+                    , { field: 'PID', title: '所属训练计划', width: '15%' }
+                    , { field: 'GName', title: '场地', width: '15%' }
+                    , { field: 'LName', title: '发起人'/* , width: '10%' */ }
+                    , { field: 'Oper', title: '负责人'/* , width: '15%'  */}
+                    , { field: 'State', title: '状态'/* , width: '15%' */ }
+                    //, { align: 'center', toolbar: '#barDemo', width: "10%" }
+                ]],
+            });
+        });
+    </script>
+</body>
+
+</html>

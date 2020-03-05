@@ -37,7 +37,7 @@
 <body>
     <div class="layui-container">
         <div class="layui-row" style="margin-bottom: 10px;">
-            <button class="layui-btn clear-notice layui-bg-red">清空训练计划</button>
+            <!-- <button class="layui-btn clear-notice layui-bg-red">清空训练计划</button> -->
             <button class="layui-btn add-notice layui-bg-blue">制定新计划</button>
         </div>
         <table class="layui-table" lay-filter="notice" id="notice">
@@ -53,20 +53,22 @@
             var $ = layui.jquery;
             var table = layui.table;
             table.render({
-                elem: '#notice'
-                , height: "full-70"
-                , url: 'json/planlist.json' //数据接口
-                , page: true //开启分页
-                , limit: 10
-                , limits: [8, 9, 10, 11, 12, 13, 14, 15, 16]
-                ,skin: 'line' //行边框风格
-				,even: true
-                , cols: [[ //表头
-                    { field: 'plan_number', title: '训练号', width: '20%' }
-                    , { field: 'datetime', title: '实时时间', width: '20%' }
-                    , { field: 'attend', title: '参加人', width: '20%' }
-                    , { field: 'remark', title: '备注', width: '20%' }
-                    , { align: 'center', toolbar: '#barDemo', width: "20%" }
+                elem: '#notice',
+                url: '/TrainingSystem/AjaxPlanManage',
+                page: true,
+                text: {
+                    none: '暂无相关数据'
+                },
+                skin: 'line', //行边框风格
+				even: true,
+                limit: 10,
+                limits: [10, 20],
+                cols: [[ //表头
+                    { field: 'PID', title: '计划编号', width: '20%' }
+                    , { field: 'SDate', title: '开始时间', width: '20%' }
+                    , { field: 'EDate', title: '截止时间', width: '20%' }
+                    , { field: 'State', title: '状态'/* , width: '20%'  */}
+                    , { align: 'center', toolbar: '#barDemo'/* , width: "10%"  */}
                 ]]
             });
             table.on('tool(notice)', function (obj) {
@@ -79,10 +81,10 @@
                         $.ajax({
                             type: "post",
                             dataType: "text",
-                            data: "plan_number=" + data.plan_number,
-                            url: "../servlet/deleteplanbynumber",
+                            data: "PID=" + data.PID,
+                            url: "/TrainingSystem/AjaxDeletePlan",
                             success: function (data) {
-                                if (data = "true") {
+                                if (data == true || data == "true") {
                                     obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
                                     layer.msg("删除成功！");
                                 } else
@@ -99,7 +101,7 @@
                         title: '修改计划'
                         , type: 2
                         , area: ['100%', '100%']
-                        , content: 'alter-plan.html?plan_number=' + data.plan_number
+                        , content: 'alter-plan.jsp?pid=' + data.PID
                     });
                 }
             });

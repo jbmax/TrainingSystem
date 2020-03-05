@@ -16,6 +16,13 @@
 			transform: translate(-50%, -50%);
 			border: none;
 		}
+		#sample {
+			position: absolute;
+			top: 70%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			border: none;
+		}
 	</style>
 </head>
 
@@ -23,6 +30,9 @@
 	<div class="layui-upload-drag" id="upload">
 		<i class="layui-icon"></i>
 		<p>点击选择文件导入，或将文件拖拽到此处</p>
+	</div>
+	<div class="layui-upload-drag" id="sample">
+		<p><a href="体型数据表-sample.xls">示例文档</a></p>
 	</div>
 	<script src="../../layui/layui.js"></script>
 	<script>
@@ -36,13 +46,14 @@
 			var uploadInst = upload.render({
 				elem: '#upload' //绑定元素
 				,
-				url: '../servlet/scoreupload' //上传接口
+				url: '/TrainingSystem/AjaxUploadHealth' //上传接口
 				,
 				accept: 'file',
 				acceptMime: 'application/vnd.ms-excel',
 				exts: 'xls',
 				done: function (res) {
-					if (res.code == "true") {
+					//console.log(res=="true");
+					if (res == true || res == "true") {
 						layer.open({
 							title: '导入成功',
 							content: '导入成功！',

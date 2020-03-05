@@ -10,9 +10,9 @@ $(function(){
 							e.preventDefault();
 							$.ajax({
 								type : 'post',
-								url : 'servlet/dologin',
+								url : '/TrainingSystem/Dologin',
 								dataType : 'text',
-								data : 'username=' + encodeURIComponent($('#username').val())
+								data : 'userClass=s&' + 'username=' + encodeURIComponent($('#username').val())
 										+ '&password=' + $('#password').val(),
 								success : function(data) {
 									if (data == "false") {

@@ -48,8 +48,8 @@
 <body>
 	<div class="layui-container">
 		<div class="layui-row">
-			<button class="search-user layui-bg-green">搜索</button>
-			<input type="text" placeholder="请输入用户名" id="username">
+<!-- 			<button class="search-user layui-bg-green">搜索</button>
+			<input type="text" placeholder="请输入学员姓名" id="username">
 			<div class="inline-block  layui-form">
 				<select name="team" lay-verify="team" id="team" lay-filter="team">
 					<option value="">可以指定队别</option>
@@ -57,13 +57,13 @@
 					<option value="021">XX队</option>
 					<option value="0571">XX队</option>
 				</select>
-			</div>
-			<button class="clear-user layui-bg-red">清空学员数据库</button>
+			</div> -->
+			<!-- <button class="clear-user layui-bg-red">清空学员数据库</button> -->
 		</div>
 		<table id="user-table" lay-filter="user-table"></table>
 	</div>
 	<script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="reset">重置密码</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
   </script>
@@ -79,15 +79,15 @@
 				skin: 'line' //行边框风格
 				,
 				even: true,
-				url: 'json/student-info.json' //数据接口
+				url: '/TrainingSystem/AjaxStudentList' //数据接口
 				,
 				page: true //开启分页
 				,
 				text: {
 					none: '暂无相关数据'
 				},
-				limit: 12,
-				limits: [12, 13, 14, 15, 16, 17, 18, 19, 20],
+				limit: 10,
+				limits: [10, 20],
 				method: 'get',
 				cols: [[ //表头
 					{
@@ -97,22 +97,22 @@
 						type: "numbers",
 						width: "10%"
 					}, {
-						field: 'id',
+						field: 'ID',
 						title: '学号',
 						width: "15%"
 					}, {
-						field: 'username',
-						title: '用户名',
-						width: "10%"
+						field: 'Name',
+						title: '姓名',
+						width: "12%"
 					}, {
-						field: 'birthday',
+						field: 'Gender',
+						title: '性别',
+						 width: "8%" 
+					}, {
+						field: 'BDay',
 						title: '出生年月',
-						width: "10%"
-					}, {
-						field: 'nation',
-						title: '民族',
-						wdith: "5%"
-					}, {
+						/* wdith: "5%" */
+					}, /* {
 						field: 'address',
 						title: '籍贯',
 						wdith: "10%"
@@ -120,15 +120,15 @@
 						field: 'sort',
 						title: '人员类别',
 						wdith: "10%"
+					}, */ {
+						field: 'GName',
+						title: '所属队名',
+						/* wdith: "10%" */
 					}, {
-						field: 'team',
-						title: '队别',
-						wdith: "10%"
-					}, {
-						width: 150,
+						/* width: 150, */
 						align: 'center',
 						toolbar: '#barDemo',
-						width: "20%"
+						width: "20%" 
 					}]]
 			});
 			table.on('tool(user-table)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
@@ -143,7 +143,7 @@
 						maxmin: true,
 						shadeClose: true, //点击遮罩关闭层
 						area: ['60%', '90%'],
-						content: 'alter-student.html?student_id=' + data.id
+						content: 'alter-student.jsp?id='+data.ID+'&name='+data.Name+'&gender='+data.Gender+'&bday='+data.BDay+'&group='+data.GName
 					});
 				}
 				if (layEvent === 'del') { //删除
@@ -152,10 +152,10 @@
 						$.ajax({
 							type: "post",
 							dataType: "text",
-							data: "user_id=" + data.id,
-							url: "../servlet/deleteuser",
+							//data: "user_id=" + data.id,
+							url: "/TrainingSystem/AjaxAlterStudent?del=1&id="+data.ID,
 							success: function (data) {
-								if (data = "true") {
+								if (data == true || data == "true") {
 									obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
 									layer.msg("删除成功！");
 								} else
@@ -174,10 +174,10 @@
 						$.ajax({
 							type: "post",
 							dataType: "text",
-							data: "user_id=" + data.id,
-							url: "../servlet/resetpassword",
+							//data: "user_id=" + data.id,
+							url: "/TrainingSystem/AjaxAlterStudent?pwd=1&id="+data.ID,
 							success: function (data) {
-								if (data = "true")
+								if (data == true || data == "true")
 									layer.msg("重置密码成功！");
 								else
 									layer.msg("重置密码失败！");

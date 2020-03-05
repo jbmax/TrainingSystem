@@ -21,12 +21,19 @@
 
 <body>
     <div class="layui-container">
-        <form class="layui-form" lay-filter="alter-form" action="../servlt/training" type="post">
+        <form class="layui-form" lay-filter="alter-form" action="/TrainingSystem/AjaxAddGroup" type="post">
             <div class="layui-form-item">
-                <label class="layui-form-label">队别</label>
+                <label class="layui-form-label">队名</label>
                 <div class="layui-input-block">
-                    <input type="text" value="" class="layui-input" lay-verify="required" id="remark" name="remark">
+                    <input type="text" value="" class="layui-input" lay-verify="required" id="gname" name="gname">
                 </div>
+            </div>
+             <div class="layui-form-item">
+                <label class="layui-form-label">创建时间</label>
+                <div class="layui-input-block">
+                    <input id="uDate" type="text" value="" placeholder="" lay-verify="required" class="layui-input" 
+                     name="gdate">
+            	</div>
             </div>
             <div class="layui-form-item">
                 <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="alter-manage">添加</button>
@@ -35,13 +42,23 @@
     </div>
     <script type="text/javascript" src="../../layui/layui.js"></script>
     <script src="../js/public.js"></script>
+     <script type="text/javascript" src="../layui/layui.js"></script>
+    <script type="text/javascript" src="../js/user-info.js"></script>
     <script>
-        layui.use(['form'], function () {
-            var form = layui.form;
-            form.on("submit(alter-manage)", function (data) {
-                window.parent.location.reload();
-            });
+    layui.use(['form', 'laydate', 'jquery'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.jquery;
+/*                 laydate = layui.laydate;
+         laydate.render({
+            elem: '#datetime'
+            , type: 'datetime'
+        }); */
+        form.on("submit(alter-manage)", function (data) {
+
+            window.parent.location.reload();
         });
+    });
     </script>
 </body>
 

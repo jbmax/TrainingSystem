@@ -66,21 +66,22 @@
                 elem: '#manage-table',
                 skin: 'line',
                 even: true,
-                url: 'json/manage.json',
+                url: '/TrainingSystem/AjaxtrainManage',
                 page: true,
                 text: {
                     none: '暂无相关数据'
                 },
-                limit: 12,
-                limits: [12, 13, 14, 15, 16, 17, 18, 19, 20],
+                limit: 10,
+                limits: [10, 20],
                 cols: [[ //表头
-                    { field: 'id', title: '训练号', width: '15%' }
-                    , { field: 'date', title: '时间', width: '15%' }
-                    , { field: 'address', title: '地址', width: '20%' }
-                    , { field: 'attend', title: '参加人', width: '10%' }
-                    , { field: 'incharge', title: '组织人', width: '10%' }
-                    , { field: 'state', title: '状态', width: '10%' }
-                    , { align: 'center', toolbar: '#barDemo', width: "20%" }
+                	{ field: 'TID', title: '训练编号'/* , width: '15%'  */}
+                	, { field: 'Date', title: '时间'/* , width: '15%'  */} 
+                    , { field: 'PID', title: '所属训练计划'/* , width: '15%'  */}
+                    , { field: 'GName', title: '场地'/* , width: '15%' */ }
+                    , { field: 'LName', title: '发起人'/* , width: '10%'  */}
+                    , { field: 'Oper', title: '负责人'/* , width: '10%'  */}
+                    , { field: 'State', title: '状态'/* , width: '10%'  */}
+                    , { align: 'center', toolbar: '#barDemo'/* , width: "10%"  */}
                 ]],
             });
             
@@ -91,15 +92,15 @@
                 if (layEvent === 'change') { //改变状态
                     layer.open({
                         content: '更改状态为：'
-                        , btn: ['未开始', '已结束', '未进行']
+                        , btn: ['未开始', '已结束', '已撤销']
                         , yes: function (index, layero) {
                             $.ajax({
                                 type: "post",
                                 dataType: "text",
-                                data: "manage_id=" + data.id + "&state=" + index,
-                                url: "../servlet/changestate",
+                                data: "tid=" + data.TID + "&state=0",
+                                url: "/TrainingSystem/AjaxChangestate",
                                 success: function (data) {
-                                    if (data == "true") {
+                                    if (data == true || data == "true") {
                                         layer.msg("更改成功！");
                                         window.location.reload();
                                     } else
@@ -114,10 +115,10 @@
                             $.ajax({
                                 type: "post",
                                 dataType: "text",
-                                data: "manage_id=" + data.id + "&state=" + index,
-                                url: "../servlet/changestate",
+                                data: "tid=" + data.TID + "&state=2",
+                                url: "/TrainingSystem/AjaxChangestate",
                                 success: function (data) {
-                                    if (data == "true") {
+                                    if (data == true || data == "true") {
                                         layer.msg("更改成功！");
                                         window.location.reload();
                                     } else
@@ -132,10 +133,10 @@
                             $.ajax({
                                 type: "post",
                                 dataType: "text",
-                                data: "manage_id=" + data.id + "&state=" + index,
-                                url: "../servlet/changestate",
+                                data: "tid=" + data.TID + "&state=3",
+                                url: "/TrainingSystem/AjaxChangestate",
                                 success: function (data) {
-                                    if (data == "true") {
+                                    if (data == true || data == "true") {
                                         layer.msg("更改成功！");
                                         window.location.reload();
                                     } else

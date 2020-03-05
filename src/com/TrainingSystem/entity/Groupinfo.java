@@ -1,26 +1,33 @@
 package com.TrainingSystem.entity;
 
 public class Groupinfo {
-	private String Group_ID;
+	private int Group_ID;
 	private String Group_Name;
-	private String Leader1_ID;
-	private String Leader2_ID;
+	private String Group_Date;
+	private int Is_Del;
 	
-	public Groupinfo(String gGroup_ID, String gGroup_Name,
-			String gGroup_Leader1, String gGroup_Leader2)
+	public Groupinfo(int gGroup_ID, String gGroup_Name,
+			String gGroup_Date)
 	{
 		super();
 		Group_ID = gGroup_ID;
 		Group_Name = gGroup_Name;
-		Leader1_ID = gGroup_Leader1;
-		Leader2_ID = gGroup_Leader2;
+		Group_Date = gGroup_Date;
 	}
 
-	public String getGroup_ID() {
+	public int getIs_Del() {
+		return Is_Del;
+	}
+
+	public void setIs_Del(int is_Del) {
+		Is_Del = is_Del;
+	}
+
+	public int getGroup_ID() {
 		return Group_ID;
 	}
 
-	public void setGroup_ID(String group_ID) {
+	public void setGroup_ID(int group_ID) {
 		Group_ID = group_ID;
 	}
 
@@ -32,21 +39,11 @@ public class Groupinfo {
 		Group_Name = group_Name;
 	}
 
-	public String getLeader1_ID() {
-		return Leader1_ID;
+	public String getGroup_Date() {
+		return Group_Date;
 	}
 
-	public void setLeader1_ID(String leader1_ID) {
-		Leader1_ID = leader1_ID;
+	public void setGroup_Date(String group_Date) {
+		Group_Date = group_Date;
 	}
-
-	public String getLeader2_ID() {
-		return Leader2_ID;
-	}
-
-	public void setLeader2_ID(String leader2_ID) {
-		Leader2_ID = leader2_ID;
-	}
-
-
 }

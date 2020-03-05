@@ -12,12 +12,14 @@
         .layui-form select {
             width: 200px;
         }
-        th{
+
+        th {
             background-color: #009688 !important;
-            color:white;
+            color: white;
         }
-        .layui-container{
-            padding-top:15px;
+
+        .layui-container {
+            padding-top: 15px;
         }
     </style>
 </head>
@@ -27,47 +29,40 @@
         <div class="layui-row">
             <div class="layui-form layui-col-md12 ok-search">
                 <div class="layui-inline">
-                    <select name="sex" lay-verify="required">
+                    <select name="sex" lay-verify="required" lay-filter="sex">
                         <option value="男">男</option>
                         <option value="女">女</option>
                     </select>
                 </div>
                 <div class="layui-inline">
                     <select name="sort" lay-verify="required">
-                        <option value="一类">一类</option>
-                        <option value="二类">二类</option>
-                        <option value="三类">三类</option>
+                        <!-- <option value="一类">一类</option>
+                        <option value="二类">二类</option> -->
+                        <option value="二类" selected>二类</option>
                     </select>
                 </div>
                 <div class="layui-inline">
-                    <input class="layui-input" placeholder="年龄" autocomplete="off" name="age" lay-verify="required|number">
+                    <input class="layui-input age" placeholder="年龄" autocomplete="off" name="age"
+                        lay-verify="required|number" onkeyup="value=value.replace(/[^1234567890-]+/g,'')">
                 </div>
-                <button class="layui-btn" lay-submit="" lay-filter="search">
+                <button class="layui-btn search" lay-filter="search">
                     <i class="layui-icon">&#xe615;</i>
                 </button>
             </div>
         </div>
         <div class="layui-row">
-            <table id="standard" lay-filter="standard" class="layui-table">
+            <table id="standard" lay-filter="standard" class="layui-table layui-hide">
                 <colgroup>
                     <col width="50%">
                     <col width="50%">
                 </colgroup>
                 <thead>
                     <tr>
-                        <th>体重</th>
-                        <th>评分</th>
+                        <th>年龄段</th>
+                        <th>体脂率范围</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>贤心</td>
-                        <td>人生就像是一场修行</td>
-                    </tr>
-                    <tr>
-                        <td>许闲心</td>
-                        <td>2016-11-28</td>
-                    </tr>
+                <tbody class="weightTable">
                 </tbody>
                 <thead>
                     <tr>
@@ -75,14 +70,124 @@
                         <th>评分</th>
                     </tr>
                 </thead>
+                <tbody class="3KTable">
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>蛇形跑</th>
+                        <th>评分</th>
+                    </tr>
+                </thead>
+                <tbody class="snakeTable">
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>仰卧起坐</th>
+                        <th>评分</th>
+                    </tr>
+                </thead>
+                <tbody class="situpTable">
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>引体向上</th>
+                        <th>评分</th>
+                    </tr>
+                </thead>
+                <tbody class="pullupTable">
+                </tbody>
             </table>
         </div>
     </div>
     <script src="../../layui/layui.js"></script>
     <script>
-        layui.use('form', function () {
+        layui.use(['form', 'jquery', "layer"], function () {
             var form = layui.form;
-
+            var $ = layui.jquery;
+            var layer = layui.layer;
+            var gender = "男", age = "";
+            form.on("select(sex)", function (data) {
+                gender = data.value;
+            });
+            // form.on("select(sort)", function (data) {
+            //     sort = data.value;
+            // });
+            $(".search").click(function () {
+                age = $(".age").val();
+                if (age == "") {
+                    layer.msg("请输入年龄！");
+                    return;
+                }
+                if (age ==0 || age >= 100) {
+                    layer.msg("年龄超过范围!");
+                    return;
+                }
+                $.ajax({
+                    type: "get",
+                    dateType: "json",
+                    url: "../../res/json/standard.json",
+                    success: function (data) {
+                        var baseScore = 60, resultString = "";
+                        for (var range in data["3K"][gender]) {
+                            var ageRange = range.split("-");
+                            if (parseInt(ageRange[0]) <= parseInt(age) && parseInt(ageRange[1]) >= parseInt(age)) {
+                                for (var grade in data["3K"][gender][range]) {
+                                    resultString += "<tr><td>" + data["3K"][gender][range][grade] + "</td><td>" + baseScore + "</td></tr>";
+                                    baseScore += 5;
+                                }
+                                break;
+                            }
+                        }
+                        $(".3KTable").html(resultString);
+                        resultString = "", baseScore = 60;
+                        for (var range in data["pullup"][gender]) {
+                            var ageRange = range.split("-");
+                            if (parseInt(ageRange[0]) <= parseInt(age) && parseInt(ageRange[1]) >= parseInt(age)) {
+                                for (var grade in data["pullup"][gender][range]) {
+                                    resultString += "<tr><td>" + data["pullup"][gender][range][grade] + "</td><td>" + baseScore + "</td></tr>";
+                                    baseScore += 5;
+                                }
+                                break;
+                            }
+                        }
+                        $(".pullupTable").html(resultString);
+                        resultString = "", baseScore = 60;
+                        for (var range in data["situp"][gender]) {
+                            var ageRange = range.split("-");
+                            if (parseInt(ageRange[0]) <= parseInt(age) && parseInt(ageRange[1]) >= parseInt(age)) {
+                                for (var grade in data["situp"][gender][range]) {
+                                    resultString += "<tr><td>" + data["situp"][gender][range][grade] + "</td><td>" + baseScore + "</td></tr>";
+                                    baseScore += 5;
+                                }
+                                break;
+                            }
+                        }
+                        $(".situpTable").html(resultString);
+                        resultString = "", baseScore = 60;
+                        for (var range in data["snake"][gender]) {
+                            var ageRange = range.split("-");
+                            if (parseInt(ageRange[0]) <= parseInt(age) && parseInt(ageRange[1]) >= parseInt(age)) {
+                                for (var grade in data["snake"][gender][range]) {
+                                    resultString += "<tr><td>" + data["snake"][gender][range][grade] + "</td><td>" + baseScore + "</td></tr>";
+                                    baseScore += 5;
+                                }
+                                break;
+                            }
+                        }
+                        $(".snakeTable").html(resultString);
+                        resultString = "";
+                        for (var range in data["weight"][gender]) {
+                            var ageRange = range.split("-");
+                            if (parseInt(ageRange[0]) <= parseInt(age) && parseInt(ageRange[1]) >= parseInt(age)) {
+                                resultString += "<tr><td>"+range+"</td><td>" + data["weight"][gender][range]["Item5_Min"] + "-" + data["weight"][gender][range]["Item5_Max"] + "</td></tr>";
+                                break;
+                            }
+                        }
+                        $(".weightTable").html(resultString);
+                        $("#standard").removeClass("layui-hide");
+                    }
+                });
+            });
         });
     </script>
 </body>

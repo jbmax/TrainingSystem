@@ -21,11 +21,21 @@
 
 <body>
     <div class="layui-container">
-        <form class="layui-form" lay-filter="alter-form" action="../servlt/training" type="post">
+        <form class="layui-form" lay-filter="alter-form" action="/TrainingSystem/AjaxAddGround" type="post">
             <div class="layui-form-item">
-                <label class="layui-form-label">场地</label>
+                <label class="layui-form-label">场地名称</label>
                 <div class="layui-input-block">
-                    <input type="text" value="" class="layui-input" lay-verify="required" id="place" name="place">
+                    <input type="text" value="" class="layui-input" lay-verify="required" id="place" name="gname">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">场地状态</label>
+                <div class="layui-input-block">
+                    <select name="ground" lay-verify="required" lay-filter="address">
+                        <option value=""></option>
+                        <option value="1">可进行训练</option>
+                        <option value="0">不可进行训练</option>
+                    </select>
                 </div>
             </div>
             <div class="layui-form-item">

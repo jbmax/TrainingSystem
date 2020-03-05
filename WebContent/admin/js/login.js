@@ -1,6 +1,6 @@
-layui.use(['layer','jquery'], function() {
+$(function(){
+	layui.use('layer', function() {
 		var layer = layui.layer;
-		var $=layui.jquery;
 		$(function() {
 			var victor = new Victor("body", "container");
 			victor([ "#18bbff", "#00486b" ]).set();
@@ -10,9 +10,9 @@ layui.use(['layer','jquery'], function() {
 							e.preventDefault();
 							$.ajax({
 								type : 'post',
-								url : 'servlet/dologin',
+								url : '/TrainingSystem/Dologin',
 								dataType : 'text',
-								data : 'username=' + encodeURIComponent($('#username').val())
+								data : 'userClass=a&' + 'username=' + encodeURIComponent($('#username').val())
 										+ '&password=' + $('#password').val(),
 								success : function(data) {
 									if (data == "false") {
@@ -39,3 +39,5 @@ layui.use(['layer','jquery'], function() {
 					});
 		});
 	});
+
+});

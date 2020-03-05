@@ -6,6 +6,16 @@ public class Studentinfo {
 	private String Student_Password;
 	private String Student_Gender;
 	private String Student_Birthday;
+	private int Is_Del;
+	
+	public int getIs_Del() {
+		return Is_Del;
+	}
+
+	public void setIs_Del(int is_Del) {
+		Is_Del = is_Del;
+	}
+
 	public String getGroup_ID() {
 		return Group_ID;
 	}

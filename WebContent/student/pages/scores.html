@@ -27,18 +27,20 @@
         elem: '#score-table'
         , height: '100%'
         , page: true
-        , limit: 8
-        , limits: [8, 9, 10, 11, 12, 13, 14, 15, 16]
-        , url: '/TrainingSystem/Ajaxscore?Student_ID=19020001' //数据接口
+        , limit: 10,
+        limits: [10, 20]
+        // limits: [8, 9, 10, 11, 12, 13, 14, 15, 16]
+        , url: '/TrainingSystem/Ajaxscore' //数据接口
         ,height:"full-40"
         , cols: [[
-          { field: 'sID', title: '学号',  fixed: 'left' }
-          , { field: 'sName', title: '姓名', }
-          , { field: 'run3k', title: '3000米', }
-          , { field: 'snake', title: '蛇形跑',  }
-          , { field: 'situp', title: '仰卧起坐',  }
-          , { field: 'pullup', title: '引体向上', }
-          , { field: 'date', title: '考核日期',}
+        	{ field: 'num', title: '序号',  fixed: 'left', type: "numbers"}
+          //, { field: 'sID', title: '学号', }
+          //, { field: 'sName', title: '姓名', }
+          , { field: 'Run3k', title: '3000米', }
+          , { field: 'Snake', title: '蛇形跑',  }
+          , { field: 'Situp', title: '仰卧起坐',  }
+          , { field: 'Pullup', title: '引体向上', }
+          , { field: 'Date', title: '训练日期',}
           //, { field: 'score', title: '得分', }
           //, { field: 'rank', title: '排名', }
         ]]

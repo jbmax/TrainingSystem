@@ -131,7 +131,21 @@ layui.use(["element", "layer", "okUtils", "okTab", "jQContextMenu"], function ()
    */
   $("#logout").click(function () {
     layer.confirm("确定要退出吗？", function (index) {
-      window.location = "pages/login.html";
+    	$.ajax({
+    	    type : 'post',
+    	    url : '/TrainingSystem/Logout',
+    	    dataType : 'text',
+    	    success:function(data){
+    	        if(data=="true")
+    	            window.location.href="../login.html";
+    	        else
+    	            layer.msg("登出失败！");     
+    	    },
+    	    error:function(error){
+    	        layer.msg("登出失败！");
+    	    }
+    	});
+     // window.location = "../login.html";
     });
   });
 });

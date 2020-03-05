@@ -21,27 +21,33 @@
 
 <body>
     <div class="layui-container">
-        <form class="layui-form" lay-filter="alter-form" action="../servlt/training" type="post">
+        <form class="layui-form" lay-filter="alter-form" action="/TrainingSystem/AjaxAddPlan" type="post">
             <!-- 训练号为后台生成，格式为“年份”+“月份”+“两位流水号”，流水号存储在数据库中，也可以简单实现，用六位递增数字 -->
-            <div class="layui-form-item">
-                <label class="layui-form-label">实施时间</label>
+             <div class="layui-form-item">
+                <label class="layui-form-label">开始时间</label>
                 <div class="layui-input-block">
-                    <input type="text" value="" class="layui-input" lay-verify="required" id="datetime"
-                        name="datetime">
-                </div>
+                    <input id="uDate" type="text" value="" placeholder="" lay-verify="required" class="layui-input" 
+                     name="sdate">
             </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">截止时间</label>
+                <div class="layui-input-block">
+                    <input id="uDate2" type="text" value="" placeholder="" lay-verify="required" class="layui-input" 
+                     name="edate">
+                </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">参加人</label>
                 <div class="layui-input-block">
-                    <input type="text" value="1" class="layui-input" lay-verify="required" id="attend" name="attend">
+                    <input type="text" value="所有人员" class="layui-input layui-disabled" lay-verify="required" readonly id="attend"
+                        name="attend">
                 </div>
             </div>
-            <div class="layui-form-item">
+<!--             <div class="layui-form-item">
                 <label class="layui-form-label">备注</label>
                 <div class="layui-input-block">
                     <input type="text" value="1" class="layui-input" lay-verify="required" id="remark" name="remark">
                 </div>
-            </div>
+            </div> -->
             <div class="layui-form-item">
                 <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="alter-manage">添加</button>
             </div>
@@ -49,16 +55,18 @@
     </div>
     <script type="text/javascript" src="../../layui/layui.js"></script>
     <script src="../js/public.js"></script>
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <script type="text/javascript" src="../js/user-info.js"></script>
     <script>
         layui.use(['form', 'laydate', 'jquery'], function () {
             var form = layui.form,
                 layer = layui.layer,
-                $ = layui.jquery,
-                laydate = layui.laydate;
-            laydate.render({
+                $ = layui.jquery;
+/*                 laydate = layui.laydate;
+             laydate.render({
                 elem: '#datetime'
                 , type: 'datetime'
-            });
+            }); */
             form.on("submit(alter-manage)", function (data) {
 
                 window.parent.location.reload();

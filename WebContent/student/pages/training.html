@@ -21,52 +21,52 @@
     <script src="../../layui/layui.js"></script>
     <script type="text/javascript">
         var myChart = echarts.init(document.getElementById('main'));
-        myChart.title = "今年以来参加训练情况";
+        myChart.title = "参加训练情况";
         layui.use("jquery", function () {
             var $ = layui.jquery;
             $.ajax({
                 type: "get",
                 dateType: "json",
-                url: "json/training.json",
+                //url: "json/training.json",
+                url:"/TrainingSystem/AjaxTrainattend",
                 success: function (data) {
-                    var month = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
-                    var cur_month = 12;
-                    for (var i = cur_month; i < 12; i++)
-                        month.pop();
-                    var total = [];
+                    var month = []
                     var attend = [];
-                    month.forEach(function (ele, index) {
-                        total.push(data[ele][0]);
-                        attend.push(data[ele][1]);
-                    });
+                    //var total = [];
+                    for(var i in data){
+                        month.push(i);
+                        attend.push(data[i]);
+                        //total.push(data[i][1]);
+                    }
                     var option = {
                         xAxis: {
                             type: 'category',
                             data: month
                         },
                         yAxis: {
-                            type: 'value'
+                            type: 'value',
+                            minInterval: 1
                         },
                         legend: {
-                            data: ['总组织次数', '参加次数']
+                            data: [/* '总组织次数',  */'参加次数']
                         },
                         tooltip: {
-                            trigger: 'axis',
-                            formatter: function (params, ticket, callback) {
+                            trigger: 'axis'/*,
+                             formatter: function (params, ticket, callback) {
                                 return params[0].name + '共组织训练' + data[params[0].name][0] + '次<br />参加' + data[params[0].name][1] + '次<br />缺考' + (data[params[0].name][0] - data[params[0].name][1]) + '次';
-                            }
+                            } */
                         },
                         series: [{
                             name:'参加次数',
                             data: attend,
                             type: 'line',
                             smooth: true,
-                        }, {
-                            name:'总组织次数',
+                        }/* , {
+                            name:'组织次数',
                             data: total,
                             type: 'line',
                             smooth: true,
-                        }]
+                        } */]
                     };
                     myChart.setOption(option);
                     window.addEventListener("resize", function () {

@@ -23,17 +23,18 @@
 		<i class="layui-icon layui-icon-download-circle "></i>
 		<p>点击此处，开始导出</p>
 	</div>
-	<script src="../../js/jquery.js "></script>
+	<script src="../js/jquery.js "></script>
 	<script>
     $(function(){
       $("#download").click(function(){
         $.ajax({
         	type:"post",
-        	url:"../servlet/scoredownload",
+        	//url:"/TrainingSystem/AjaxDownload",
         	dataType:"text",
         	success:function(data){
+        		window.location.href="/TrainingSystem/AjaxDownload";
         		if(data=="true"){
-        			window.open('../temp/user.xls');
+        			//window.open('../temp/user.xls');
         		}else{
         			
         		}

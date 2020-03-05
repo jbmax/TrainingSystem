@@ -1,0 +1,303 @@
+DROP TABLE IF EXISTS AdminInfo;
+CREATE TABLE AdminInfo(
+		Admin_ID VARCHAR(16) PRIMARY KEY,
+		Admin_Name VARCHAR(16) NOT NULL,
+		Admin_Password VARCHAR(16) NOT NULL, 
+		Is_Del INT NOT NULL
+		);
+
+INSERT INTO AdminInfo VALUES('admin', '管理员', '123456', 0);
+INSERT INTO AdminInfo VALUES('root', '教务主任', '123456', 0);
+
+DROP TABLE IF EXISTS GroupInfo;
+CREATE TABLE GroupInfo(
+		Group_ID INT PRIMARY KEY AUTO_INCREMENT,
+		Group_Name VARCHAR(32) UNIQUE NOT NULL,
+		Group_Date VARCHAR(16) NOT NULL, 
+		Is_Del INT NOT NULL
+		) AUTO_INCREMENT = 1001;
+
+INSERT INTO GroupInfo VALUES(null, '五大队一队', '2014-09-01', 0);
+INSERT INTO GroupInfo VALUES(null, '四大队二队', '2016-07-01', 0);
+INSERT INTO GroupInfo VALUES(null, '三大队三队', '2015-01-01', 0);
+
+DROP TABLE IF EXISTS LeaderInfo;
+CREATE TABLE LeaderInfo(
+		Leader_ID int PRIMARY KEY AUTO_INCREMENT,
+		Leader_Name VARCHAR(32) NOT NULL,
+		Group_ID INT NOT NULL,
+		Leader_Password VARCHAR(16) NOT NULL,
+		Is_Del INT NOT NULL, 
+		FOREIGN KEY (Group_ID) REFERENCES GroupInfo(Group_ID)
+		) AUTO_INCREMENT = 19001;
+
+INSERT INTO LeaderInfo VALUES(null, '小蔡', 1001, '123456', 0);
+INSERT INTO LeaderInfo VALUES(null, '牛总', 1001, '123456', 0);
+INSERT INTO LeaderInfo VALUES(null, '无名', 1002, '123456', 0);
+INSERT INTO LeaderInfo VALUES(null, '教导', 1002, '123456', 0);
+INSERT INTO LeaderInfo VALUES(null, '队长', 1003, '123456', 0);
+
+DROP TABLE IF EXISTS StudentInfo;
+CREATE TABLE StudentInfo(
+		Student_ID VARCHAR(16) PRIMARY KEY,
+		Student_Name VARCHAR(16) NOT NULL,
+		Student_Password VARCHAR(32) NOT NULL,
+		Student_Gender VARCHAR(16) NOT NULL,
+		Student_Birthday VARCHAR(16) NOT NULL,
+		Group_ID INT NOT NULL,
+		Is_Del INT NOT NULL, 
+		FOREIGN KEY (Group_ID) REFERENCES GroupInfo(Group_ID)
+		);
+
+INSERT INTO StudentInfo VALUES('19020001', '曹多多', '123456', '男', '1995-01-01', 1001, 0);
+INSERT INTO StudentInfo VALUES('19020002', 'KFC', '123456', '男', '1997-01-02', 1001, 0);
+INSERT INTO StudentInfo VALUES('19020003', '李小花', '123456', '女', '1998-01-03', 1001, 0);
+
+DROP TABLE IF EXISTS PlanInfo;
+CREATE TABLE PlanInfo(
+		Plan_ID INT PRIMARY KEY AUTO_INCREMENT,
+		Plan_StartDate VARCHAR(16) NOT NULL,
+		Plan_EndDate VARCHAR(16) NOT NULL,
+		Plan_State INT NOT NULL,
+		Is_Del INT NOT NULL
+		) AUTO_INCREMENT = 1000001;
+		
+INSERT INTO PlanInfo VALUES(null, '2019-01-01', '2020-05-01', 1, 0);
+INSERT INTO PlanInfo VALUES(null, '2019-01-01', '2020-06-02', 1, 0);
+
+DROP TABLE IF EXISTS GroundInfo;
+CREATE TABLE GroundInfo(
+		Ground_ID INT PRIMARY KEY AUTO_INCREMENT,
+		Ground_Name VARCHAR(16) UNIQUE NOT NULL,
+		Ground_State INT NOT NULL,
+		Is_Del INT NOT NULL
+		) AUTO_INCREMENT = 2001;
+		
+INSERT INTO GroundInfo VALUES(null, '第一田径场', 1, 0);
+INSERT INTO GroundInfo VALUES(null, '第一篮球场', 1, 0);
+INSERT INTO GroundInfo VALUES(null, '第二篮球场', 0, 0);
+INSERT INTO GroundInfo VALUES(null, '第二田径场', 1, 0);
+INSERT INTO GroundInfo VALUES(null, '第三篮球场', 1, 1);
+
+DROP TABLE IF EXISTS TrainInfo;
+CREATE TABLE TrainInfo(
+		Train_ID INT PRIMARY KEY AUTO_INCREMENT,
+		Plan_ID INT NOT NULL,
+		Leader_ID INT NOT NULL,
+		Train_Oper VARCHAR(32) NOT NULL,
+		Ground_ID INT NOT NULL,
+		Train_Date VARCHAR(16) NOT NULL,
+		Train_State INT NOT NULL,
+		Is_Del INT NOT NULL, 
+		FOREIGN KEY (Plan_ID) REFERENCES PlanInfo(Plan_ID),
+		FOREIGN KEY (Leader_ID) REFERENCES LeaderInfo(Leader_ID),
+		FOREIGN KEY (Ground_ID) REFERENCES GroundInfo(Ground_ID)
+		) AUTO_INCREMENT = 2019000001;
+		
+INSERT INTO TrainInfo VALUES(NULL, 1000001, 19001, '孙克涵', 2001, '2019-04-01', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000001, 19001, '李明', 2001, '2019-04-07', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000001, 19002, '孙克涵', 2002, '2019-04-10', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000001, 19001, '孙克涵', 2001, '2019-04-21', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000001, 19001, '李明', 2001, '2019-04-27', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000002, 19001, '孙克涵', 2002, '2019-05-01', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000002, 19001, '孙克涵', 2001, '2019-05-15', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000002, 19002, '李明', 2001, '2019-06-01', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000002, 19001, '孙克涵', 2002, '2019-06-24', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000001, 19001, '李明', 2001, '2019-05-27', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000002, 19002, '孙克涵', 2002, '2019-05-11', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000002, 19001, '孙克涵', 2001, '2019-06-15', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000002, 19001, '李明', 2001, '2019-07-01', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000002, 19001, '孙克涵', 2002, '2019-07-24', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000001, 19003, '李明', 2001, '2019-03-17', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000002, 19004, '孙克涵', 2002, '2019-05-21', 2, 0);
+
+DROP TABLE IF EXISTS StudentGrade;
+CREATE TABLE StudentGrade(
+		Train_ID INT NOT NULL,
+		Student_ID VARCHAR(16) NOT NULL,
+		Item1_Grade VARCHAR(16) NOT NULL,
+		Item2_Grade VARCHAR(16) NOT NULL,
+		Item3_Grade VARCHAR(16) NOT NULL,
+		Item4_Grade VARCHAR(16) NOT NULL,
+		PRIMARY KEY (Train_ID, Student_ID),
+		FOREIGN KEY (Train_ID) REFERENCES TrainInfo(Train_ID),
+		FOREIGN KEY (Student_ID) REFERENCES StudentInfo(Student_ID)
+		);
+		
+INSERT INTO StudentGrade VALUES(2019000001, '19020001', '12′20″', '22.1″', '50', '10');
+INSERT INTO StudentGrade VALUES(2019000001, '19020002', '14′20″', '18.7″', '40', '12');
+INSERT INTO StudentGrade VALUES(2019000001, '19020003', '12′34″', '17.5″', '60', '68″');
+INSERT INTO StudentGrade VALUES(2019000002, '19020001', '14′20″', '18.4″', '40', '12');
+INSERT INTO StudentGrade VALUES(2019000003, '19020001', '12′34″', '21.9″', '60', '18');
+INSERT INTO StudentGrade VALUES(2019000002, '19020002', '13′34″', '20.3″', '60', '8');
+
+DROP TABLE IF EXISTS HealthInfo;
+CREATE TABLE HealthInfo(
+		Student_ID VARCHAR(16) NOT NULL,
+		Health_Date VARCHAR(16) NOT NULL,
+		Health_Height DECIMAL(4,1) NOT NULL,
+		Health_Weight DECIMAL(4,1) NOT NULL,
+		PRIMARY KEY (Student_ID, Health_Date)
+		);
+
+INSERT INTO HealthInfo VALUES('19020001', '2019-02-02', 178.8, 67.7);
+INSERT INTO HealthInfo VALUES('19020001', '2019-03-02', 178.8, 68.7);
+INSERT INTO HealthInfo VALUES('19020001', '2019-04-02', 178.8, 66.7);
+
+DROP TABLE IF EXISTS Item1Stand;
+CREATE TABLE Item1Stand(
+		Student_Gender VARCHAR(16) NOT NULL,
+		Age_Class VARCHAR(16) NOT NULL,
+		Item1_Grade1 VARCHAR(16) NOT NULL,
+		Item1_Grade2 VARCHAR(16) NOT NULL,
+		Item1_Grade3 VARCHAR(16) NOT NULL,
+		Item1_Grade4 VARCHAR(16) NOT NULL,
+		Item1_Grade5 VARCHAR(16) NOT NULL,
+		Item1_Grade6 VARCHAR(16) NOT NULL,
+		Item1_Grade7 VARCHAR(16) NOT NULL,
+		Item1_Grade8 VARCHAR(16) NOT NULL,
+		Item1_Grade9 VARCHAR(16) NOT NULL,
+		PRIMARY KEY (Student_Gender, Age_Class),
+		CHECK(Age_Class = '0-24' OR Age_Class = '25-27' 
+		OR Age_Class = '28-30' OR Age_Class = '31-33' 
+		OR Age_Class = '34-36' OR Age_Class = '37-99')
+		);
+
+DROP TABLE IF EXISTS Item2Stand;
+CREATE TABLE Item2Stand(
+		Student_Gender VARCHAR(16) NOT NULL,
+		Age_Class VARCHAR(16) NOT NULL,
+		Item2_Grade1 VARCHAR(16) NOT NULL,
+		Item2_Grade2 VARCHAR(16) NOT NULL,
+		Item2_Grade3 VARCHAR(16) NOT NULL,
+		Item2_Grade4 VARCHAR(16) NOT NULL,
+		Item2_Grade5 VARCHAR(16) NOT NULL,
+		Item2_Grade6 VARCHAR(16) NOT NULL,
+		Item2_Grade7 VARCHAR(16) NOT NULL,
+		Item2_Grade8 VARCHAR(16) NOT NULL,
+		Item2_Grade9 VARCHAR(16) NOT NULL,
+		PRIMARY KEY (Student_Gender, Age_Class),
+		CHECK(Age_Class = '0-24' OR Age_Class = '25-27' 
+		OR Age_Class = '28-30' OR Age_Class = '31-33' 
+		OR Age_Class = '34-36' OR Age_Class = '37-99')
+		);
+
+DROP TABLE IF EXISTS Item3Stand;
+	CREATE TABLE Item3Stand(
+		Student_Gender VARCHAR(16) NOT NULL,
+		Age_Class VARCHAR(16) NOT NULL,
+		Item3_Grade1 VARCHAR(16) NOT NULL,
+		Item3_Grade2 VARCHAR(16) NOT NULL,
+		Item3_Grade3 VARCHAR(16) NOT NULL,
+		Item3_Grade4 VARCHAR(16) NOT NULL,
+		Item3_Grade5 VARCHAR(16) NOT NULL,
+		Item3_Grade6 VARCHAR(16) NOT NULL,
+		Item3_Grade7 VARCHAR(16) NOT NULL,
+		Item3_Grade8 VARCHAR(16) NOT NULL,
+		Item3_Grade9 VARCHAR(16) NOT NULL,
+		PRIMARY KEY (Student_Gender, Age_Class),
+		CHECK(Age_Class = '0-24' OR Age_Class = '25-27' 
+		OR Age_Class = '28-30' OR Age_Class = '31-33' 
+		OR Age_Class = '34-36' OR Age_Class = '37-99')
+		);
+		
+	DROP TABLE IF EXISTS Item4Stand;
+	CREATE TABLE Item4Stand(
+		Student_Gender VARCHAR(16) NOT NULL,
+		Age_Class VARCHAR(16) NOT NULL,
+		Item4_Grade1 VARCHAR(16) NOT NULL,
+		Item4_Grade2 VARCHAR(16) NOT NULL,
+		Item4_Grade3 VARCHAR(16) NOT NULL,
+		Item4_Grade4 VARCHAR(16) NOT NULL,
+		Item4_Grade5 VARCHAR(16) NOT NULL,
+		Item4_Grade6 VARCHAR(16) NOT NULL,
+		Item4_Grade7 VARCHAR(16) NOT NULL,
+		Item4_Grade8 VARCHAR(16) NOT NULL,
+		Item4_Grade9 VARCHAR(16) NOT NULL,
+		PRIMARY KEY (Student_Gender, Age_Class),
+		CHECK(Age_Class = '0-24' OR Age_Class = '25-27' 
+		OR Age_Class = '28-30' OR Age_Class = '31-33' 
+		OR Age_Class = '34-36' OR Age_Class = '37-99')
+		);
+		
+	DROP TABLE IF EXISTS Item5Stand;
+	CREATE TABLE Item5Stand(
+		Student_Gender VARCHAR(16) NOT NULL,
+		Age_Class VARCHAR(16) NOT NULL,
+		Item5_Min DECIMAL(4,2) NOT NULL,
+		Item5_Max DECIMAL(4,2) NOT NULL,
+		PRIMARY KEY (Student_Gender, Age_Class),
+		CHECK(Age_Class = '0-24' OR Age_Class = '25-29' 
+		OR Age_Class = '30-39' OR Age_Class = '40-99')
+		);
+	
+	SELECT ti.Train_ID TID, ti.Plan_ID PID, ti.Train_Date Date, gr.Ground_Name GName, 
+					li.Leader_Name LName, ti.Train_Oper Oper, 
+			CASE WHEN ti.Train_State = 0 THEN '未开始'
+			 WHEN ti.Train_State = 1 THEN '正在进行'
+			 WHEN ti.Train_State = 2 THEN '已结束'
+			 WHEN ti.Train_State = 3 THEN '已撤销'
+			ELSE '未知'
+			END
+			AS State
+	FROM GroupInfo gi, LeaderInfo li, TrainInfo ti, GroundInfo gr
+	WHERE gi.Group_ID = li.Group_ID AND
+				ti.Leader_ID = li.Leader_ID AND 
+				ti.Ground_ID = gr.Ground_ID AND 
+				gi.Group_ID = '001'
+	ORDER BY ti.Train_Date DESC LIMIT 0, 3;
+
+	
+SELECT pi.Plan_ID PID, pi.Plan_StartDate SDate, pi.Plan_EndDate EDate, 
+		CASE WHEN pi.Plan_State = 0 THEN '未开始'
+		 WHEN pi.Plan_State = 1 THEN '正在进行'
+		 WHEN pi.Plan_State = 2 THEN '已结束'
+		 WHEN pi.Plan_State = 3 THEN '已撤销'
+		ELSE '未知'
+		END
+		AS State
+FROM PlanInfo pi
+ORDER BY pi.Plan_ID LIMIT 0, 10;
+
+SELECT Ground_Name GRName
+From GroundInfo
+ORDER BY Ground_Name;
+
+SELECT StudentInfo.Student_ID SID, TrainInfo.Train_Date Date, 
+				StudentGrade.Item1_Grade Run3k, StudentGrade.Item2_Grade Snake, 
+				StudentGrade.Item3_Grade Situp, StudentGrade.Item4_Grade Pullup
+FROM StudentInfo, StudentGrade, TrainInfo
+WHERE StudentInfo.Student_ID = StudentGrade.Student_ID AND
+				StudentGrade.Train_ID = TrainInfo.Train_ID AND 
+				TrainInfo.Train_State = 2 AND 
+				StudentInfo.Student_ID = '19020001'
+ORDER BY Date LIMIT 0, 3;
+
+SELECT StudentInfo.Student_ID SID, StudentInfo.Student_Name SName,  
+				StudentGrade.Item1_Grade Run3k, StudentGrade.Item2_Grade Snake, 
+				StudentGrade.Item3_Grade Situp, StudentGrade.Item4_Grade Pullup, 
+				TrainInfo.Train_Date Date
+FROM StudentInfo, StudentGrade, TrainInfo, LeaderInfo
+WHERE StudentInfo.Student_ID = StudentGrade.Student_ID AND
+				StudentGrade.Train_ID = TrainInfo.Train_ID AND 
+				TrainInfo.Train_State = 2 AND 
+				TrainInfo.Leader_ID = LeaderInfo.Leader_ID AND
+				LeaderInfo.Group_ID = 1001
+ORDER BY Date LIMIT 0, 3;
+
+SELECT Ground_Name GRName
+From GroundInfo
+WHERE GroundInfo.Ground_State = 1
+ORDER BY Ground_Name;
+
+SELECT Group_ID GID, Group_Name GName, Group_Date Date
+FROM GroupInfo
+WHERE Is_Del = 0
+ORDER BY Group_ID;
+
+SELECT count(*) num
+FROM GroupInfo gi, StudentInfo si
+WHERE gi.Is_Del = 0 AND si.Is_Del = 0 AND
+		si.Group_ID = gi.Group_ID AND gi.Group_ID = 1001;
+		
+REPLACE StudentGrade VALUES(2019000003, '19020002', '13′24″', '20.3″', '60', '8');

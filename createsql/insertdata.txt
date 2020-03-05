@@ -1,0 +1,206 @@
+INSERT INTO Item1Stand VALUES('男', '0-24', '13′35″', '13′30″', '13′10″', '12′55″', 
+					'12′40″', '12′25″', '12′10″', '11′55″', '11′30″');
+INSERT INTO Item1Stand VALUES('男', '25-27', '13′47″', '13′42″', '13′22″', '13′07″', 
+					'12′52″', '12′37″', '12′22″', '12′07″', '11′42″');
+INSERT INTO Item1Stand VALUES('男', '28-30', '14′23″', '14′18″', '13′58″', '13′43″', 
+					'13′28″', '13′13″', '12′58″', '12′43″', '12′18″');
+INSERT INTO Item1Stand VALUES('男', '31-33', '14′55″', '14′44″', '14′34″', '14′19″', 
+					'14′04″', '13′49″', '13′34″', '13′19″', '12′54″');
+INSERT INTO Item1Stand VALUES('男', '34-36', '15′35″', '15′30″', '15′10″', '14′55″', 
+					'14′40″', '14′25″', '14′10″', '13′55″', '13′30″');
+INSERT INTO Item1Stand VALUES('男', '37-99', '15′55″', '15′50″', '15′45″', '15′31″', 
+					'15′16″', '15′01″', '14′46″', '14′31″', '14′06″');				
+INSERT INTO Item1Stand VALUES('女', '0-24', '16′05″', '16′00″', '15′40″', '15′25″', 
+					'15′10″', '14′55″', '14′40″', '14′25″', '14′00″');
+INSERT INTO Item1Stand VALUES('女', '25-27', '16′18″', '16′13″', '15′53″', '15′38″', 
+					'15′23″', '15′08″', '14′53″', '14′38″', '14′13″');
+INSERT INTO Item1Stand VALUES('女', '28-30', '16′57″', '16′52″', '16′32″', '16′17″', 
+					'16′02″', '15′47″', '15′32″', '15′17″', '14′52″');
+INSERT INTO Item1Stand VALUES('女', '31-33', '17′36″', '17′31″', '17′11″', '16′56″', 
+					'16′41″', '16′26″', '16′11″', '15′56″', '15′31″');
+INSERT INTO Item1Stand VALUES('女', '34-36', '18′15″', '18′10″', '17′50″', '17′35″', 
+					'17′20″', '17′05″', '16′50″', '16′35″', '16′10″');
+INSERT INTO Item1Stand VALUES('女', '37-99', '18′54″', '18′49″', '18′29″', '18′14″', 
+					'17′59″', '17′44″', '17′29″', '17′14″', '16′49″');	
+					
+INSERT INTO Item2Stand VALUES('男', '0-24', '20.4″', '20.1″', '19.9″', '19.7″', 
+					'19.5″', '19.2″', '19.0″', '18.7″', '18.1″');
+INSERT INTO Item2Stand VALUES('男', '25-27', '20.8″', '20.4″', '20.2″', '20.0″', 
+					'19.8″', '19.5″', '19.3″', '18.9″', '18.3″');
+INSERT INTO Item2Stand VALUES('男', '28-30', '21.1″', '20.7″', '20.4″', '20.2″', 
+					'20.0″', '19.7″', '19.5″', '19.1″', '18.5″');
+INSERT INTO Item2Stand VALUES('男', '31-33', '21.3″', '21.1″', '20.7″', '20.3″', 
+					'20.1″', '19.9″', '19.7″', '19.3″', '18.7″');
+INSERT INTO Item2Stand VALUES('男', '34-36', '21.7″', '21.3″', '20.9″', '20.5″', 
+					'20.2″', '20.1″', '19.9″', '19.5″', '18.9″');
+INSERT INTO Item2Stand VALUES('男', '37-99', '21.8″', '21.4″', '21.1″', '20.8″', 
+					'20.5″', '20.2″', '20.1″', '19.8″', '19.1″');				
+INSERT INTO Item2Stand VALUES('女', '0-24', '22.2″', '21.9″', '21.7″', '21.6″', 
+					'21.3″', '21.1″', '20.9″', '20.4″', '20.0″');
+INSERT INTO Item2Stand VALUES('女', '25-27', '22.5″', '22.2″', '22.0″', '21.9″', 
+					'21.6″', '21.4″', '21.2″', '20.7″', '20.3″');
+INSERT INTO Item2Stand VALUES('女', '28-30', '22.8″', '22.5″', '22.3″', '22.2″', 
+					'21.9″', '21.7″', '21.5″', '21.0″', '20.6″');
+INSERT INTO Item2Stand VALUES('女', '31-33', '23.1″', '22.8″', '22.6″', '22.5″', 
+					'22.2″', '22.0″', '21.8″', '21.3″', '20.9″');
+INSERT INTO Item2Stand VALUES('女', '34-36', '23.4″', '23.1″', '22.9″', '22.8″', 
+					'22.5″', '22.3″', '22.1″', '21.6″', '21.2″');
+INSERT INTO Item2Stand VALUES('女', '37-99', '23.7″', '23.4″', '23.2″', '23.1″', 
+					'22.8″', '22.6″', '22.4″', '21.9″', '21.5″');	
+					
+INSERT INTO Item3Stand VALUES('男', '0-24', '50', '54', '58', '62', 
+					'67', '72', '77', '82', '87');
+INSERT INTO Item3Stand VALUES('男', '25-27', '47', '51', '55', '59', 
+					'63', '67', '72', '77', '82');
+INSERT INTO Item3Stand VALUES('男', '28-30', '45', '49', '53', '57', 
+					'61', '65', '70', '75', '80');
+INSERT INTO Item3Stand VALUES('男', '31-33', '43', '47', '51', '55', 
+					'59', '63', '68', '73', '78');
+INSERT INTO Item3Stand VALUES('男', '34-36', '39', '43', '47', '51', 
+					'55', '60', '65', '70', '75');
+INSERT INTO Item3Stand VALUES('男', '37-99', '35', '40', '45', '49', 
+					'54', '59', '64', '69', '74');		
+INSERT INTO Item3Stand VALUES('女', '0-24', '42', '43', '53', '56', 
+					'59', '62', '65', '68', '71');
+INSERT INTO Item3Stand VALUES('女', '25-27', '39', '40', '48', '51', 
+					'54', '57', '61', '65', '69');
+INSERT INTO Item3Stand VALUES('女', '28-30', '37', '38', '47', '50', 
+					'53', '56', '59', '63', '67');
+INSERT INTO Item3Stand VALUES('女', '31-33', '35', '36', '43', '46', 
+					'50', '54', '58', '62', '66');
+INSERT INTO Item3Stand VALUES('女', '34-36', '33', '34', '40', '44', 
+					'48', '52', '56', '60', '64');
+INSERT INTO Item3Stand VALUES('女', '37-99', '31', '32', '38', '42', 
+					'46', '50', '54', '58', '63');
+					
+INSERT INTO Item4Stand VALUES('男', '0-24', '11', '12', '14', '15',  
+					'18', '21', '24', '27', '30');
+INSERT INTO Item4Stand VALUES('男', '25-27', '10', '11', '13', '14', 
+					'16', '19', '22', '25', '28');
+INSERT INTO Item4Stand VALUES('男', '28-30', '9', '10', '11', '12', 
+					'14', '17', '20', '23', '26');
+INSERT INTO Item4Stand VALUES('男', '31-33', '8', '9', '10', '11',  
+					'13', '15', '17', '20', '23');
+INSERT INTO Item4Stand VALUES('男', '34-36',  '7', '8', '9', '10', 
+					'11', '12', '14', '17', '20');
+INSERT INTO Item4Stand VALUES('男', '37-99', '6', '7', '8', '9', 
+					'10', '11', '13', '15', '17');						
+INSERT INTO Item4Stand VALUES('女', '0-24', '36″', '42″', '46″', '50″', 
+					'54″', '58″', '62″', '66″', '70″');
+INSERT INTO Item4Stand VALUES('女', '25-27', '35″', '39″', '43″', '47″', 
+					'51″', '55″', '59″', '62″', '65″');
+INSERT INTO Item4Stand VALUES('女', '28-30', '33″', '37″', '41″', '45″', 
+					'49″', '53″', '57″', '60″', '63″');
+INSERT INTO Item4Stand VALUES('女', '31-33', '30″', '34″', '38″', '42″', 
+					'46″', '50″', '54″', '57″', '60″');
+INSERT INTO Item4Stand VALUES('女', '34-36', '27″', '31″', '35″', '39″', 
+					'43″', '47″', '51″', '54″', '57″');
+INSERT INTO Item4Stand VALUES('女', '37-99', '24″', '28″', '32″', '36″', 
+					'40″', '44″', '48″', '51″', '54″');
+
+INSERT INTO Item5Stand VALUES('男', '0-24', 18.5, 25.9);
+INSERT INTO Item5Stand VALUES('男', '25-29', 18.5, 26.9);
+INSERT INTO Item5Stand VALUES('男', '30-39', 18.5, 27.9);
+INSERT INTO Item5Stand VALUES('男', '40-99', 18.5, 28.9);
+INSERT INTO Item5Stand VALUES('女', '0-24', 18.5, 23.9);
+INSERT INTO Item5Stand VALUES('女', '25-29', 18.5, 24.9);
+INSERT INTO Item5Stand VALUES('女', '30-39', 18.5, 25.9);
+INSERT INTO Item5Stand VALUES('女', '40-99', 18.5, 26.9);
+
+
+INSERT INTO StudentInfo VALUES('19020004', '胡发军', '123456', '男', '1996-07-02', 1001, 0);
+INSERT INTO StudentInfo VALUES('19020005', '吴高超', '123456', '男', '1995-11-12', 1001, 0);
+INSERT INTO StudentInfo VALUES('19020006', '马木洒', '123456', '男', '1994-01-02', 1001, 0);
+INSERT INTO StudentInfo VALUES('19020007', '万鑫怡', '123456', '男', '1997-09-12', 1001, 0);
+INSERT INTO StudentInfo VALUES('19020008', '延磊', '123456', '男', '1998-01-02', 1001, 0);
+INSERT INTO StudentInfo VALUES('19020009', '刘川', '123456', '男', '1998-11-02', 1001, 0);
+INSERT INTO StudentInfo VALUES('19020010', '宋宣姝', '123456', '女', '1995-03-03', 1001, 0);
+INSERT INTO StudentInfo VALUES('19020011', '侯云飞', '123456', '男', '1997-01-02', 1001, 0);
+INSERT INTO StudentInfo VALUES('19020012', '黄金胜', '123456', '男', '1996-01-02', 1001, 0);
+INSERT INTO StudentInfo VALUES('19020013', '甘鹏', '123456', '男', '1994-01-02', 1001, 0);
+INSERT INTO StudentInfo VALUES('19020014', '陈茹茹', '123456', '女', '1996-01-02', 1001, 0);
+INSERT INTO StudentInfo VALUES('19020015', '解洪庆', '123456', '男', '1999-01-02', 1001, 0);
+INSERT INTO StudentInfo VALUES('19020016', '刘雨晴', '123456', '女', '1992-01-02', 1001, 0);
+INSERT INTO StudentInfo VALUES('19020017', '陈丹', '123456', '男', '1991-01-02', 1001, 0);
+INSERT INTO StudentInfo VALUES('19020018', '崔文荣', '123456', '男', '1993-01-02', 1001, 0);
+INSERT INTO StudentInfo VALUES('19020019', '王甜', '123456', '女', '1992-01-02', 1001, 0);
+INSERT INTO StudentInfo VALUES('19020020', '贾文良', '123456', '男', '1991-01-02', 1001, 0);
+INSERT INTO StudentInfo VALUES('19020021', '黄金胜', '123456', '男', '1994-01-02', 1001, 0);
+
+INSERT INTO StudentGrade VALUES(2019000001, '19020004', '12′20″', '22.5″', '50', '10');
+INSERT INTO StudentGrade VALUES(2019000001, '19020005', '13′20″', '23.2″', '40', '12');
+INSERT INTO StudentGrade VALUES(2019000001, '19020010', '12′54″', '19.2″', '60', '68″');
+INSERT INTO StudentGrade VALUES(2019000002, '19020007', '14′30″', '18.3″', '40', '12');
+INSERT INTO StudentGrade VALUES(2019000003, '19020008', '12′38″', '19.4″', '60', '18');
+INSERT INTO StudentGrade VALUES(2019000002, '19020009', '13′33″', '20.1″', '60', '8');
+INSERT INTO StudentGrade VALUES(2019000001, '19020006', '13′20″', '22.7″', '50', '12');
+INSERT INTO StudentGrade VALUES(2019000001, '19020011', '12′26″', '23.5″', '48', '12');
+INSERT INTO StudentGrade VALUES(2019000001, '19020014', '12′34″', '21.2″', '65', '54″');
+INSERT INTO StudentGrade VALUES(2019000002, '19020013', '14′20″', '23.4″', '43', '11');
+INSERT INTO StudentGrade VALUES(2019000003, '19020010', '12′34″', '21.1″', '54', '16');
+INSERT INTO StudentGrade VALUES(2019000002, '19020015', '13′34″', '20.8″', '60', '10');
+INSERT INTO StudentGrade VALUES(2019000003, '19020004', '12′20″', '22.2″', '55', '11');
+INSERT INTO StudentGrade VALUES(2019000001, '19020016', '12′34″', '21.9″', '66', '36″');
+INSERT INTO StudentGrade VALUES(2019000002, '19020017', '14′20″', '23.0″', '40', '12');
+INSERT INTO StudentGrade VALUES(2019000003, '19020018', '12′34″', '21.1″', '65', '18');
+INSERT INTO StudentGrade VALUES(2019000002, '19020011', '13′34″', '22.0″', '60', '7');
+INSERT INTO StudentGrade VALUES(2019000001, '19020015', '12′20″', '21.2″', '75', '13');
+INSERT INTO StudentGrade VALUES(2019000001, '19020020', '14′20″', '18.9″', '40', '14');
+INSERT INTO StudentGrade VALUES(2019000001, '19020019', '12′34″', '20.3″', '60', '61″');
+INSERT INTO StudentGrade VALUES(2019000002, '19020021', '15′40″', '19.4″', '59', '15');
+INSERT INTO StudentGrade VALUES(2019000002, '19020014', '15′34″', '20.0″', '55', '9');
+INSERT INTO StudentGrade VALUES(2019000002, '19020005', '14′20″', '23.1″', '40', '12');
+INSERT INTO StudentGrade VALUES(2019000003, '19020017', '12′34″', '21.5″', '60', '17');
+INSERT INTO StudentGrade VALUES(2019000002, '19020018', '13′54″', '23.2″', '60', '8');
+INSERT INTO StudentGrade VALUES(2019000001, '19020012', '11′54″', '22.1″', '74', '15');
+
+INSERT INTO HealthInfo VALUES('19020002', '2019-02-02', 168.8, 63.7);
+INSERT INTO HealthInfo VALUES('19020003', '2019-03-02', 178.8, 56.7);
+INSERT INTO HealthInfo VALUES('19020004', '2019-04-02', 175.2, 66.7);
+INSERT INTO HealthInfo VALUES('19020005', '2019-02-02', 157.8, 57.7);
+INSERT INTO HealthInfo VALUES('19020006', '2019-03-02', 188.3, 78.7);
+INSERT INTO HealthInfo VALUES('19020007', '2019-04-02', 178.8, 66.7);
+INSERT INTO HealthInfo VALUES('19020008', '2019-02-02', 178.9, 62.7);
+INSERT INTO HealthInfo VALUES('19020009', '2019-03-02', 174.8, 58.7);
+INSERT INTO HealthInfo VALUES('19020010', '2019-04-02', 178.8, 66.7);
+INSERT INTO HealthInfo VALUES('19020011', '2019-02-02', 174.3, 67.8);
+INSERT INTO HealthInfo VALUES('19020012', '2019-03-02', 173.8, 68.7);
+INSERT INTO HealthInfo VALUES('19020013', '2019-04-02', 178.8, 66.7);
+INSERT INTO HealthInfo VALUES('19020014', '2019-02-02', 172.8, 67.7);
+INSERT INTO HealthInfo VALUES('19020015', '2019-03-02', 178.8, 64.7);
+INSERT INTO HealthInfo VALUES('19020016', '2019-04-02', 178.8, 66.7);
+INSERT INTO HealthInfo VALUES('19020017', '2019-02-02', 178.8, 67.7);
+INSERT INTO HealthInfo VALUES('19020018', '2019-03-02', 178.8, 68.7);
+INSERT INTO HealthInfo VALUES('19020019', '2019-04-02', 172.8, 66.7);
+INSERT INTO HealthInfo VALUES('19020020', '2019-02-02', 174.8, 67.7);
+INSERT INTO HealthInfo VALUES('19020021', '2019-03-02', 175.8, 68.7);
+INSERT INTO HealthInfo VALUES('19020002', '2019-04-02', 168.1, 61.7);
+INSERT INTO HealthInfo VALUES('19020015', '2019-02-02', 178.8, 67.7);
+INSERT INTO HealthInfo VALUES('19020008', '2019-03-02', 178.2, 68.7);
+INSERT INTO HealthInfo VALUES('19020011', '2019-04-02', 174.3, 63.7);
+
+INSERT INTO StudentGrade VALUES(2019000004, '19020001', '13′20″', '21.2″', '55', '13');
+INSERT INTO StudentGrade VALUES(2019000005, '19020001', '12′50″', '24.4″', '59', '14');
+INSERT INTO StudentGrade VALUES(2019000006, '19020001', '12′25″', '23.0″', '60', '11');
+INSERT INTO StudentGrade VALUES(2019000008, '19020001', '13′20″', '19.7″', '55', '13');
+INSERT INTO StudentGrade VALUES(2019000009, '19020001', '12′50″', '21.2″', '59', '12');
+INSERT INTO StudentGrade VALUES(2019000010, '19020001', '12′55″', '23.0″', '60', '11');
+INSERT INTO StudentGrade VALUES(2019000011, '19020001', '12′42″', '21.6″', '52', '12');
+INSERT INTO StudentGrade VALUES(2019000012, '19020001', '13′20″', '19.6″', '55', '13');
+INSERT INTO StudentGrade VALUES(2019000013, '19020001', '12′50″', '22.3″', '59', '14');
+INSERT INTO StudentGrade VALUES(2019000014, '19020001', '12′25″', '21.5″', '70', '11');
+
+INSERT INTO HealthInfo VALUES('19020001', '2019-02-22', 162.8, 53.7);
+INSERT INTO HealthInfo VALUES('19020001', '2019-03-12', 178.8, 56.7);
+INSERT INTO HealthInfo VALUES('19020001', '2019-04-03', 175.2, 65.7);
+INSERT INTO HealthInfo VALUES('19020001', '2019-02-11', 157.8, 57.7);
+INSERT INTO HealthInfo VALUES('19020001', '2019-03-15', 185.3, 78.7);
+INSERT INTO HealthInfo VALUES('19020002', '2019-04-12', 175.8, 66.7);
+INSERT INTO HealthInfo VALUES('19020002', '2019-02-04', 178.9, 62.7);
+INSERT INTO HealthInfo VALUES('19020001', '2019-04-12', 178.3, 66.7);
+INSERT INTO HealthInfo VALUES('19020001', '2019-02-07', 178.9, 62.7);
+INSERT INTO HealthInfo VALUES('19020002', '2019-02-22', 168.8, 63.7);
+INSERT INTO HealthInfo VALUES('19020002', '2019-03-12', 178.1, 54.7);
+INSERT INTO HealthInfo VALUES('19020002', '2019-04-03', 175.1, 66.7);
+INSERT INTO HealthInfo VALUES('19020002', '2019-02-11', 157.8, 57.7);
+INSERT INTO HealthInfo VALUES('19020002', '2019-03-15', 188.3, 76.7);

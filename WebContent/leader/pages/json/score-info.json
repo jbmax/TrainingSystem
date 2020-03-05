@@ -4,47 +4,31 @@
     "msg": "",
     "data": [
         {
-            "score_id":1,
-            "id": 1,
-            "username": "CZL",
-            "age": "23",
-            "sex": "男",
-            "score1": "11",
-            "score2": "11",
-            "score3": "11",
-            "score4": "11",
-            "score5": "是",
-            "score": "11",
-            "rank":"优秀",
-            "plan_number":"20191212"
+            "SID": 3,
+            "SName": "CZL",
+            "Run3k": "11",
+            "Snake": "11",
+            "Situp": "11",
+            "Pullup": "11",
+            "Date":"20191212"
         },
         {
-            "score_id":1,
-            "id": 2,
-            "username": "CZL",
-            "age": "23",
-            "sex": "男",
-            "score1": "11",
-            "score2": "11",
-            "score3": "11",
-            "score4": "11",
-            "score": "11",
-            "rank":"优秀",
-            "time":"20191212"
+            "SID": 3,
+            "SName": "CZL",
+            "Run3k": "11",
+            "Snake": "11",
+            "Situp": "11",
+            "Pullup": "11",
+            "Date":"20191212"
         },
         {
-            "score_id":1,
-            "id": 3,
-            "username": "CZL",
-            "age": "23",
-            "sex": "男",
-            "score1": "11",
-            "score2": "11",
-            "score3": "11",
-            "score4": "11",
-            "score": "11",
-            "rank":"优秀",
-            "time":"20191212"
+            "SID": 3,
+            "SName": "CZL",
+            "Run3k": "11",
+            "Snake": "11",
+            "Situp": "11",
+            "Pullup": "11",
+            "Date":"20191212"
         }
     ]
 }

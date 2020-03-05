@@ -37,7 +37,7 @@
 <body>
     <div class="layui-container">
         <div class="layui-row" style="margin-bottom: 10px;">
-            <button class="layui-btn clear-notice layui-bg-red">清空场地信息</button>
+            <!-- <button class="layui-btn clear-notice layui-bg-red">清空场地信息</button> -->
             <button class="layui-btn add-notice layui-bg-blue">添加场地</button>
         </div>
         <table class="layui-table" lay-even lay-skin="nob" lay-filter="notice" id="notice">
@@ -55,14 +55,16 @@
             table.render({
                 elem: '#notice'
                 , height: "full-70"
-                , url: 'json/placelist.json' //数据接口
+                , url: '/TrainingSystem/AjaxGroundList' //数据接口
                 , page: true //开启分页
                 , limit: 10
                 , limits: [8, 9, 10, 11, 12, 13, 14, 15, 16]
                 , cols: [[ //表头
                     { title: '序号', type: "numbers", width: "10%" }
-                    , { field: 'place_name', title: '场地', width: '60%' }
-                    , { align: 'center', toolbar: '#barDemo', width: "30%" }
+                    , { field: 'GRID', title: '场地编号'/* , width: '60%' */ }
+                    , { field: 'GName', title: '场地名称'/* , width: '60%' */ }
+                    , { field: 'State', title: '场地状态'/* , width: '60%' */ }
+                    , { align: 'center', toolbar: '#barDemo'/* , width: "30%"  */}
                 ]]
             });
             table.on('tool(notice)', function (obj) {
@@ -75,10 +77,10 @@
                         $.ajax({
                             type: "post",
                             dataType: "text",
-                            data: "id=" + data.id,
-                            url: "../servlet/deleteplacebyid",
+                            //data: "id=" + data.id,
+                            url: "/TrainingSystem/AjaxAlterGround?del=1&gid="+data.GRID,
                             success: function (data) {
-                                if (data = "true") {
+                                if (data == true || data == "true") {
                                     obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
                                     layer.msg("删除成功！");
                                 } else
@@ -95,7 +97,7 @@
                         title: '修改场地名称'
                         , type: 2
                         , area: ['100%', '100%']
-                        , content: 'alter-place.html?id=' + data.id
+                        , content: 'alter-place.jsp?gid=' + data.GRID + '&gname='+ data.GName
                     });
                 }
             });

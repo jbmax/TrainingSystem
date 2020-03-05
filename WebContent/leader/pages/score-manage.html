@@ -45,18 +45,18 @@
 
 <body>
 	<div class="layui-container">
-		<div class="layui-row">
+ 		<div class="layui-row">
 			<button class="search-user layui-bg-green">搜索</button>
-			<input type="text" placeholder="请输入学员名称" id="username">
-			<input type="text" placeholder="请选择考核日期" id="date">
-			<button class="clear-user layui-bg-red">清空成绩数据库</button>
+			<input type="text" placeholder="请输入学员姓名" id="username">
+			<!-- <input type="text" placeholder="请选择考核日期" id="date"> -->
+			<!-- <button class="clear-user layui-bg-red">清空成绩数据库</button> -->
 		</div>
 		<table id="score-table" lay-filter="score-table" lay-skin="line"></table>
 	</div>
-	<script type="text/html" id="barDemo">
+	<!-- <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-  </script>
+  </script> -->
 	<script src="../../layui/layui.js"></script>
 	<script>
 		layui.use(['table', 'layer', 'jquery', 'laydate'], function () {
@@ -76,33 +76,34 @@
 				skin: 'line' //行边框风格
 				,
 				even: true,
-				url: 'json/score-info.json' //数据接口
+				url: "/TrainingSystem/AjaxGroupscore" //数据接口
 				,
 				page: true //开启分页
 				,
 				text: {
 					none: '暂无相关数据'
 				},
-				limit: 12,
-				limits: [12, 13, 14, 15, 16, 17, 18, 19, 20],
+				limit: 10,
+				limits: [10, 20],
 				method: 'get',
 				cols: [[ //表头
-					{
+					 {
 						field: 'num',
 						title: '序号',
 						fixed: 'left',
 						type: "numbers",
-						width: "5%"
-					}, {
-						field: 'id',
+						//width: "5%"
+					},   {
+						field: 'SID',
 						title: '学号',
+						//fixed: 'left'
 						// width:"5%"
 					}, {
-						field: 'username',
-						title: '用户名',
+						field: 'SName',
+						title: '姓名',
 						// width:"5%"
 					}
-					, {
+					, /* {
 						field: 'age',
 						title: '年龄',
 						// width:"5%"
@@ -110,47 +111,48 @@
 						field: 'sex',
 						title: '性别',
 						// width:"5%"
+					},  */{
+						field: 'Run3k',
+						title: '3000米',
+						//width: "10%"
 					}, {
-						field: 'score1',
-						title: '引体向上',
-						width: "8%"
-					}, {
-						field: 'score2',
+						field: 'Snake',
 						title: '蛇形跑',
 						// width:"5%"
 					}, {
-						field: 'score3',
+						field: 'Situp',
 						title: '仰卧起坐',
-						width: "8%"
+						//width: "8%"
 					}, {
-						field: 'score4',
-						title: '三公里',
+						field: 'Pullup',
+						title: '引体向上',
 						// width:"5%"
-					}, {
+					}, /* { 
 						field: 'score5',
 						title: '体型',
 						// width:"5%"
-					},
+					}, */
 
 					{
-						field: 'plan_number',
-						title: '训练号',
-						width: "10%"
-					}, {
+						field: 'Date',
+						title: '时间',
+						fixed: 'right',
+						//width: "10%"
+					}, /* , {
 						field: 'score',
 						title: '总分',
 						// width:"5%"
-					},
-					{
+					}, */
+					/* {
 						field: 'rank',
 						title: '评级',
 						// width:"5%"
-					}
-					, {
+					}, */
+					/* {
 						align: 'center',
 						toolbar: '#barDemo',
 						width: "10%"
-					}]]
+					} */]]
 			});
 			table.on('tool(score-table)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
 				var data = obj.data; //获得当前行数据
@@ -192,14 +194,14 @@
 			});
 			$(".search-user").click(
 				function () {
-					console.log(plan_date)
-					if ($("#username").val() != "" || plan_date != "") {
+					//console.log(plan_date)
+					if ($("#username").val() != "") {
 						scoreTable.reload({
 							elem: '#score-table',
 							skin: 'line' //行边框风格
 							,
 							even: true,
-							url: '../servlet/getscorerbyname?username=' + $("#username").val() + "&date=" + date //数据接口,同时考虑用户名或者日期是否为空情况
+							url: "/TrainingSystem/Groupsearchscore?page=1&limit=10&sname=" + $("#username").val() //数据接口,同时考虑用户名或者日期是否为空情况
 							,
 							page: true //开启分页
 							,
@@ -207,52 +209,54 @@
 								none: '暂无相关数据'
 							},
 							method: 'post',
+							//limit: 10,
 							cols: [[ //表头
-								{
+								 {
 									field: 'num',
 									title: '序号',
 									fixed: 'left',
 									type: "numbers",
-									width: "5%"
-								}, {
-									field: 'id',
+									//width: "5%"
+								},  {
+									field: 'SID',
 									title: '学号',
 									// width:"5%"
 								}, {
-									field: 'username',
+									field: 'SName',
 									title: '用户名',
 									// width:"5%"
-								}
-								, {
-									field: 'age',
+								},
+								/*  {
+									field: 'sAge',
 									title: '年龄',
 									// width:"5%"
 								}, {
 									field: 'sex',
 									title: '性别',
 									// width:"5%"
+								} */ {
+									field: 'Run3k',
+									title: '3000米',
+									//width: "8%"
 								}, {
-									field: 'score1',
-									title: '引体向上',
-									width: "8%"
-								}, {
-									field: 'score2',
+									field: 'Snake',
 									title: '蛇形跑',
 									// width:"5%"
 								}, {
-									field: 'score3',
+									field: 'Situp',
 									title: '仰卧起坐',
-									width: "8%"
+									//width: "8%"
 								}, {
-									field: 'score4',
-									title: '三公里',
+									field: 'Pullup',
+									title: '引体向上',
 									// width:"5%"
 								},
 								{
-									field: 'time',
+									field: 'Date',
 									title: '时间',
-									width: "10%"
-								}, {
+									fixed: 'right',
+									//width: "10%"
+								}/* , {
 									field: 'score',
 									title: '总分',
 									// width:"5%"
@@ -266,10 +270,10 @@
 									align: 'center',
 									toolbar: '#barDemo',
 									width: "10%"
-								}]]
+								} */]]
 						});
-					} else {
-						layer.msg("请填写学员名或者选择考核日期");
+					 } else {
+						layer.msg("请填写学员姓名");
 					}
 				});
 			$(".clear-user").click(function () {

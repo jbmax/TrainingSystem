@@ -21,7 +21,8 @@ public class Groupdao {
 		String sql = "";
 		try {
 			
-			sql = "select * from GroupInfo where Group_ID=?";
+			sql = "select * from GroupInfo where Group_ID=?"
+					+ " AND Is_Del = 0";
 		
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, id);
@@ -30,10 +31,9 @@ public class Groupdao {
 			
 			while(rs.next()) {
 				s = new Groupinfo(
-					 	rs.getString("Group_ID"),
+					 	rs.getInt("Group_ID"),
 					 	rs.getString("Group_Name"),
-					 	rs.getString("Leader1_ID"),
-					 	rs.getString("Leader2_ID")
+					 	rs.getString("Group_Date")
 					 );
 			}
 		} catch (SQLException e) {

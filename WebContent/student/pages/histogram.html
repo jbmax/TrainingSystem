@@ -26,13 +26,14 @@
             $.ajax({
                 type: "get",
                 dateType: "json",
-                url: "json/histogram.json",
+                //url: "json/histogram.json",
+                url: "/TrainingSystem/AjaxHistoryscore",
                 success: function (data) {
-                    myChart.title = '最近一次考核成绩与全队平均成绩对比';
+                    myChart.title = '最近一次考核成绩与历史最好成绩对比';
                     var option = {
                         title: {
-                            text: '最近一次考核成绩与全队平均成绩对比',
-                            subtext: '数据来自最近一次考核成绩'
+                            text: '最近一次考核成绩与历史最好成绩对比',
+                            //subtext: '数据来自最近一次考核成绩'
                         },
                         tooltip: {
                             trigger: 'axis',
@@ -41,7 +42,7 @@
                             }
                         },
                         legend: {
-                            data: ['自己的成绩', '全队平均成绩']
+                            data: ['最近一次成绩', '历史最好成绩']
                         },
                         grid: {
                             left: '3%',
@@ -55,18 +56,18 @@
                         },
                         yAxis: {
                             type: 'category',
-                            data: ['3000米', '仰卧起坐', '蛇形跑', '引体向上']
+                            data: ['3000米', '蛇形跑', '仰卧起坐', '引体向上']
                         },
                         series: [
                             {
-                                name: '自己的成绩',
+                                name: '最近一次成绩',
                                 type: 'bar',
                                 data: data.self
                             },
                             {
-                                name: '全队平均成绩',
+                                name: '历史最好成绩',
                                 type: 'bar',
-                                data: data.average
+                                data: data.max
                             }
                         ]
                     };

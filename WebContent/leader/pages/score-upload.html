@@ -16,6 +16,13 @@
 			transform: translate(-50%, -50%);
 			border: none;
 		}
+		#sample {
+			position: absolute;
+			top: 70%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			border: none;
+		}
 	</style>
 </head>
 
@@ -23,6 +30,9 @@
 	<div class="layui-upload-drag" id="upload">
 		<i class="layui-icon"></i>
 		<p>点击选择文件导入，或将文件拖拽到此处</p>
+	</div>
+	<div class="layui-upload-drag" id="sample">
+		<p><a href="训练成绩表-sample.xls">示例文档</a></p>
 	</div>
 	<script src="../../layui/layui.js"></script>
 	<script>
@@ -34,15 +44,14 @@
 			var load = null;
 			//执行实例
 			var uploadInst = upload.render({
-				elem: '#upload' //绑定元素
-				,
-				url: '../servlet/scoreupload' //上传接口
-				,
+				elem: '#upload', //绑定元素
+				url: '/TrainingSystem/AjaxUploadScore', //上传接口
 				accept: 'file',
 				acceptMime: 'application/vnd.ms-excel',
 				exts: 'xls',
 				done: function (res) {
-					if (res.code == "true") {
+					//console.log(res+""=="true");
+					if (res == true || res == "true") {
 						layer.open({
 							title: '导入成功',
 							content: '导入成功！',
@@ -50,7 +59,7 @@
 							btn: '确定'
 						});
 					}
-					else {
+ 					else {
 						layer.open({
 							title: '导入失败',
 							content: '导入失败！',
@@ -61,7 +70,7 @@
 					layer.close(load);
 					$("#upload").removeClass("layui-hide");
 				},
-				before: function () {
+ 				before: function () {
 					load = layer.load(1);
 					$("#upload").addClass("layui-hide");
 				},

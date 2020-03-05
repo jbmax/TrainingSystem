@@ -1,0 +1,138 @@
+{
+	"女": {
+		"0-24": {
+			"Item3_Grade1": "42",
+			"Item3_Grade2": "43",
+			"Item3_Grade3": "53",
+			"Item3_Grade4": "56",
+			"Item3_Grade5": "59",
+			"Item3_Grade6": "62",
+			"Item3_Grade7": "65",
+			"Item3_Grade8": "68",
+			"Item3_Grade9": "71"
+		},
+		"25-27": {
+			"Item3_Grade1": "39",
+			"Item3_Grade2": "40",
+			"Item3_Grade3": "48",
+			"Item3_Grade4": "51",
+			"Item3_Grade5": "54",
+			"Item3_Grade6": "57",
+			"Item3_Grade7": "61",
+			"Item3_Grade8": "65",
+			"Item3_Grade9": "69"
+		},
+		"28-30": {
+			"Item3_Grade1": "37",
+			"Item3_Grade2": "38",
+			"Item3_Grade3": "47",
+			"Item3_Grade4": "50",
+			"Item3_Grade5": "53",
+			"Item3_Grade6": "56",
+			"Item3_Grade7": "59",
+			"Item3_Grade8": "63",
+			"Item3_Grade9": "67"
+		},
+		"31-33": {
+			"Item3_Grade1": "35",
+			"Item3_Grade2": "36",
+			"Item3_Grade3": "43",
+			"Item3_Grade4": "46",
+			"Item3_Grade5": "50",
+			"Item3_Grade6": "54",
+			"Item3_Grade7": "58",
+			"Item3_Grade8": "62",
+			"Item3_Grade9": "66"
+		},
+		"34-36": {
+			"Item3_Grade1": "33",
+			"Item3_Grade2": "34",
+			"Item3_Grade3": "40",
+			"Item3_Grade4": "44",
+			"Item3_Grade5": "48",
+			"Item3_Grade6": "52",
+			"Item3_Grade7": "56",
+			"Item3_Grade8": "60",
+			"Item3_Grade9": "64"
+		},
+		"37-99": {
+			"Item3_Grade1": "31",
+			"Item3_Grade2": "32",
+			"Item3_Grade3": "38",
+			"Item3_Grade4": "42",
+			"Item3_Grade5": "46",
+			"Item3_Grade6": "50",
+			"Item3_Grade7": "54",
+			"Item3_Grade8": "58",
+			"Item3_Grade9": "63"
+		}
+	},
+	"男": {
+		"0-24": {
+			"Item3_Grade1": "50",
+			"Item3_Grade2": "54",
+			"Item3_Grade3": "58",
+			"Item3_Grade4": "62",
+			"Item3_Grade5": "67",
+			"Item3_Grade6": "72",
+			"Item3_Grade7": "77",
+			"Item3_Grade8": "82",
+			"Item3_Grade9": "87"
+		},
+		"25-27": {
+			"Item3_Grade1": "47",
+			"Item3_Grade2": "51",
+			"Item3_Grade3": "55",
+			"Item3_Grade4": "59",
+			"Item3_Grade5": "63",
+			"Item3_Grade6": "67",
+			"Item3_Grade7": "72",
+			"Item3_Grade8": "77",
+			"Item3_Grade9": "82"
+		},
+		"28-30": {
+			"Item3_Grade1": "45",
+			"Item3_Grade2": "49",
+			"Item3_Grade3": "53",
+			"Item3_Grade4": "57",
+			"Item3_Grade5": "61",
+			"Item3_Grade6": "65",
+			"Item3_Grade7": "70",
+			"Item3_Grade8": "75",
+			"Item3_Grade9": "80"
+		},
+		"31-33": {
+			"Item3_Grade1": "43",
+			"Item3_Grade2": "47",
+			"Item3_Grade3": "51",
+			"Item3_Grade4": "55",
+			"Item3_Grade5": "59",
+			"Item3_Grade6": "63",
+			"Item3_Grade7": "68",
+			"Item3_Grade8": "73",
+			"Item3_Grade9": "78"
+		},
+		"34-36": {
+			"Item3_Grade1": "39",
+			"Item3_Grade2": "43",
+			"Item3_Grade3": "47",
+			"Item3_Grade4": "51",
+			"Item3_Grade5": "55",
+			"Item3_Grade6": "60",
+			"Item3_Grade7": "65",
+			"Item3_Grade8": "70",
+			"Item3_Grade9": "75"
+		},
+		"37-99": {
+			"Item3_Grade1": "35",
+			"Item3_Grade2": "40",
+			"Item3_Grade3": "45",
+			"Item3_Grade4": "49",
+			"Item3_Grade5": "54",
+			"Item3_Grade6": "59",
+			"Item3_Grade7": "64",
+			"Item3_Grade8": "69",
+			"Item3_Grade9": "74"
+		}
+	}
+}

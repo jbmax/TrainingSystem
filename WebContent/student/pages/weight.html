@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main" style="width: 100%;height:100%;"></div>
+    <script src="../../echarts/echarts.min.js"></script>
+    <script src="../../layui/layui.js"></script>
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('main'));
+        myChart.title = "体重及BMI变化情况";
+        layui.use("jquery", function () {
+            var $ = layui.jquery;
+            $.ajax({
+                type: "get",
+                dateType: "json",
+                //url: "json/training.json",
+                url:"/TrainingSystem/AjaxHealthBMI",
+                success: function (data) {
+                    var month = []
+                    var weight = [];
+                    var fatRate = [];
+                    for(var i in data){
+                        month.push(i);
+                        weight.push(data[i][0]);
+                        fatRate.push(data[i][1]);
+                    }
+                    var option = {
+                        xAxis: {
+                            type: 'category',
+                            data: month
+                        },
+                        yAxis: {
+                            type: 'value'
+                        },
+                        legend: {
+                            data: ['体重(kg)', 'BMI']
+                        },
+                        tooltip: {
+                            trigger: 'axis',
+                            // formatter: function (params, ticket, callback) {
+                            //     return params[0].name + '共组织训练' + data[params[0].name][0] + '次<br />参加' + data[params[0].name][1] + '次<br />缺考' + (data[params[0].name][0] - data[params[0].name][1]) + '次';
+                            // }
+                        },
+                        series: [{
+                            name:'体重(kg)',
+                            data: weight,
+                            type: 'line',
+                            smooth: true,
+                        }, {
+                            name:'BMI',
+                            data: fatRate,
+                            type: 'line',
+                            smooth: true,
+                        }]
+                    };
+                    myChart.setOption(option);
+                    window.addEventListener("resize", function () {
+                        myChart.resize();
+                    });
+                },
+                error: function (error) { }
+            });
+        });
+    </script>
+</body>
+
+</html>

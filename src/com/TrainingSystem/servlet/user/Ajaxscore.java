@@ -3,14 +3,15 @@ package com.TrainingSystem.servlet.user;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.TrainingSystem.entity.Studentscore;
 import com.TrainingSystem.service.student.Studentscoredao;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -39,20 +40,28 @@ public class Ajaxscore extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
 		
-		String Student_ID = request.getParameter("Student_ID");
-		ArrayList<Studentscore>	list= Studentscoredao.selectscoresByID(Student_ID);
+		HttpSession session = request.getSession();
+		String Student_ID = (String) session.getAttribute("userID");
+		Student_ID = "19020001";
+		int page = Integer.parseInt(request.getParameter("page"));
+		int limit = Integer.parseInt(request.getParameter("limit"));
 		
-		JSONObject jsonObj = new JSONObject();
+		ArrayList<Map<String, String>> list= Studentscoredao.selectscoresByID(Student_ID, page, limit);
 		
+		JSONObject jsonObj = new JSONObject(true);
+
 		if(list.isEmpty())
 		{
-			jsonObj.put("code", 1);
+			jsonObj.put("code", 0);
+			jsonObj.put("msg", "");
+			jsonObj.put("count", 0);
+			jsonObj.put("data", "");
 		}
 		else
 		{
 			jsonObj.put("code", 0);
 			jsonObj.put("msg", "");
-			jsonObj.put("count", list.size());
+			jsonObj.put("count", Studentscoredao.totalnum(Student_ID));
 			jsonObj.put("data", list);
 		}
 		
