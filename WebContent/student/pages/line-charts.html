@@ -32,7 +32,12 @@
                 //url:"json/linechartsdatasource.json",
                 success: function (data) {
                     // 指定图表的配置项和数据
+                    //myChart.title = '训练成绩变化趋势图';
                     var option = {
+                    	title: {
+                             text: '训练成绩变化趋势图',
+                             subtext: '数据来自最近十次训练'
+                         },
                         legend: {},
                         tooltip: {
                             trigger: 'axis',

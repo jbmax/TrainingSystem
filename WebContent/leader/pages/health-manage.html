@@ -47,7 +47,7 @@
 	<div class="layui-container">
 		<div class="layui-row">
 			<button class="search-user layui-bg-green">搜索</button>
-			<input type="text" placeholder="请输入学员姓名" id="username">
+			<input type="text" placeholder="请输入学号" id="username">
 			<!-- <button class="clear-user layui-bg-red">清空健康数据库</button>
  -->		</div>
 		<table id="score-table" lay-filter="score-table" lay-skin="line"></table>
@@ -84,32 +84,33 @@
 						title: '序号',
 						fixed: 'left',
 						type: "numbers",
-						//width: "5%"
+						width: "8%"
 					}, {
 						field: 'sID',
 						title: '学号',
-						// width:"5%"
+						sort: true,
+						width:"15%"
 					}, {
 						field: 'sName',
-						title: '用户名',
-						// width:"5%"
+						title: '姓名',
+						width:"12%"
 					}
 					, {
 						field: 'sAge',
 						title: '年龄',
-						// width:"5%"
+						width:"8%"
 					}, {
 						field: 'sGender',
 						title: '性别',
-						// width:"5%"
+						width:"8%"
 					}, {
 						field: 'height',
 						title: '身高',
-						//width: "8%"
+						width: "10%"
 					}, {
 						field: 'weight',
 						title: '体重',
-						// width:"5%"
+						width:"10%"
 					}, {
 						field: 'bMI',
 						title: '体脂率',
@@ -200,7 +201,7 @@
 									// width:"5%"
 								}, {
 									field: 'sName',
-									title: '用户名',
+									title: '姓名',
 									// width:"5%"
 								}
 								, {
@@ -232,7 +233,7 @@
 							]]
 						});
 					 } else {
-						layer.msg("请填写学员名");
+						layer.msg("请输入学号");
 					} 
 				});
 			$(".clear-user").click(function () {

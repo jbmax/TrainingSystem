@@ -47,7 +47,7 @@
 	<div class="layui-container">
  		<div class="layui-row">
 			<button class="search-user layui-bg-green">搜索</button>
-			<input type="text" placeholder="请输入学员姓名" id="username">
+			<input type="text" placeholder="请输入学号" id="username">
 			<!-- <input type="text" placeholder="请选择考核日期" id="date"> -->
 			<!-- <button class="clear-user layui-bg-red">清空成绩数据库</button> -->
 		</div>
@@ -92,16 +92,17 @@
 						title: '序号',
 						fixed: 'left',
 						type: "numbers",
-						//width: "5%"
+						width: "8%"
 					},   {
 						field: 'SID',
 						title: '学号',
+						sort: true,
 						//fixed: 'left'
-						// width:"5%"
+						width:"15%"
 					}, {
 						field: 'SName',
 						title: '姓名',
-						// width:"5%"
+						width:"15%"
 					}
 					, /* {
 						field: 'age',
@@ -114,11 +115,11 @@
 					},  */{
 						field: 'Run3k',
 						title: '3000米',
-						//width: "10%"
+						width: "15%"
 					}, {
 						field: 'Snake',
 						title: '蛇形跑',
-						// width:"5%"
+						width:"12%"
 					}, {
 						field: 'Situp',
 						title: '仰卧起坐',
@@ -223,7 +224,7 @@
 									// width:"5%"
 								}, {
 									field: 'SName',
-									title: '用户名',
+									title: '姓名',
 									// width:"5%"
 								},
 								/*  {
@@ -273,7 +274,7 @@
 								} */]]
 						});
 					 } else {
-						layer.msg("请填写学员姓名");
+						layer.msg("请输入学号");
 					}
 				});
 			$(".clear-user").click(function () {

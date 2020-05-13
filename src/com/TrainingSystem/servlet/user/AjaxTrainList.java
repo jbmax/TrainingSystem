@@ -88,7 +88,7 @@ public class AjaxTrainList extends HttpServlet {
 		
 		String jsonStr = JSON.toJSONString(jsonObj);
 		
-		response.setContentType("application/json");
+		response.setContentType("application/json;charset=utf-8");
 		out.write(jsonStr);
 	}
 

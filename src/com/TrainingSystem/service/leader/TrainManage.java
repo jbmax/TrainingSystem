@@ -133,14 +133,7 @@ public static int totalnum(String groupID)
 			sql = "\n" + 
 					"	\n" + 
 					"	SELECT ti.Train_ID TID, ti.Plan_ID PID, ti.Train_Date Date, gr.Ground_Name GName, \n" + 
-					"					li.Leader_Name LName, ti.Train_Oper Oper, \n" + 
-					"			CASE WHEN ti.Train_State = 0 THEN '未开始'\n" + 
-					"			 WHEN ti.Train_State = 1 THEN '正在进行'\n" + 
-					"			 WHEN ti.Train_State = 2 THEN '已结束'\n" + 
-					"			 WHEN ti.Train_State = 3 THEN '已撤销'\n" + 
-					"			ELSE '未知'\n" + 
-					"			END\n" + 
-					"			AS State\n" + 
+					"					li.Leader_Name LName, ti.Train_Oper Oper, ti.Train_State State\n" + 
 					"	FROM GroupInfo gi, LeaderInfo li, TrainInfo ti, GroundInfo gr\n" + 
 					"	WHERE gi.Group_ID = li.Group_ID AND\n" + 
 					"				ti.Leader_ID = li.Leader_ID AND \n" + 
@@ -163,7 +156,25 @@ public static int totalnum(String groupID)
 				 hmap.put("GName", rs.getString("GName"));
 				 hmap.put("LName", rs.getString("LName"));
 				 hmap.put("Oper", rs.getString("Oper"));
-				 hmap.put("State", rs.getString("State"));
+				 String State = rs.getString("State");
+				 String State_String = "未知";
+				 switch (State) {
+				 case "0": 
+					 State_String = "未开始";
+					 break;
+				 case "1":
+					 State_String = "正在进行";
+					 break;
+				 case "2": 
+					 State_String = "已结束";
+					 break;
+				 case "3":
+					 State_String = "已撤销";
+					 break;
+				 default:
+					 State_String = "未知";
+				 }
+				 hmap.put("State", State_String);
 				 lmap.add(hmap);
 		}
 		} catch (SQLException e) {
@@ -193,14 +204,7 @@ public static int totalnum(String groupID)
 			sql = "\n" + 
 					"	\n" + 
 					"	SELECT ti.Train_ID TID, ti.Plan_ID PID, ti.Train_Date Date, gr.Ground_Name GName, \n" + 
-					"					li.Leader_Name LName, ti.Train_Oper Oper, \n" + 
-					"			CASE WHEN ti.Train_State = 0 THEN '未开始'\n" + 
-					"			 WHEN ti.Train_State = 1 THEN '正在进行'\n" + 
-					"			 WHEN ti.Train_State = 2 THEN '已结束'\n" + 
-					"			 WHEN ti.Train_State = 3 THEN '已撤销'\n" + 
-					"			ELSE '未知'\n" + 
-					"			END\n" + 
-					"			AS State\n" + 
+					"					li.Leader_Name LName, ti.Train_Oper Oper, ti.Train_State State\n" + 
 					"	FROM GroupInfo gi, LeaderInfo li, TrainInfo ti, GroundInfo gr\n" + 
 					"	WHERE gi.Group_ID = li.Group_ID AND\n" + 
 					"				ti.Leader_ID = li.Leader_ID AND \n" + 
@@ -221,7 +225,25 @@ public static int totalnum(String groupID)
 				 hmap.put("GName", rs.getString("GName"));
 				 hmap.put("LName", rs.getString("LName"));
 				 hmap.put("Oper", rs.getString("Oper"));
-				 hmap.put("State", rs.getString("State"));
+				 String State = rs.getString("State");
+				 String State_String = "未知";
+				 switch (State) {
+				 case "0": 
+					 State_String = "未开始";
+					 break;
+				 case "1":
+					 State_String = "正在进行";
+					 break;
+				 case "2": 
+					 State_String = "已结束";
+					 break;
+				 case "3":
+					 State_String = "已撤销";
+					 break;
+				 default:
+					 State_String = "未知";
+				 }
+				 hmap.put("State", State_String);
 				 lmap.add(hmap);
 		}
 		} catch (SQLException e) {
@@ -251,14 +273,7 @@ public static int totalnum(String groupID)
 			sql = "\n" + 
 					"	\n" + 
 					"	SELECT ti.Train_ID TID, ti.Plan_ID PID, ti.Train_Date Date, gr.Ground_Name GName, \n" + 
-					"					li.Leader_Name LName, ti.Train_Oper Oper, \n" + 
-					"			CASE WHEN ti.Train_State = 0 THEN '未开始'\n" + 
-					"			 WHEN ti.Train_State = 1 THEN '正在进行'\n" + 
-					"			 WHEN ti.Train_State = 2 THEN '已结束'\n" + 
-					"			 WHEN ti.Train_State = 3 THEN '已撤销'\n" + 
-					"			ELSE '未知'\n" + 
-					"			END\n" + 
-					"			AS State\n" + 
+					"					li.Leader_Name LName, ti.Train_Oper Oper, ti.Train_State State\n" + 
 					"	FROM GroupInfo gi, LeaderInfo li, TrainInfo ti, GroundInfo gr\n" + 
 					"	WHERE gi.Group_ID = li.Group_ID AND\n" + 
 					"				ti.Leader_ID = li.Leader_ID AND \n" + 
@@ -281,7 +296,25 @@ public static int totalnum(String groupID)
 				 hmap.put("GName", rs.getString("GName"));
 				 hmap.put("LName", rs.getString("LName"));
 				 hmap.put("Oper", rs.getString("Oper"));
-				 hmap.put("State", rs.getString("State"));
+				 String State = rs.getString("State");
+				 String State_String = "未知";
+				 switch (State) {
+				 case "0": 
+					 State_String = "未开始";
+					 break;
+				 case "1":
+					 State_String = "正在进行";
+					 break;
+				 case "2": 
+					 State_String = "已结束";
+					 break;
+				 case "3":
+					 State_String = "已撤销";
+					 break;
+				 default:
+					 State_String = "未知";
+				 }
+				 hmap.put("State", State_String);
 				 lmap.add(hmap);
 		}
 		} catch (SQLException e) {

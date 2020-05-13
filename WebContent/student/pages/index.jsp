@@ -72,7 +72,7 @@
                             个人体能情况
                         </a>
                         <dl class="layui-nav-child">
-                            <dd  class="layui-this"><a href="javascript:;" lay-id="21" data-url="scores.html">查看训练成绩</a></dd>
+                            <dd  class="layui-this"><a href="javascript:;" lay-id="21" data-url="scores.html">所有训练成绩</a></dd>
                             <dd><a href="javascript:;" lay-id="22" data-url="line-charts.html">成绩趋势图</a></dd>
                             <dd><a href="javascript:;" lay-id="23" data-url="histogram.html">成绩对比图</a></dd>
                           </dl>
@@ -84,7 +84,7 @@
                             体能训练情况
                         </a>
                         <dl class="layui-nav-child">
-                            <dd  class="layui-this"><a href="javascript:;" lay-id="24" data-url="training-list.html">查看所有训练</a></dd>
+                            <dd  class="layui-this"><a href="javascript:;" lay-id="24" data-url="training-list.html">所有训练</a></dd>
                             <dd><a href="javascript:;" lay-id="25" data-url="training.html">训练参加情况</a></dd>
                           </dl>
                     </li>

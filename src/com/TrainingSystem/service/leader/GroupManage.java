@@ -157,7 +157,7 @@ public class GroupManage {
 		return 0;
 	}
 	
-	public static int updateGroup(String gid, String gname, String gdate, int is_del) throws SQLException
+	public static int updateGroup(String gid, String gname, String gdate, int Is_Del) throws SQLException
 	{
 		//声明结果集
 		int rs = 0;
@@ -168,8 +168,8 @@ public class GroupManage {
 		String sql = "";
 		
 		try {
-			if (is_del == 1) {
-				sql = "UPDATE GroupInfo SET GroupInfo.Is_del = 1\n"
+			if (Is_Del == 1) {
+				sql = "UPDATE GroupInfo SET GroupInfo.Is_Del = 1\n"
 						+ "WHERE GroupInfo.Group_ID = ?";
 				
 				ps = conn.prepareStatement(sql);
@@ -177,7 +177,7 @@ public class GroupManage {
 			}
 			else {
 				sql = "UPDATE GroupInfo SET GroupInfo.Group_Name = ?, \n"
-					+ "GroupInfo.Group_Date = ?, GroupInfo.Is_del = 0\n"
+					+ "GroupInfo.Group_Date = ?, GroupInfo.Is_Del = 0\n"
 					+ "WHERE GroupInfo.Group_ID = ?";
 				
 				ps = conn.prepareStatement(sql);

@@ -28,7 +28,8 @@ public class ItemScore {
 		String sql = "";
 		
 		try {
-			sql = "SELECT * FROM studentitemscore WHERE SID = ? ORDER BY studentitemscore.date";
+			sql = "SELECT * FROM StudentItemScore WHERE SID = ? "
+					+ "ORDER BY StudentItemScore.date Limit 10";
 			
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, Student_ID);

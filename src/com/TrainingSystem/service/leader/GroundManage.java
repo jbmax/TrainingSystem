@@ -171,12 +171,7 @@ public class GroundManage {
 		String sql = "";
 		
 		try {
-			sql = "SELECT Ground_ID GRID, Ground_Name GName, \n" + 
-					"		CASE WHEN gi.Ground_State = 0 THEN '不可进行训练'\n" + 
-					"		 WHEN gi.Ground_State = 1 THEN '可进行训练'\n" + 
-					"		ELSE '未知'\n" + 
-					"		END\n" + 
-					"		AS State\n" + 
+			sql = "SELECT Ground_ID GRID, Ground_Name GName, Ground_State State\n" + 
 					"From GroundInfo gi\n" + 
 					"WHERE Is_Del = 0\n" + 
 					"ORDER BY Ground_ID LIMIT ?, ?";
@@ -190,7 +185,19 @@ public class GroundManage {
 				 Map<String, String> hmap = new HashMap<String, String>();
 				 hmap.put("GRID", rs.getString("GRID"));
 				 hmap.put("GName", rs.getString("GName"));
-				 hmap.put("State", rs.getString("State"));
+				 String State = rs.getString("State");
+				 String State_String = "未知";
+				 switch (State) {
+				 case "0": 
+					 State_String = "不可进行训练";
+					 break;
+				 case "1":
+					 State_String = "可进行训练";
+					 break;
+				 default:
+					 State_String = "未知";
+				 }
+				 hmap.put("State", State_String);
 				 lmap.add(hmap);
 		}
 		} catch (SQLException e) {
@@ -240,7 +247,7 @@ public class GroundManage {
 		return 0;
 	}
 	
-	public static int updateGround(String gid, String gname, String state, int is_del) throws SQLException
+	public static int updateGround(String gid, String gname, String state, int Is_Del) throws SQLException
 	{
 		//声明结果集
 		int rs = 0;
@@ -251,8 +258,8 @@ public class GroundManage {
 		String sql = "";
 		
 		try {
-			if (is_del == 1) {
-				sql = "UPDATE GroundInfo SET GroundInfo.Is_del = 1\n"
+			if (Is_Del == 1) {
+				sql = "UPDATE GroundInfo SET GroundInfo.Is_Del = 1\n"
 						+ "WHERE GroundInfo.Ground_ID = ?";
 				
 				ps = conn.prepareStatement(sql);
@@ -260,7 +267,7 @@ public class GroundManage {
 			}
 			else {
 				sql = "UPDATE GroundInfo SET GroundInfo.Ground_Name = ?, \n"
-					+ "GroundInfo.Ground_State = ?, GroundInfo.Is_del = 0\n"
+					+ "GroundInfo.Ground_State = ?, GroundInfo.Is_Del = 0\n"
 					+ "WHERE GroundInfo.Ground_ID = ?";
 				
 				ps = conn.prepareStatement(sql);

@@ -58,7 +58,7 @@ public class AjaxItemscore extends HttpServlet {
 		//String jsonStr= JSON.toJSONString(list, SerializerFeature.BeanToArray);
 		String jsonStr = JSON.toJSONString(jsonObj);
 		
-		response.setContentType("application/json");
+		response.setContentType("application/json;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.write(jsonStr);
 

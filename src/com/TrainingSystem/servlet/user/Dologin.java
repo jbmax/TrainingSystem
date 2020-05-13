@@ -80,13 +80,21 @@ public class Dologin extends HttpServlet {
 					out.write("false");
 				}
 			} catch (Exception e) {
+				out.write("false");
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}  //队领导登录
-		else if (userClass != null && userClass.equals("l")) {
+			return;
+		}  
+		//队领导登录
+		if (userClass != null && userClass.equals("l")) {
 			try {
 				Leaderinfo li = Leaderdao.verifyPass(username, password);
+//				 getServletContext().log("日志日志顶呱呱3");
+//				 String p = Leaderdao.selectbyID(username).getLeader_Password();
+//				 getServletContext().log(p);
+//				 if (!p.equals(password))
+//					 getServletContext().log("not equal");
 				if (li != null) {
 					HttpSession session = request.getSession();
 					session.setAttribute("userID", username);
@@ -104,13 +112,21 @@ public class Dologin extends HttpServlet {
 					out.write("false");
 				}
 			}catch (Exception e) {
+				out.write("false");
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} //管理员登录 
-		else if (userClass != null && userClass.equals("a")) {
+			return;
+		} 
+		//管理员登录 
+		if (userClass != null && userClass.equals("a")) {
 			try {
 				Admininfo a = Admindao.verifyPass(username, password);
+//				 getServletContext().log("日志日志顶呱呱4");
+//				 String p = Admindao.selectbyID(username).getAdmin_Password();
+//				 getServletContext().log(p);
+//				 if (!p.equals(password))
+//					 getServletContext().log("not equal");
 				if (a != null) {
 					HttpSession session = request.getSession();
 					session.setAttribute("userID", username);
@@ -124,12 +140,12 @@ public class Dologin extends HttpServlet {
 					out.write("false");
 				}
 			}catch (Exception e) {
+				out.write("false");
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
-		out.write("false");	
+		return;
 	}
 
 }

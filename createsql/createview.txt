@@ -11,7 +11,7 @@ WHERE StudentInfo.Student_ID = StudentGrade.Student_ID AND
 				TrainInfo.Train_State = 2 AND StudentInfo.Is_del = 0 AND 
 				TrainInfo.Is_del = 0;
 				
-SELECT * FROM studentscore WHERE SID = '19020002';
+SELECT * FROM StudentScore WHERE SID = '19020002';
 
 DROP VIEW IF EXISTS StudentAgeCal;
 CREATE VIEW StudentAgeCal AS
@@ -34,87 +34,87 @@ FROM StudentAgeCal;
 
 DROP VIEW IF EXISTS StudentItem1Score;
 CREATE VIEW StudentItem1Score AS
-SELECT StudentAgeClass.SID, studentscore.date, 
-			CASE WHEN studentscore.Run3k <= Item1Stand.Item1_Grade9 THEN '100'
-			 WHEN studentscore.Run3k <= Item1Stand.Item1_Grade8 THEN '95'
-			 WHEN studentscore.Run3k <= Item1Stand.Item1_Grade7 THEN '90'
-			 WHEN studentscore.Run3k <= Item1Stand.Item1_Grade6 THEN '85'
-			 WHEN studentscore.Run3k <= Item1Stand.Item1_Grade5 THEN '80'
-			 WHEN studentscore.Run3k <= Item1Stand.Item1_Grade4 THEN '75'
-			 WHEN studentscore.Run3k <= Item1Stand.Item1_Grade3 THEN '70'
-			 WHEN studentscore.Run3k <= Item1Stand.Item1_Grade2 THEN '65'
-			 WHEN studentscore.Run3k <= Item1Stand.Item1_Grade1 THEN '60'
-			ELSE '50'
+SELECT StudentAgeClass.SID, StudentScore.date, 
+			CASE WHEN StudentScore.Run3k <= Item1Stand.Item1_Grade9 THEN 100
+			 WHEN StudentScore.Run3k <= Item1Stand.Item1_Grade8 THEN 95
+			 WHEN StudentScore.Run3k <= Item1Stand.Item1_Grade7 THEN 90
+			 WHEN StudentScore.Run3k <= Item1Stand.Item1_Grade6 THEN 85
+			 WHEN StudentScore.Run3k <= Item1Stand.Item1_Grade5 THEN 80
+			 WHEN StudentScore.Run3k <= Item1Stand.Item1_Grade4 THEN 75
+			 WHEN StudentScore.Run3k <= Item1Stand.Item1_Grade3 THEN 70
+			 WHEN StudentScore.Run3k <= Item1Stand.Item1_Grade2 THEN 65
+			 WHEN StudentScore.Run3k <= Item1Stand.Item1_Grade1 THEN 60
+			ELSE 50
 			END
 			AS Item1Score
-			FROM StudentAgeClass, Item1Stand, studentscore
+			FROM StudentAgeClass, Item1Stand, StudentScore
 WHERE Item1Stand.Student_Gender = StudentAgeClass.SGender
 		AND Item1Stand.Age_Class = StudentAgeClass.SAge_Class
-		AND studentscore.SID = StudentAgeClass.SID;
+		AND StudentScore.SID = StudentAgeClass.SID;
 
 DROP VIEW IF EXISTS StudentItem2Score;
 CREATE VIEW StudentItem2Score AS
-SELECT StudentAgeClass.SID, studentscore.date, 
-			CASE WHEN studentscore.Snake <= Item2Stand.Item2_Grade9 THEN '100'
-			 WHEN studentscore.Snake <= Item2Stand.Item2_Grade8 THEN '95'
-			 WHEN studentscore.Snake <= Item2Stand.Item2_Grade7 THEN '90'
-			 WHEN studentscore.Snake <= Item2Stand.Item2_Grade6 THEN '85'
-			 WHEN studentscore.Snake <= Item2Stand.Item2_Grade5 THEN '80'
-			 WHEN studentscore.Snake <= Item2Stand.Item2_Grade4 THEN '75'
-			 WHEN studentscore.Snake <= Item2Stand.Item2_Grade3 THEN '70'
-			 WHEN studentscore.Snake <= Item2Stand.Item2_Grade2 THEN '65'
-			 WHEN studentscore.Snake <= Item2Stand.Item2_Grade1 THEN '60'
-			ELSE '50'
+SELECT StudentAgeClass.SID, StudentScore.date,  
+			CASE WHEN StudentScore.Snake <= Item2Stand.Item2_Grade9 THEN 100
+			 WHEN StudentScore.Snake <= Item2Stand.Item2_Grade8 THEN 95
+			 WHEN StudentScore.Snake <= Item2Stand.Item2_Grade7 THEN 90
+			 WHEN StudentScore.Snake <= Item2Stand.Item2_Grade6 THEN 85
+			 WHEN StudentScore.Snake <= Item2Stand.Item2_Grade5 THEN 80
+			 WHEN StudentScore.Snake <= Item2Stand.Item2_Grade4 THEN 75
+			 WHEN StudentScore.Snake <= Item2Stand.Item2_Grade3 THEN 70
+			 WHEN StudentScore.Snake <= Item2Stand.Item2_Grade2 THEN 65
+			 WHEN StudentScore.Snake <= Item2Stand.Item2_Grade1 THEN 60
+			ELSE 50
 			END
 			AS Item2Score
-			FROM StudentAgeClass, Item2Stand, studentscore
+			FROM StudentAgeClass, Item2Stand, StudentScore
 WHERE Item2Stand.Student_Gender = StudentAgeClass.SGender
 		AND Item2Stand.Age_Class = StudentAgeClass.SAge_Class
-		AND studentscore.SID = StudentAgeClass.SID;
+		AND StudentScore.SID = StudentAgeClass.SID;
 
 DROP VIEW IF EXISTS StudentItem3Score;
 CREATE VIEW StudentItem3Score AS
-SELECT StudentAgeClass.SID, studentscore.date, 
-			CASE WHEN LENGTH(studentscore.Situp) < 2 THEN '50'
-			 WHEN LENGTH(studentscore.Situp) > 2 THEN '100'
-			 WHEN studentscore.Situp >= Item3Stand.Item3_Grade9 THEN '100'
-			 WHEN studentscore.Situp >= Item3Stand.Item3_Grade8 THEN '95'
-			 WHEN studentscore.Situp >= Item3Stand.Item3_Grade7 THEN '90'
-			 WHEN studentscore.Situp >= Item3Stand.Item3_Grade6 THEN '85'
-			 WHEN studentscore.Situp >= Item3Stand.Item3_Grade5 THEN '80'
-			 WHEN studentscore.Situp >= Item3Stand.Item3_Grade4 THEN '75'
-			 WHEN studentscore.Situp >= Item3Stand.Item3_Grade3 THEN '70'
-			 WHEN studentscore.Situp >= Item3Stand.Item3_Grade2 THEN '65'
-			 WHEN studentscore.Situp >= Item3Stand.Item3_Grade1 THEN '60'
-			ELSE '50'
+SELECT StudentAgeClass.SID, StudentScore.date, 
+			CASE WHEN LENGTH(StudentScore.Situp) < 2 THEN 50
+			 WHEN LENGTH(StudentScore.Situp) > 2 THEN 100
+			 WHEN StudentScore.Situp >= Item3Stand.Item3_Grade9 THEN 100
+			 WHEN StudentScore.Situp >= Item3Stand.Item3_Grade8 THEN 95
+			 WHEN StudentScore.Situp >= Item3Stand.Item3_Grade7 THEN 90
+			 WHEN StudentScore.Situp >= Item3Stand.Item3_Grade6 THEN 85
+			 WHEN StudentScore.Situp >= Item3Stand.Item3_Grade5 THEN 80
+			 WHEN StudentScore.Situp >= Item3Stand.Item3_Grade4 THEN 75
+			 WHEN StudentScore.Situp >= Item3Stand.Item3_Grade3 THEN 70
+			 WHEN StudentScore.Situp >= Item3Stand.Item3_Grade2 THEN 65
+			 WHEN StudentScore.Situp >= Item3Stand.Item3_Grade1 THEN 60
+			ELSE 50
 			END
 			AS Item3Score
-			FROM StudentAgeClass, Item3Stand, studentscore
+			FROM StudentAgeClass, Item3Stand, StudentScore
 WHERE Item3Stand.Student_Gender = StudentAgeClass.SGender
 		AND Item3Stand.Age_Class = StudentAgeClass.SAge_Class
-		AND studentscore.SID = StudentAgeClass.SID;
+		AND StudentScore.SID = StudentAgeClass.SID;
 
 DROP VIEW IF EXISTS StudentItem4Score;
 CREATE VIEW StudentItem4Score AS
-SELECT StudentAgeClass.SID, studentscore.date, 
-			CASE WHEN StudentAgeClass.Sgender = "男" AND LENGTH(studentscore.Pullup) > 2 THEN '100'
-			 WHEN StudentAgeClass.Sgender = "女" AND LENGTH(studentscore.Pullup) > 5 THEN '100'
-			 WHEN LENGTH(studentscore.Pullup) = LENGTH(Item4Stand.Item4_Grade9) AND studentscore.Pullup >= Item4Stand.Item4_Grade9 THEN '100'
-			 WHEN LENGTH(studentscore.Pullup) = LENGTH(Item4Stand.Item4_Grade8) AND studentscore.Pullup >= Item4Stand.Item4_Grade8 THEN '95'
-			 WHEN LENGTH(studentscore.Pullup) = LENGTH(Item4Stand.Item4_Grade7) AND studentscore.Pullup >= Item4Stand.Item4_Grade7 THEN '90'
-			 WHEN LENGTH(studentscore.Pullup) = LENGTH(Item4Stand.Item4_Grade6) AND studentscore.Pullup >= Item4Stand.Item4_Grade6 THEN '85'
-			 WHEN LENGTH(studentscore.Pullup) = LENGTH(Item4Stand.Item4_Grade5) AND studentscore.Pullup >= Item4Stand.Item4_Grade5 THEN '80'
-			 WHEN LENGTH(studentscore.Pullup) = LENGTH(Item4Stand.Item4_Grade4) AND studentscore.Pullup >= Item4Stand.Item4_Grade4 THEN '75'
-			 WHEN LENGTH(studentscore.Pullup) = LENGTH(Item4Stand.Item4_Grade3) AND studentscore.Pullup >= Item4Stand.Item4_Grade3 THEN '70'
-			 WHEN LENGTH(studentscore.Pullup) = LENGTH(Item4Stand.Item4_Grade2) AND studentscore.Pullup >= Item4Stand.Item4_Grade2 THEN '65'
-			 WHEN LENGTH(studentscore.Pullup) = LENGTH(Item4Stand.Item4_Grade1) AND studentscore.Pullup >= Item4Stand.Item4_Grade1 THEN '60'
-			ELSE '50'
+SELECT StudentAgeClass.SID, StudentScore.date, 
+			CASE WHEN StudentAgeClass.Sgender = "男" AND LENGTH(StudentScore.Pullup) > 2 THEN 100
+			 WHEN StudentAgeClass.Sgender = "女" AND LENGTH(StudentScore.Pullup) > 5 THEN 100
+			 WHEN LENGTH(StudentScore.Pullup) = LENGTH(Item4Stand.Item4_Grade9) AND StudentScore.Pullup >= Item4Stand.Item4_Grade9 THEN 100
+			 WHEN LENGTH(StudentScore.Pullup) = LENGTH(Item4Stand.Item4_Grade8) AND StudentScore.Pullup >= Item4Stand.Item4_Grade8 THEN 95
+			 WHEN LENGTH(StudentScore.Pullup) = LENGTH(Item4Stand.Item4_Grade7) AND StudentScore.Pullup >= Item4Stand.Item4_Grade7 THEN 90
+			 WHEN LENGTH(StudentScore.Pullup) = LENGTH(Item4Stand.Item4_Grade6) AND StudentScore.Pullup >= Item4Stand.Item4_Grade6 THEN 85
+			 WHEN LENGTH(StudentScore.Pullup) = LENGTH(Item4Stand.Item4_Grade5) AND StudentScore.Pullup >= Item4Stand.Item4_Grade5 THEN 80
+			 WHEN LENGTH(StudentScore.Pullup) = LENGTH(Item4Stand.Item4_Grade4) AND StudentScore.Pullup >= Item4Stand.Item4_Grade4 THEN 75
+			 WHEN LENGTH(StudentScore.Pullup) = LENGTH(Item4Stand.Item4_Grade3) AND StudentScore.Pullup >= Item4Stand.Item4_Grade3 THEN 70
+			 WHEN LENGTH(StudentScore.Pullup) = LENGTH(Item4Stand.Item4_Grade2) AND StudentScore.Pullup >= Item4Stand.Item4_Grade2 THEN 65
+			 WHEN LENGTH(StudentScore.Pullup) = LENGTH(Item4Stand.Item4_Grade1) AND StudentScore.Pullup >= Item4Stand.Item4_Grade1 THEN 60
+			ELSE 50
 			END
 			AS Item4Score
-			FROM StudentAgeClass, Item4Stand, studentscore
+			FROM StudentAgeClass, Item4Stand, StudentScore
 WHERE Item4Stand.Student_Gender = StudentAgeClass.SGender
 		AND Item4Stand.Age_Class = StudentAgeClass.SAge_Class
-		AND studentscore.SID = StudentAgeClass.SID;
+		AND StudentScore.SID = StudentAgeClass.SID;
 
 DROP VIEW IF EXISTS StudentItemScore;
 CREATE VIEW StudentItemScore AS
@@ -126,58 +126,59 @@ WHERE StudentItem1Score.SID = StudentItem2Score.SID AND
 			StudentItem1Score.SID = StudentItem4Score.SID AND
 			StudentItem1Score.date = StudentItem2Score.date AND
 			StudentItem1Score.date = StudentItem3Score.date AND
+			StudentItem1Score.date = StudentItem4Score.date AND
 			StudentItem1Score.date = StudentItem4Score.date
 ORDER BY StudentItem1Score.date;
 
-SELECT max(studentitem1score.Item1Score) maxscore
-FROM studentitem1score
+SELECT max(StudentItem1Score.Item1Score) maxscore
+FROM StudentItem1Score
 WHERE SID = 19020002;
 
-SELECT studentitem1score.Item1Score last
-FROM studentitem1score
-WHERE studentitem1score.SID = 19020002 AND studentitem1score.date IN
+SELECT StudentItem1Score.Item1Score last
+FROM StudentItem1Score
+WHERE StudentItem1Score.SID = 19020002 AND StudentItem1Score.date IN
 (
 	SELECT max(sc.date) lastdate
-	FROM studentitem1score sc
+	FROM StudentItem1Score sc
 	WHERE sc.SID = 19020002
 );
 
-SELECT max(studentitem2score.Item2Score) maxscore
-FROM studentitem2score
+SELECT max(StudentItem2Score.Item2Score) maxscore
+FROM StudentItem2Score
 WHERE SID = 19020002;
 
-SELECT studentitem2score.Item2Score last
-FROM studentitem2score
-WHERE studentitem2score.SID = 19020002 AND studentitem2score.date IN
+SELECT StudentItem2Score.Item2Score last
+FROM StudentItem2Score
+WHERE StudentItem2Score.SID = 19020002 AND StudentItem2Score.date IN
 (
 	SELECT max(sc.date) lastdate
-	FROM studentitem2score sc
+	FROM StudentItem2Score sc
 	WHERE sc.SID = 19020002
 );
 
-SELECT max(studentitem3score.Item3Score) maxscore
-FROM studentitem3score
+SELECT max(StudentItem3Score.Item3Score) maxscore
+FROM StudentItem3Score
 WHERE SID = 19020002;
 
-SELECT studentitem3score.Item3Score last
-FROM studentitem3score
-WHERE studentitem3score.SID = 19020002 AND studentitem3score.date IN
+SELECT StudentItem3Score.Item3Score last
+FROM StudentItem3Score
+WHERE StudentItem3Score.SID = 19020002 AND StudentItem3Score.date IN
 (
 	SELECT max(sc.date) lastdate
-	FROM studentitem3score sc
+	FROM StudentItem3Score sc
 	WHERE sc.SID = 19020002
 );
 
 SELECT max(sc.Item4Score) maxscore
-FROM studentitem4score sc
+FROM StudentItem4Score sc
 WHERE SID = 19020002;
 
 SELECT tc.Item4Score last
-FROM studentitem4score tc
+FROM StudentItem4Score tc
 WHERE tc.SID = 19020002 AND tc.date IN
 (
 	SELECT max(sc.date) lastdate
-	FROM studentitem4score sc
+	FROM StudentItem4Score sc
 	WHERE sc.SID = 19020003
 );
 
@@ -188,7 +189,7 @@ WHERE StudentInfo.Group_ID = TrainInfo.Group_ID AND
 ORDER BY date;
 
 SELECT DISTINCT sc.Date
-FROM studentscore sc
+FROM StudentScore sc
 WHERE sc.SID = 19020002;
 
 DROP VIEW IF EXISTS HealthBMI;
@@ -196,7 +197,7 @@ CREATE VIEW HealthBMI AS
 SELECT hh.Student_ID SID, si.Student_Name SName, hh.Health_Date Date, sa.SGender, sa.SAge, 
 		hh.Health_Height Height, hh.Health_Weight Weight, 
 		FORMAT((10000 * hh.Health_Weight / (hh.Health_Height * hh.Health_Height)), 2) BMI
-FROM HealthInfo hh, StudentInfo si, studentagecal sa
+FROM HealthInfo hh, StudentInfo si, StudentAgeCal sa
 WHERE hh.Student_ID = si.Student_ID AND 
 		hh.Student_ID = sa.SID;
 
@@ -205,41 +206,41 @@ FROM GroupInfo gi
 WHERE gi.Leader1_ID = 19001 OR gi.Leader2_ID = 19001;
 
 SELECT ts.*
-FROM studentscore ts
+FROM StudentScore ts
 WHERE ts.GroupID =001 AND ts.SName LIKE "%张%" AND ts.date IN
 (
 SELECT max(ss.date) date
-FROM studentscore ss
+FROM StudentScore ss
 WHERE ss.GroupID = 001
 GROUP BY ss.SID
 );
 
 SELECT count(*) num
-FROM studentscore ss
+FROM StudentScore ss
 WHERE ss.GroupID = 001;
 
 SELECT *
-FROM studentscore ss
+FROM StudentScore ss
 WHERE ss.GroupID = 001 AND ss.SName LIKE "张%";
 
 SELECT ss.*
-FROM studentscore ss
+FROM StudentScore ss
 WHERE ss.date IN
 (
 SELECT max(ts.date) date
-FROM studentscore ts
+FROM StudentScore ts
 WHERE ts.GroupID = 001 AND ts.gender = '女' AND ss.SID = ts.SID
 GROUP BY ts.SID
 );
 
 SELECT count(*)
-FROM HealthBMI hh, StudentInfo si, studentagecal sa
+FROM HealthBMI hh, StudentInfo si, StudentAgeCal sa
 WHERE hh.SID = si.Student_ID AND 
 			hh.SID = sa.SID AND 
 			si.Group_ID = 001;
 
 SELECT hh.*, sa.SAge, sa.SGender, si.Student_Name SName
-FROM HealthBMI hh, StudentInfo si, studentagecal sa
+FROM HealthBMI hh, StudentInfo si, StudentAgeCal sa
 WHERE hh.SID = si.Student_ID AND 
 			hh.SID = sa.SID AND 
 			si.Group_ID = 001;
@@ -247,7 +248,7 @@ WHERE hh.SID = si.Student_ID AND
 SELECT hh.Student_ID SID, hh.Health_Date Date, hh.Health_Weight Weight, hh.Health_Height Height,
 		FORMAT((10000 * hh.Health_Weight / (hh.Health_Height * hh.Health_Height)), 2) BMI, 
 		sa.SAge, sa.SGender, si.Student_Name SName
-FROM HealthInfo hh, StudentInfo si, studentagecal sa
+FROM HealthInfo hh, StudentInfo si, StudentAgeCal sa
 WHERE hh.Student_ID = si.Student_ID AND 
 		hh.Student_ID = sa.SID AND
 		si.Group_ID = 001
@@ -262,9 +263,3 @@ SELECT Ground_ID GRID, Ground_Name GName,
 From GroundInfo gi
 WHERE Is_Del = 0
 ORDER BY Ground_ID LIMIT 0, 10;
-
-
-SELECT ss.*, Group_Name SGroup, sa.SAge Age 
-FROM studentscore ss, GroupInfo gi, studentagecal sa
-where ss.GroupID = '1001' AND 
-ss.GroupID = gi.Group_ID AND sa.SID = ss.SID;

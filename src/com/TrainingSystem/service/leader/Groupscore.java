@@ -49,7 +49,7 @@ public class Groupscore {
 		return count;
 	}
 
-	public static int searchnum(String groupID, String SName)
+	public static int searchnum(String groupID, String SID)
 	{
 		int count = 0;
 		
@@ -69,12 +69,12 @@ public class Groupscore {
 					"				TrainInfo.Train_State = 2 AND \n" + 
 					"				TrainInfo.Leader_ID = LeaderInfo.Leader_ID AND\n" + 
 					"				LeaderInfo.Group_ID = ?  AND StudentInfo.Is_Del = 0\n" + 
-					" AND StudentInfo.Student_Name LIKE ?" + 
+					" AND StudentInfo.Student_ID = ?" + 
 					" AND TrainInfo.Is_Del = 0 ";
 			
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, groupID);
-			ps.setString(2, "%"+SName+"%");
+			ps.setString(2, SID);
 			
 			rs = ps.executeQuery();
 			 while(rs.next()) {
@@ -144,7 +144,7 @@ public class Groupscore {
 		return mapList;	
 	}
 	
-	public static ArrayList<Map<String, String>> selectscoresByName(String groupID, String SName, int page, int limit)
+	public static ArrayList<Map<String, String>> selectscoresByName(String groupID, String SID, int page, int limit)
 	{
 		ArrayList<Map<String, String>> mapList = new ArrayList<Map<String, String>>();
 		//声明结果集
@@ -164,16 +164,16 @@ public class Groupscore {
 					"FROM StudentInfo, StudentGrade, TrainInfo, LeaderInfo\n" + 
 					"WHERE StudentInfo.Student_ID = StudentGrade.Student_ID AND\n" + 
 					"				StudentGrade.Train_ID = TrainInfo.Train_ID AND \n" + 
-					"				TrainInfo.Train_State = '2' AND \n" + 
+					"				TrainInfo.Train_State = 2 AND \n" + 
 					"				TrainInfo.Leader_ID = LeaderInfo.Leader_ID AND\n" + 
 					"				LeaderInfo.Group_ID = ? " +
 					" AND TrainInfo.Is_Del = 0 AND StudentInfo.Is_Del = 0 AND " +
-					"StudentInfo.Student_Name LIKE ? "
+					"StudentInfo.Student_ID = ?\n "
 					+ "ORDER BY TrainInfo.Train_Date DESC LIMIT ?, ?";
 			
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, groupID);
-			ps.setString(2, "%" + SName + "%");
+			ps.setString(2, SID);
 			ps.setInt(3, limit*(page-1));
 			ps.setInt(4, limit);
 			

@@ -87,7 +87,7 @@ public class StudentManage {
 		return lmap;	
 	}
 		
-	public static int updateStudent(String id, String name, String gender, String bday, int is_del, int pwd) throws SQLException
+	public static int updateStudent(String id, String name, String gender, String bday, int Is_Del, int pwd) throws SQLException
 	{
 		//声明结果集
 		int rs = 0;
@@ -98,8 +98,8 @@ public class StudentManage {
 		String sql = "";
 		
 		try {
-			if (is_del == 1) {
-				sql = "UPDATE StudentInfo SET StudentInfo.Is_del = 1\n"
+			if (Is_Del == 1) {
+				sql = "UPDATE StudentInfo SET StudentInfo.Is_Del = 1\n"
 						+ "WHERE Student_ID = ?";
 				
 				ps = conn.prepareStatement(sql);
@@ -115,7 +115,7 @@ public class StudentManage {
 			else {
 				sql = "UPDATE StudentInfo SET Student_Name = ?, "
 						+ "Student_Gender = ?, Student_Birthday = ?, \n"
-					+ "Is_del = 0\n"
+					+ "Is_Del = 0\n"
 					+ "WHERE Student_ID = ?";
 				
 				ps = conn.prepareStatement(sql);

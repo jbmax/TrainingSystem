@@ -33,25 +33,25 @@ public class Historyscore {
 		
 		try {
 			sql1 = "SELECT max(sc.Item1Score) maxscore\n" + 
-					"FROM studentitem1score sc\n" + 
+					"FROM StudentItem1Score sc\n" + 
 					"WHERE SID = ?";
 			psitem1 = conn.prepareStatement(sql1);
 			psitem1.setString(1, Student_ID);
 
 			sql2 = "SELECT max(sc.Item2Score) maxscore\n" + 
-					"FROM studentitem2score sc\n" + 
+					"FROM StudentItem2Score sc\n" + 
 					"WHERE SID = ?";			
 			psitem2 = conn.prepareStatement(sql2);
 			psitem2.setString(1, Student_ID);
 
 			sql3 = "SELECT max(sc.Item3Score) maxscore\n" + 
-					"FROM studentitem3score sc\n" + 
+					"FROM StudentItem3Score sc\n" + 
 					"WHERE SID = ?";
 			psitem3 = conn.prepareStatement(sql3);
 			psitem3.setString(1, Student_ID);
 			
 			sql4 = "SELECT max(sc.Item4Score) maxscore\n" + 
-					"FROM studentitem4score sc\n" + 
+					"FROM StudentItem4Score sc\n" + 
 					"WHERE SID = ?";
 			psitem4 = conn.prepareStatement(sql4);
 			psitem4.setString(1, Student_ID);
@@ -110,11 +110,11 @@ public class Historyscore {
 		
 		try {
 			sql1 = "SELECT tc.Item1Score last\n" + 
-					"FROM studentitem1score tc\n" + 
+					"FROM StudentItem1Score tc\n" + 
 					"WHERE tc.SID = ? AND tc.date IN\n" + 
 					"(\n" + 
 					"	SELECT max(sc.date) lastdate\n" + 
-					"	FROM studentitem1score sc\n" + 
+					"	FROM StudentItem1Score sc\n" + 
 					"	WHERE sc.SID = ?\n" + 
 					")";
 			psitem1 = conn.prepareStatement(sql1);
@@ -122,11 +122,11 @@ public class Historyscore {
 			psitem1.setString(2, Student_ID);	
 			
 			sql2 = "SELECT tc.Item2Score last\n" + 
-					"FROM studentitem2score tc\n" + 
+					"FROM StudentItem2Score tc\n" + 
 					"WHERE tc.SID = ? AND tc.date IN\n" + 
 					"(\n" + 
 					"	SELECT max(sc.date) lastdate\n" + 
-					"	FROM studentitem2score sc\n" + 
+					"	FROM StudentItem2Score sc\n" + 
 					"	WHERE sc.SID = ?\n" + 
 					")";
 			psitem2 = conn.prepareStatement(sql2);
@@ -134,11 +134,11 @@ public class Historyscore {
 			psitem2.setString(2, Student_ID);
 
 			sql3 = "SELECT tc.Item3Score last\n" + 
-					"FROM studentitem3score tc\n" + 
+					"FROM StudentItem3Score tc\n" + 
 					"WHERE tc.SID = ? AND tc.date IN\n" + 
 					"(\n" + 
 					"	SELECT max(sc.date) lastdate\n" + 
-					"	FROM studentitem3score sc\n" + 
+					"	FROM StudentItem3Score sc\n" + 
 					"	WHERE sc.SID = ?\n" + 
 					")";
 			psitem3 = conn.prepareStatement(sql3);
@@ -146,11 +146,11 @@ public class Historyscore {
 			psitem3.setString(2, Student_ID);
 			
 			sql4 = "SELECT tc.Item4Score last\n" + 
-					"FROM studentitem4score tc\n" + 
+					"FROM StudentItem4Score tc\n" + 
 					"WHERE tc.SID = ? AND tc.date IN\n" + 
 					"(\n" + 
 					"	SELECT max(sc.date) lastdate\n" + 
-					"	FROM studentitem4score sc\n" + 
+					"	FROM StudentItem4Score sc\n" + 
 					"	WHERE sc.SID = ?\n" + 
 					")";
 			psitem4 = conn.prepareStatement(sql4);

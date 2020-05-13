@@ -42,7 +42,7 @@ public class AjaxDownload extends HttpServlet {
 		
 		//UploadDownload.writeExcelscore(groupID);
 
-		String fileName = "学生成绩表"+System.currentTimeMillis()+".xls";
+		String fileName = "训练成绩表"+System.currentTimeMillis()+".xls";
 		//System.out.println(fileName);
         try {
             try {

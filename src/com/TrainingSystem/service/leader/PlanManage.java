@@ -57,14 +57,7 @@ public class PlanManage {
 		String sql = "";
 		
 		try {
-			sql = "SELECT pi.Plan_ID PID, pi.Plan_StartDate SDate, pi.Plan_EndDate EDate, \n" + 
-					"		CASE WHEN pi.Plan_State = 0 THEN '未开始'\n" + 
-					"		 WHEN pi.Plan_State = 1 THEN '正在进行'\n" + 
-					"		 WHEN pi.Plan_State = 2 THEN '已结束'\n" + 
-					"		 WHEN pi.Plan_State = 3 THEN '已撤销'\n" + 
-					"		ELSE '未知'\n" + 
-					"		END\n" + 
-					"		AS State\n" + 
+			sql = "SELECT pi.Plan_ID PID, pi.Plan_StartDate SDate, pi.Plan_EndDate EDate, Plan_State State\n" + 
 					"FROM PlanInfo pi\n"
 					+ "WHERE pi.Is_Del = 0 \n" + 
 					"ORDER BY pi.Plan_ID DESC LIMIT ?, ?";
@@ -80,7 +73,25 @@ public class PlanManage {
 				 hmap.put("PID", rs.getString("PID"));
 				 hmap.put("SDate", rs.getString("SDate"));
 				 hmap.put("EDate", rs.getString("EDate"));
-				 hmap.put("State", rs.getString("State"));
+				 String State = rs.getString("State");
+				 String State_String = "未知";
+				 switch (State) {
+				 case "0": 
+					 State_String = "未开始";
+					 break;
+				 case "1":
+					 State_String = "正在进行";
+					 break;
+				 case "2": 
+					 State_String = "已结束";
+					 break;
+				 case "3":
+					 State_String = "已撤销";
+					 break;
+				 default:
+					 State_String = "未知";
+				 }
+				 hmap.put("State", State_String);
 				 lmap.add(hmap);
 		}
 		} catch (SQLException e) {
@@ -104,7 +115,7 @@ public class PlanManage {
 		String sql = "";
 		
 		try {
-			sql = "UPDATE Planinfo SET PlanInfo.Plan_StartDate = ?, \n"
+			sql = "UPDATE PlanInfo SET PlanInfo.Plan_StartDate = ?, \n"
 					+ "PlanInfo.Plan_EndDate = ?\n"
 					+ "WHERE PlanInfo.Plan_ID = ?";
 			
@@ -180,7 +191,7 @@ public class PlanManage {
 		String sql = "";
 		
 		try {
-			sql = "UPDATE Planinfo SET PlanInfo.Plan_State = 3, PlanInfo.Is_Del = 1\n"
+			sql = "UPDATE PlanInfo SET PlanInfo.Plan_State = 3, PlanInfo.Is_Del = 1\n"
 					+ "WHERE PlanInfo.Plan_ID = ?";
 			
 			ps = conn.prepareStatement(sql);

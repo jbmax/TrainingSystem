@@ -85,7 +85,7 @@ public class LeaderManage {
 		return lmap;	
 	}
 		
-	public static int updateLeader(String id, String name, int is_del, int pwd) throws SQLException
+	public static int updateLeader(String id, String name, int Is_Del, int pwd) throws SQLException
 	{
 		//声明结果集
 		int rs = 0;
@@ -96,8 +96,8 @@ public class LeaderManage {
 		String sql = "";
 		
 		try {
-			if (is_del == 1) {
-				sql = "UPDATE LeaderInfo SET LeaderInfo.Is_del = 1\n"
+			if (Is_Del == 1) {
+				sql = "UPDATE LeaderInfo SET LeaderInfo.Is_Del = 1\n"
 						+ "WHERE Leader_ID = ?";
 				
 				ps = conn.prepareStatement(sql);
@@ -112,7 +112,7 @@ public class LeaderManage {
 			}
 			else {
 				sql = "UPDATE LeaderInfo SET Leader_Name = ?, \n"
-					+ "Is_del = 0\n"
+					+ "Is_Del = 0\n"
 					+ "WHERE LeaderInfo.Leader_ID = ?";
 				
 				ps = conn.prepareStatement(sql);

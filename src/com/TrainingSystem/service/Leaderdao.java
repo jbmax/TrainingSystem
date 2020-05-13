@@ -23,11 +23,11 @@ public class Leaderdao {
 		
 		try {
 			
-			sql = "select * from Leaderinfo where Leader_ID=?"
+			sql = "select * from LeaderInfo where Leader_ID=?"
 					+ " AND Is_Del = 0";
 		
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, Leader_ID);
+			ps.setInt(1, Integer.parseInt(Leader_ID));
 			
 			rs = ps.executeQuery();
 			
@@ -59,7 +59,7 @@ public class Leaderdao {
 				return li;
 			}
 		}
-		
+			
 		return null;
 	}
 }

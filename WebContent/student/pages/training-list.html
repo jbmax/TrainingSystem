@@ -37,9 +37,12 @@
             padding: 5px 15px;
         }
     </style>
-    <script>
-
-
+    <script type="text/html" id="stateTpl">
+   	{{# if(d.State === '已结束'){ }}
+      <span>{{ d.State }}</span>
+    {{#  }else { }}
+      <span style="color: #FF5722">{{ d.State }}</span>
+    {{#  } }}
     </script>
 </head>
 
@@ -75,12 +78,12 @@
                 limits: [10, 20],
                 cols: [[ //表头
                 	{ field: 'Date', title: '时间', width: '15%' }
-                	, { field: 'TID', title: '训练编号', width: '15%' }
-                    , { field: 'PID', title: '所属训练计划', width: '15%' }
-                    , { field: 'GName', title: '场地', width: '15%' }
-                    , { field: 'LName', title: '发起人'/* , width: '10%' */ }
+                	, { field: 'TID', title: '训练编号', width: '15%', sort:true }
+                    , { field: 'PID', title: '所属训练计划', width: '15%', sort:true }
+                    , { field: 'GName', title: '场地', width: '15%', sort:true }
+                    , { field: 'LName', title: '发起人', sort:true/* , width: '10%' */ }
                     , { field: 'Oper', title: '负责人'/* , width: '15%'  */}
-                    , { field: 'State', title: '状态'/* , width: '15%' */ }
+                    , { field: 'State', title: '状态', sort:true/* , width: '15%' */ }
                     //, { align: 'center', toolbar: '#barDemo', width: "10%" }
                 ]],
             });

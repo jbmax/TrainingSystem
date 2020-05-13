@@ -42,7 +42,7 @@ public class AjaxHealthBMI extends HttpServlet {
 		
 		String jsonStr = HealthBMI.selectHealthByID(Student_ID);
 		
-		response.setContentType("application/json");
+		response.setContentType("application/json;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.write(jsonStr);
 	}

@@ -31,7 +31,9 @@ public class Dbconn {
 		Connection conn = null;
 		
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/TrainingSystem?useSSL=false&serverTimezone=CST","root","1qaz2wsx");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/TrainingSystem?"
+					+ "useSSL=false&serverTimezone=CST&useUnicode=true&characterEncoding=UTF-8",
+					"root","1qaz2wsx");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

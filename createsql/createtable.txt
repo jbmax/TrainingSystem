@@ -35,7 +35,6 @@ INSERT INTO LeaderInfo VALUES(null, '小蔡', 1001, '123456', 0);
 INSERT INTO LeaderInfo VALUES(null, '牛总', 1001, '123456', 0);
 INSERT INTO LeaderInfo VALUES(null, '无名', 1002, '123456', 0);
 INSERT INTO LeaderInfo VALUES(null, '教导', 1002, '123456', 0);
-INSERT INTO LeaderInfo VALUES(null, '队长', 1003, '123456', 0);
 
 DROP TABLE IF EXISTS StudentInfo;
 CREATE TABLE StudentInfo(
@@ -64,6 +63,7 @@ CREATE TABLE PlanInfo(
 		
 INSERT INTO PlanInfo VALUES(null, '2019-01-01', '2020-05-01', 1, 0);
 INSERT INTO PlanInfo VALUES(null, '2019-01-01', '2020-06-02', 1, 0);
+INSERT INTO PlanInfo VALUES(null, '2019-01-01', '2020-12-02', 1, 0);
 
 DROP TABLE IF EXISTS GroundInfo;
 CREATE TABLE GroundInfo(
@@ -77,7 +77,7 @@ INSERT INTO GroundInfo VALUES(null, '第一田径场', 1, 0);
 INSERT INTO GroundInfo VALUES(null, '第一篮球场', 1, 0);
 INSERT INTO GroundInfo VALUES(null, '第二篮球场', 0, 0);
 INSERT INTO GroundInfo VALUES(null, '第二田径场', 1, 0);
-INSERT INTO GroundInfo VALUES(null, '第三篮球场', 1, 1);
+INSERT INTO GroundInfo VALUES(null, '第三篮球场', 1, 0);
 
 DROP TABLE IF EXISTS TrainInfo;
 CREATE TABLE TrainInfo(
@@ -97,7 +97,7 @@ CREATE TABLE TrainInfo(
 INSERT INTO TrainInfo VALUES(NULL, 1000001, 19001, '孙克涵', 2001, '2019-04-01', 2, 0);
 INSERT INTO TrainInfo VALUES(NULL, 1000001, 19001, '李明', 2001, '2019-04-07', 2, 0);
 INSERT INTO TrainInfo VALUES(NULL, 1000001, 19002, '孙克涵', 2002, '2019-04-10', 2, 0);
-INSERT INTO TrainInfo VALUES(NULL, 1000001, 19001, '孙克涵', 2001, '2019-04-21', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000001, 19001, '老孙', 2001, '2019-04-21', 2, 0);
 INSERT INTO TrainInfo VALUES(NULL, 1000001, 19001, '李明', 2001, '2019-04-27', 2, 0);
 INSERT INTO TrainInfo VALUES(NULL, 1000002, 19001, '孙克涵', 2002, '2019-05-01', 2, 0);
 INSERT INTO TrainInfo VALUES(NULL, 1000002, 19001, '孙克涵', 2001, '2019-05-15', 2, 0);
@@ -105,11 +105,20 @@ INSERT INTO TrainInfo VALUES(NULL, 1000002, 19002, '李明', 2001, '2019-06-01',
 INSERT INTO TrainInfo VALUES(NULL, 1000002, 19001, '孙克涵', 2002, '2019-06-24', 2, 0);
 INSERT INTO TrainInfo VALUES(NULL, 1000001, 19001, '李明', 2001, '2019-05-27', 2, 0);
 INSERT INTO TrainInfo VALUES(NULL, 1000002, 19002, '孙克涵', 2002, '2019-05-11', 2, 0);
-INSERT INTO TrainInfo VALUES(NULL, 1000002, 19001, '孙克涵', 2001, '2019-06-15', 2, 0);
-INSERT INTO TrainInfo VALUES(NULL, 1000002, 19001, '李明', 2001, '2019-07-01', 2, 0);
-INSERT INTO TrainInfo VALUES(NULL, 1000002, 19001, '孙克涵', 2002, '2019-07-24', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000002, 19001, '孙克涵', 2001, '2019-06-15', 3, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000002, 19001, '李明', 2001, '2019-07-01', 0, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000002, 19001, '老孙', 2002, '2019-07-24', 0, 0);
 INSERT INTO TrainInfo VALUES(NULL, 1000001, 19003, '李明', 2001, '2019-03-17', 2, 0);
 INSERT INTO TrainInfo VALUES(NULL, 1000002, 19004, '孙克涵', 2002, '2019-05-21', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000002, 19003, '骨干', 2002, '2019-06-24', 0, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000001, 19004, '喜羊羊', 2001, '2019-05-27', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000002, 19003, '骨干', 2002, '2019-05-11', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000002, 19004, '喜羊羊', 2001, '2019-06-15', 0, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000002, 19003, '骨干', 2001, '2019-07-01', 3, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000002, 19004, '喜羊羊', 2002, '2019-07-24', 3, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000001, 19004, '骨干', 2001, '2019-03-17', 2, 0);
+INSERT INTO TrainInfo VALUES(NULL, 1000002, 19003, '喜羊羊', 2002, '2019-05-21', 2, 0);
+
 
 DROP TABLE IF EXISTS StudentGrade;
 CREATE TABLE StudentGrade(
@@ -233,21 +242,20 @@ DROP TABLE IF EXISTS Item3Stand;
 	
 	SELECT ti.Train_ID TID, ti.Plan_ID PID, ti.Train_Date Date, gr.Ground_Name GName, 
 					li.Leader_Name LName, ti.Train_Oper Oper, 
-			CASE WHEN ti.Train_State = 0 THEN '未开始'
-			 WHEN ti.Train_State = 1 THEN '正在进行'
-			 WHEN ti.Train_State = 2 THEN '已结束'
-			 WHEN ti.Train_State = 3 THEN '已撤销'
-			ELSE '未知'
+			CASE WHEN ti.Train_State = 0 THEN "未开始"
+			 WHEN ti.Train_State = 1 THEN "正在进行"
+			 WHEN ti.Train_State = 2 THEN "已结束"
+			 WHEN ti.Train_State = 3 THEN "已撤销"
+			ELSE "未知"
 			END
 			AS State
 	FROM GroupInfo gi, LeaderInfo li, TrainInfo ti, GroundInfo gr
 	WHERE gi.Group_ID = li.Group_ID AND
 				ti.Leader_ID = li.Leader_ID AND 
 				ti.Ground_ID = gr.Ground_ID AND 
-				gi.Group_ID = '001'
+				gi.Group_ID = 1001
 	ORDER BY ti.Train_Date DESC LIMIT 0, 3;
 
-	
 SELECT pi.Plan_ID PID, pi.Plan_StartDate SDate, pi.Plan_EndDate EDate, 
 		CASE WHEN pi.Plan_State = 0 THEN '未开始'
 		 WHEN pi.Plan_State = 1 THEN '正在进行'
@@ -258,46 +266,3 @@ SELECT pi.Plan_ID PID, pi.Plan_StartDate SDate, pi.Plan_EndDate EDate,
 		AS State
 FROM PlanInfo pi
 ORDER BY pi.Plan_ID LIMIT 0, 10;
-
-SELECT Ground_Name GRName
-From GroundInfo
-ORDER BY Ground_Name;
-
-SELECT StudentInfo.Student_ID SID, TrainInfo.Train_Date Date, 
-				StudentGrade.Item1_Grade Run3k, StudentGrade.Item2_Grade Snake, 
-				StudentGrade.Item3_Grade Situp, StudentGrade.Item4_Grade Pullup
-FROM StudentInfo, StudentGrade, TrainInfo
-WHERE StudentInfo.Student_ID = StudentGrade.Student_ID AND
-				StudentGrade.Train_ID = TrainInfo.Train_ID AND 
-				TrainInfo.Train_State = 2 AND 
-				StudentInfo.Student_ID = '19020001'
-ORDER BY Date LIMIT 0, 3;
-
-SELECT StudentInfo.Student_ID SID, StudentInfo.Student_Name SName,  
-				StudentGrade.Item1_Grade Run3k, StudentGrade.Item2_Grade Snake, 
-				StudentGrade.Item3_Grade Situp, StudentGrade.Item4_Grade Pullup, 
-				TrainInfo.Train_Date Date
-FROM StudentInfo, StudentGrade, TrainInfo, LeaderInfo
-WHERE StudentInfo.Student_ID = StudentGrade.Student_ID AND
-				StudentGrade.Train_ID = TrainInfo.Train_ID AND 
-				TrainInfo.Train_State = 2 AND 
-				TrainInfo.Leader_ID = LeaderInfo.Leader_ID AND
-				LeaderInfo.Group_ID = 1001
-ORDER BY Date LIMIT 0, 3;
-
-SELECT Ground_Name GRName
-From GroundInfo
-WHERE GroundInfo.Ground_State = 1
-ORDER BY Ground_Name;
-
-SELECT Group_ID GID, Group_Name GName, Group_Date Date
-FROM GroupInfo
-WHERE Is_Del = 0
-ORDER BY Group_ID;
-
-SELECT count(*) num
-FROM GroupInfo gi, StudentInfo si
-WHERE gi.Is_Del = 0 AND si.Is_Del = 0 AND
-		si.Group_ID = gi.Group_ID AND gi.Group_ID = 1001;
-		
-REPLACE StudentGrade VALUES(2019000003, '19020002', '13′24″', '20.3″', '60', '8');

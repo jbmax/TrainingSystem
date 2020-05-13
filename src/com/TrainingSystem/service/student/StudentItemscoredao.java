@@ -23,7 +23,7 @@ public class StudentItemscoredao {
 		String sql = "";
 		
 		try {
-			sql = "SELECT * FROM StudentItemscore WHERE SID = ? ORDER BY date";
+			sql = "SELECT * FROM StudentItemScore WHERE SID = ? ORDER BY date";
 			
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, Student_ID);

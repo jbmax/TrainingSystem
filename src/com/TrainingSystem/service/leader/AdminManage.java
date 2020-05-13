@@ -83,7 +83,7 @@ public class AdminManage {
 		return lmap;	
 	}
 		
-	public static int updateAdmin(String id, String name, int is_del, int pwd) throws SQLException
+	public static int updateAdmin(String id, String name, int Is_Del, int pwd) throws SQLException
 	{
 		//声明结果集
 		int rs = 0;
@@ -94,8 +94,8 @@ public class AdminManage {
 		String sql = "";
 		
 		try {
-			if (is_del == 1) {
-				sql = "UPDATE AdminInfo SET AdminInfo.Is_del = 1\n"
+			if (Is_Del == 1) {
+				sql = "UPDATE AdminInfo SET AdminInfo.Is_Del = 1\n"
 						+ "WHERE Admin_ID = ?";
 				
 				ps = conn.prepareStatement(sql);
@@ -110,7 +110,7 @@ public class AdminManage {
 			}
 			else {
 				sql = "UPDATE AdminInfo SET Admin_Name = ?, \n"
-					+ "Is_del = 0\n"
+					+ "Is_Del = 0\n"
 					+ "WHERE AdminInfo.Admin_ID = ?";
 				
 				ps = conn.prepareStatement(sql);

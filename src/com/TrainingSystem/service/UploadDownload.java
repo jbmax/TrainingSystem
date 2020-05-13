@@ -33,12 +33,12 @@ public class UploadDownload {
 		
 		try {
 			sql = "SELECT ss.*, Group_Name SGroup, sa.SAge Age \n" + 
-					"FROM studentscore ss, GroupInfo gi, studentagecal sa\n" + 
+					"FROM StudentScore ss, GroupInfo gi, StudentAgeCal sa\n" + 
 					"where ss.GroupID = ? AND \n" + 
 					"ss.GroupID = gi.Group_ID AND sa.SID = ss.SID";
 			
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, groupID);
+			ps.setInt(1, Integer.parseInt(groupID));
 			
 			rs = ps.executeQuery();
 			 while(rs.next()) {
@@ -145,14 +145,14 @@ public class UploadDownload {
 			sql = "SELECT hh.Student_ID SID, hh.Health_Date Date, hh.Health_Weight Weight, hh.Health_Height Height,\n" + 
 					"		FORMAT((10000 * hh.Health_Weight / (hh.Health_Height * hh.Health_Height)), 2) BMI, \n" + 
 					"		sa.SAge, sa.SGender, si.Student_Name SName\n" + 
-					"FROM HealthInfo hh, StudentInfo si, studentagecal sa\n" + 
+					"FROM HealthInfo hh, StudentInfo si, StudentAgeCal sa\n" + 
 					"WHERE hh.Student_ID = si.Student_ID AND \n" + 
 					"		hh.Student_ID = sa.SID AND\n" + 
 					"		si.Group_ID = ?  AND si.Is_Del = 0 \n" + 
 					"ORDER BY si.Student_ID";
 			
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, groupID);
+			ps.setInt(1, Integer.parseInt(groupID));
 			
 			rs = ps.executeQuery();
 			 while(rs.next()) {
@@ -283,17 +283,25 @@ public class UploadDownload {
             Sheet sheet = book.getSheet(0);
             int rows=sheet.getRows();
             // 遍历每行每列的单元格
-            for(int i=1;i<rows;i++){
-                String tid = sheet.getCell(0, i).getContents();
-                String sid = sheet.getCell(1, i).getContents();
-                String run3k = sheet.getCell(2, i).getContents();
-                String snake = sheet.getCell(3, i).getContents();
-                String situp = sheet.getCell(4, i).getContents();
-                String pullup = sheet.getCell(5, i).getContents();
-                
-                if (replaceGrade(tid, sid, run3k, snake, situp, pullup) == 1) {
-                	count++;
-                }
+            if (sheet.getCell(0, 0).getContents().equals("训练编号") && 
+            	sheet.getCell(1, 0).getContents().equals("学号") && 
+            	sheet.getCell(2, 0).getContents().equals("3000米") && 
+            	sheet.getCell(3, 0).getContents().equals("蛇形跑") && 
+            	sheet.getCell(4, 0).getContents().equals("仰卧起坐") && 
+            	sheet.getCell(5, 0).getContents().equals("引体向上")) 
+            {
+	            for(int i=1;i<rows;i++){
+	                String tid = sheet.getCell(0, i).getContents();
+	                String sid = sheet.getCell(1, i).getContents();
+	                String run3k = sheet.getCell(2, i).getContents();
+	                String snake = sheet.getCell(3, i).getContents();
+	                String situp = sheet.getCell(4, i).getContents();
+	                String pullup = sheet.getCell(5, i).getContents();
+	                
+	                if (replaceGrade(tid, sid, run3k, snake, situp, pullup) == 1) {
+	                	count++;
+	                }
+	            }
             }
             //System.out.println(count);
         	return count;
@@ -360,16 +368,22 @@ public class UploadDownload {
             Sheet sheet = book.getSheet(0);
             int rows=sheet.getRows();
             // 遍历每行每列的单元格
-            for(int i=1;i<rows;i++){
-                String sid = sheet.getCell(0, i).getContents();
-                String date = sheet.getCell(1, i).getContents();
-                String height = sheet.getCell(2, i).getContents();
-                String weight = sheet.getCell(3, i).getContents();
-                
-                if (replaceHealth(sid, date, height, weight) == 1) {
-                	count++;
-                }
-            }
+            if (sheet.getCell(0, 0).getContents().equals("学号") && 
+                	sheet.getCell(1, 0).getContents().equals("时间") && 
+                	sheet.getCell(2, 0).getContents().equals("身高") && 
+                	sheet.getCell(3, 0).getContents().equals("体重"))
+                {
+	            for(int i=1;i<rows;i++){
+	                String sid = sheet.getCell(0, i).getContents();
+	                String date = sheet.getCell(1, i).getContents();
+	                String height = sheet.getCell(2, i).getContents();
+	                String weight = sheet.getCell(3, i).getContents();
+	                
+	                if (replaceHealth(sid, date, height, weight) == 1) {
+	                	count++;
+	                }
+	            }
+	        }
         	//System.out.println(count);
         	return count;
         } catch (Exception e) {

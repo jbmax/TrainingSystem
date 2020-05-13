@@ -23,7 +23,7 @@ public class Admindao {
 		
 		try {
 			
-			sql = "select * from Admininfo where Admin_ID=?"
+			sql = "select * from AdminInfo where Admin_ID=?"
 					+ " AND Is_Del = 0";
 		
 			ps = conn.prepareStatement(sql);
@@ -49,9 +49,9 @@ public class Admindao {
 		
 	}
 	
-	public static Admininfo verifyPass(String Leader_ID, String password)
+	public static Admininfo verifyPass(String Admin_ID, String password)
 	{
-		Admininfo a = selectbyID(Leader_ID);
+		Admininfo a = selectbyID(Admin_ID);
 		
 		if (a != null) {
 			if (password.equals(a.getAdmin_Password()))
