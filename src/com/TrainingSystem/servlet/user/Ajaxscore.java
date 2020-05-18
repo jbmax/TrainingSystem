@@ -42,7 +42,7 @@ public class Ajaxscore extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		String Student_ID = (String) session.getAttribute("userID");
-		Student_ID = "19020001";
+//		Student_ID = "19020001";
 		int page = Integer.parseInt(request.getParameter("page"));
 		int limit = Integer.parseInt(request.getParameter("limit"));
 		

@@ -42,12 +42,19 @@
 			float: right;
 			margin-right: 10px;
 		}
+		.add-notice {
+            float: right;
+            margin-left: 10px;
+        }
 	</style>
 </head>
 
 <body>
 	<div class="layui-container">
-		<div class="layui-row">
+		<div class="layui-row"  style="margin-left: 10px;">
+            <!-- <button class="layui-btn clear-notice layui-bg-red">清空训练计划</button> -->
+            <button class="layui-btn add-notice layui-bg-blue">添加学员</button>
+        </div>
 <!-- 			<button class="search-user layui-bg-green">搜索</button>
 			<input type="text" placeholder="请输入学员姓名" id="username">
 			<div class="inline-block  layui-form">
@@ -59,7 +66,6 @@
 				</select>
 			</div> -->
 			<!-- <button class="clear-user layui-bg-red">清空学员数据库</button> -->
-		</div>
 		<table id="user-table" lay-filter="user-table"></table>
 	</div>
 	<script type="text/html" id="barDemo">
@@ -194,6 +200,17 @@
 			form.on('select(team)', function (data) {
 				team = data.value;
 			});
+            $(".add-notice").click(function () {
+                layer.open({
+                    title: '添加学员'
+                    , type: 2
+                    , area: ['100%', '100%']
+                    , content: "add-student.html"
+                    , end: function () {
+                        window.location.reload();
+                    }
+                });
+            });
 			$(".search-user").click(
 				function () {
 					if ($("#username").val() != "" || team != "") {

@@ -63,9 +63,11 @@ public class AjaxAlterLeader extends HttpServlet {
 		String name = request.getParameter("name");
 		String pwd = request.getParameter("pwd");
 
+		String groupname = request.getParameter("group");
+		
 		try {
 			if ( is_del != null && is_del.equals("1")) {
-				if (LeaderManage.updateLeader(id, name, 1, 0) == 1)
+				if (LeaderManage.updateLeader(id, name, groupname, 1, 0) == 1)
 				{
 					response.getWriter().write("true");
 				}
@@ -73,14 +75,14 @@ public class AjaxAlterLeader extends HttpServlet {
 					response.getWriter().write("false");
 			}
 			else if ( pwd != null && pwd.equals("1")) {
-				if (LeaderManage.updateLeader(id, name, 0, 1) == 1)
+				if (LeaderManage.updateLeader(id, name, groupname, 0, 1) == 1)
 				{
 					response.getWriter().write("true");
 				}
 				else
 					response.getWriter().write("false");
 			}
-			else if (LeaderManage.updateLeader(id, name, 0, 0) == 1) {
+			else if (LeaderManage.updateLeader(id, name, groupname, 0, 0) == 1) {
 				response.getWriter().write("true");
 			}
 			else {

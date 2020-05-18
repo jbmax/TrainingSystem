@@ -2,7 +2,6 @@ package com.TrainingSystem.servlet.leader;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,19 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.TrainingSystem.service.leader.PlanManage;
+import com.TrainingSystem.service.leader.StudentManage;
 
 /**
- * Servlet implementation class AjaxAddPlan
+ * Servlet implementation class AjaxAddStudent
  */
-@WebServlet("/AjaxAddPlan")
-public class AjaxAddPlan extends HttpServlet {
+@WebServlet("/AjaxAddStudent")
+public class AjaxAddStudent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxAddPlan() {
+    public AjaxAddStudent() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,9 +43,10 @@ public class AjaxAddPlan extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=utf-8");	
+		response.setContentType("text/html;charset=utf-8");
 		
 		HttpSession session = request.getSession();
+
 		String uid = (String) session.getAttribute("userID");
 		if (uid == "" || uid == null) {
 			response.getWriter().write("false");
@@ -57,20 +57,16 @@ public class AjaxAddPlan extends HttpServlet {
 			return;
 		}
 		
-		//String pid = request.getParameter("ID");
-		String sdate = request.getParameter("sdate");
-		String edate = request.getParameter("edate");
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String gender = request.getParameter("gender");
+		String bday = request.getParameter("bday");
+		String groupname = request.getParameter("group");
 		
-		String nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		//System.out.println(groupname);
 		
-		if (sdate.compareTo(edate) >= 0 || edate.compareTo(nowdate) < 0)
-		{
-			response.getWriter().write("false");
-			return;
-		}
-
 		try {
-			if (PlanManage.insertPlan(sdate, edate) == 1) {
+			if (StudentManage.addStudent(id, name, gender, bday, groupname) == 1) {
 				response.getWriter().write("true");
 			}
 			else {
@@ -81,5 +77,4 @@ public class AjaxAddPlan extends HttpServlet {
 				e.printStackTrace();
 		}
 	}
-
 }

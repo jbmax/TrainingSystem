@@ -77,23 +77,24 @@
 				},
 				limit: 10,
 				limits: [10, 20],
-				method: 'get',
+				method: 'post',
 				cols: [[ //表头
-					{
+					 /* {
 						field: 'num',
 						title: '序号',
 						fixed: 'left',
 						type: "numbers",
 						width: "8%"
-					}, {
+					},  */ {
 						field: 'sID',
 						title: '学号',
+						//fixed: 'left',
 						sort: true,
-						width:"15%"
+						width:"16%"
 					}, {
 						field: 'sName',
 						title: '姓名',
-						width:"12%"
+						width:"15%"
 					}
 					, {
 						field: 'sAge',
@@ -189,20 +190,20 @@
 							limit: 10,
 							limits: [10, 20],
 							cols: [[ //表头
-								{
+								 /* {
 									field: 'num',
 									title: '序号',
 									fixed: 'left',
 									type: "numbers",
 									//width: "5%"
-								},{
+								}, */ {
 									field: 'sID',
 									title: '学号',
-									// width:"5%"
+									width: "16%"
 								}, {
 									field: 'sName',
 									title: '姓名',
-									// width:"5%"
+									width:"15%"
 								}
 								, {
 									field: 'sAge',

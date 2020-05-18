@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -72,7 +73,8 @@ public class PlanManage {
 				 Map<String, String> hmap = new HashMap<String, String>();
 				 hmap.put("PID", rs.getString("PID"));
 				 hmap.put("SDate", rs.getString("SDate"));
-				 hmap.put("EDate", rs.getString("EDate"));
+				 String edate = rs.getString("EDate");
+				 hmap.put("EDate", edate);
 				 String State = rs.getString("State");
 				 String State_String = "未知";
 				 switch (State) {
@@ -81,6 +83,9 @@ public class PlanManage {
 					 break;
 				 case "1":
 					 State_String = "正在进行";
+					 String nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd").format(new Date());
+					 if (edate.compareTo(nowdate) < 0)
+						 State_String = "已结束";
 					 break;
 				 case "2": 
 					 State_String = "已结束";

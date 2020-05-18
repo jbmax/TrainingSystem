@@ -103,7 +103,7 @@
                     <li class="layui-nav-item">
                         <a href="javascript:" lay-id="5">
                             <i is-close=true class="layui-icon layui-icon-user"></i>
-                            健康数据
+                            体型健康
                         </a>
                         <dl class="layui-nav-child">
                             <dd class="layui-this"><a href="javascript:;" lay-id="51"
@@ -141,7 +141,7 @@
                 <ul id="tabTitle" class="layui-tab-title ok-tab-title not-scroll">
                     <li  class="layui-this"><strong style="display: none;" is-close="false" ></strong>
                         <i is-close="true" class="layui-icon layui-icon-file-b"></i>
-                        训练管理
+                        
                     </li>
                 </ul>
                 <div id="tabContent" class="layui-tab-content ok-tab-content">

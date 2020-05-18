@@ -1,7 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.TrainingSystem.service.leader.AdminManage"
- %>
-    
 <!DOCTYPE html>
 <html>
 
@@ -20,7 +16,7 @@
 
         .alter-form {
             position: absolute;
-            width: 60%;
+            width: 30%;
             left: 20%;
             top: 20px;
         }
@@ -28,25 +24,18 @@
 </head>
 
 <body class="childrenBody seting-pass">
-    <form class="layui-form alter-form" action="/TrainingSystem/AjaxAlterLeader" type="post" lay-filter="alter-form">
+    <form class="layui-form alter-form" action="/TrainingSystem/AjaxAddAdmin" type="post" lay-filter="alter-form">
         <div class="layui-form-item">
-            <label class="layui-form-label">队领导编号</label>
+            <label class="layui-form-label">账号</label>
             <div class="layui-input-block">
-                <input type="text" value=<%=request.getParameter("id") %> lay-verify="required" class="layui-input" id="id" name="id" readonly>
+                <input type="text" value="" placeholder="账号" lay-verify="required" class="layui-input" id="id" name="id">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">队领导姓名</label>
+            <label class="layui-form-label">备注名</label>
             <div class="layui-input-block">
-                <input type="text" value=<%=request.getParameter("name") %> placeholder="用户名" lay-verify="required" class="layui-input" id="username"
+                <input type="text" value="" placeholder="备注名" lay-verify="required" class="layui-input" id="username"
                     name="name">
-            </div>
-        </div>
-         <div class="layui-form-item">
-            <label class="layui-form-label">学员队名</label>
-            <div class="layui-input-block">
-                <input type="text" value=<%=request.getParameter("group") %> placeholder="学员队" lay-verify="required" class="layui-input" id="group"
-                    name="group">
             </div>
         </div>
 <!--         <div class="layui-form-item">
@@ -79,8 +68,7 @@
         </div> -->
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit="" lay-filter="add-manage">修改</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="add-manage">添加</button>
             </div>
         </div>
     </form>

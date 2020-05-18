@@ -69,10 +69,10 @@
                     <li class="layui-nav-item">
                         <a href="javascript:" lay-id="2">
                             <i is-close=true class="layui-icon layui-icon-face-surprised"></i>
-                            个人体能情况
+                            体能成绩
                         </a>
                         <dl class="layui-nav-child">
-                            <dd  class="layui-this"><a href="javascript:;" lay-id="21" data-url="scores.html">所有训练成绩</a></dd>
+                            <dd  class="layui-this"><a href="javascript:;" lay-id="21" data-url="scores.html">训练成绩与评分</a></dd>
                             <dd><a href="javascript:;" lay-id="22" data-url="line-charts.html">成绩趋势图</a></dd>
                             <dd><a href="javascript:;" lay-id="23" data-url="histogram.html">成绩对比图</a></dd>
                           </dl>
@@ -126,16 +126,16 @@
                     </ul>
                 </div>
 
-                <ul id="tabTitle" class="layui-tab-title ok-tab-title not-scroll">
+                 <ul id="tabTitle" class="layui-tab-title ok-tab-title not-scroll">
                     <li lay-id="8" class="layui-this"><strong style="display: none;" is-close="false" ></strong>
                         <i is-close="true" class="layui-icon layui-icon-notice"></i>
-                        所有训练
+                        
                         <i class="layui-icon layui-unselect layui-tab-close"></i>
                     </li>
                 </ul>
                 <div id="tabContent" class="layui-tab-content ok-tab-content">
                     <div class="layui-tab-item layui-show" lay-id="8">
-                        <iframe src="training-list.html" frameborder="0" scrolling="yes" width="100%"
+                        <iframe src="scores.html" frameborder="0" scrolling="yes" width="100%"
                             height="100%"></iframe>
                     </div>
                 </div>

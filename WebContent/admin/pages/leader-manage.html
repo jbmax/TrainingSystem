@@ -42,24 +42,31 @@
 			float: right;
 			margin-right: 10px;
 		}
+		
+		.add-notice {
+            float: right;
+            margin-left: 10px;
+        }
 	</style>
 </head>
 
 <body>
 	<div class="layui-container">
-<!-- 		<div class="layui-row">
-			<button class="search-user layui-bg-green">搜索</button>
-			<input type="text" placeholder="请输入姓名" id="username"> -->
-<!-- 			<div class="inline-block  layui-form">
+		<div class="layui-row"  style="margin-left: 10px;">
+            <!-- <button class="layui-btn clear-notice layui-bg-red">清空训练计划</button> -->
+            <button class="layui-btn add-notice layui-bg-blue">添加队领导</button>
+        </div>
+<!-- 			<button class="search-user layui-bg-green">搜索</button>
+			<input type="text" placeholder="请输入学员姓名" id="username">
+			<div class="inline-block  layui-form">
 				<select name="team" lay-verify="team" id="team" lay-filter="team">
 					<option value="">可以指定队别</option>
 					<option value="010">XX队</option>
 					<option value="021">XX队</option>
 					<option value="0571">XX队</option>
 				</select>
-			</div>
-			<button class="clear-user layui-bg-red">清空队干部数据库</button> -->
-<!-- 		</div> -->
+			</div> -->
+			<!-- <button class="clear-user layui-bg-red">清空学员数据库</button> -->
 		<table id="user-table" lay-filter="user-table"></table>
 	</div>
 	<script type="text/html" id="barDemo">
@@ -194,6 +201,17 @@
 			form.on('select(team)', function (data) {
 				team = data.value;
 			});
+            $(".add-notice").click(function () {
+                layer.open({
+                    title: '添加队领导'
+                    , type: 2
+                    , area: ['100%', '100%']
+                    , content: "add-leader.html"
+                    , end: function () {
+                        window.location.reload();
+                    }
+                });
+            });
 			$(".search-user").click(
 				function () {
 					if ($("#username").val() != "" || team != "") {
@@ -257,7 +275,7 @@
 					}
 				});
 			$(".clear-user").click(function () {
-				layer.confirm('真的要清空队干部数据库么', function (index) {
+				layer.confirm('真的要清空队领导数据库么', function (index) {
 					layer.close(index);
 					$.ajax({
 						type: "post",
@@ -265,7 +283,7 @@
 						url: "../servlet/emptystudent",
 						success: function (data) {
 							if (data = "true") {
-								layer.msg("清空队干部数据库成功！");
+								layer.msg("清空队领导数据库成功！");
 								userTable.reload({//清空表格数据，下述url为获取所有用户的servlet即可
 									elem: '#user-table',
 									skin: 'line' //行边框风格
@@ -280,10 +298,10 @@
 									}
 								});
 							} else
-								layer.msg("清空队干部数据库失败！");
+								layer.msg("清空队领导数据库失败！");
 						},
 						error: function (err) {
-							layer.msg("清空队干部数据库失败！");
+							layer.msg("清空队领导数据库失败！");
 						}
 					});
 				});

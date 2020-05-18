@@ -28,7 +28,7 @@
 </head>
 
 <body class="childrenBody seting-pass">
-    <form class="layui-form alter-form" action="/TrainingSystem/AjaxAlterStudent" type="get" lay-filter="alter-form">
+    <form class="layui-form alter-form" action="/TrainingSystem/AjaxAlterStudent" type="post" lay-filter="alter-form">
         <div class="layui-form-item">
             <label class="layui-form-label">学号</label>
             <div class="layui-input-block">
@@ -45,14 +45,14 @@
         <div class="layui-form-item">
             <label class="layui-form-label">性别</label>
             <div class="layui-input-block">
-                <input type="text" value=<%=request.getParameter("gender") %> placeholder="用户名" lay-verify="required" class="layui-input" id="gender"
+                <input type="text" value=<%=request.getParameter("gender") %> placeholder="性别" lay-verify="required" class="layui-input" id="gender"
                     name="gender">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">出生日期</label>
             <div class="layui-input-block">
-                <input type="text" value=<%=request.getParameter("bday") %> placeholder="用户名" lay-verify="required" class="layui-input" id="bday"
+                <input type="text" value=<%=request.getParameter("bday") %> placeholder="出生日期" lay-verify="required" class="layui-input" id="bday"
                     name="bday">
             </div>
         </div>
@@ -60,7 +60,7 @@
             <label class="layui-form-label">所属学员队</label>
             <div class="layui-input-block">
                 <input type="text" value=<%=request.getParameter("group") %> placeholder="学员队" lay-verify="required" class="layui-input" id="group"
-                    name="group" readonly>
+                    name="group">
             </div>
         </div>
 <!--         <div class="layui-form-item">
@@ -93,7 +93,7 @@
         </div> -->
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit="" lay-filter="add-manage">添加</button>
+                <button class="layui-btn" lay-submit="" lay-filter="add-manage">修改</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>

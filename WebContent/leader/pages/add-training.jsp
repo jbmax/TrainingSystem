@@ -17,7 +17,7 @@
         }
 
         .layui-container {
-            width: 40% !important;
+            width: 30% !important;
             margin-top: 30px;
         }
     </style>
@@ -29,7 +29,7 @@
              <div class="layui-form-item">
                 <label class="layui-form-label">训练计划</label>
                 <div class="layui-input-block">
-                    <input type="text" value=<%=request.getParameter("pid") %> class="layui-input layui-disabled" lay-verify="required" readonly id="ID" name="ID">
+                    <input type="text" value=<%=request.getParameter("pid") %> class="layui-input" lay-verify="required" readonly id="ID" name="ID">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -42,7 +42,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">参加人</label>
                 <div class="layui-input-block">
-                    <input type="text" value="所属人员" class="layui-input layui-disabled" lay-verify="required" readonly id="attend"
+                    <input type="text" value="所属人员" class="layui-input" lay-verify="required" readonly id="attend"
                         name="attend">
                 </div>
             </div>
@@ -66,7 +66,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">负责人</label>
                 <div class="layui-input-block">
-                    <input type="text" value="" class="layui-input" lay-verify="required" id="administrator"
+                    <input type="text" value="" placeholder="姓名" class="layui-input" lay-verify="required" id="administrator"
                         name="oper">
                 </div>
             </div>

@@ -87,14 +87,18 @@ public class StudentManage {
 		return lmap;	
 	}
 		
-	public static int updateStudent(String id, String name, String gender, String bday, int Is_Del, int pwd) throws SQLException
+	public static int updateStudent(String id, String name, String gender, String bday, 
+			String groupname, int Is_Del, int pwd) throws SQLException
 	{
 		//声明结果集
 		int rs = 0;
+		ResultSet rs2 = null;
+		
 		//获取连接对象
 		Connection conn = Dbconn.getconn();
 		
 		PreparedStatement ps = null;
+		PreparedStatement ps2 = null;
 		String sql = "";
 		
 		try {
@@ -113,16 +117,30 @@ public class StudentManage {
 				ps.setString(1, id);
 			}
 			else {
+				int group = 0;
+				sql = "SELECT Group_ID FROM GroupInfo WHERE Group_Name = ?";
+				ps2 = conn.prepareStatement(sql);
+				ps2.setString(1, groupname);
+				rs2 = ps2.executeQuery();
+				while(rs2.next()) {
+					group = rs2.getInt("Group_ID");
+				}
+				
+				if (group == 0) {
+					return 0;
+				}
+				
 				sql = "UPDATE StudentInfo SET Student_Name = ?, "
 						+ "Student_Gender = ?, Student_Birthday = ?, \n"
-					+ "Is_Del = 0\n"
+					+ "Group_ID = ?, Is_Del = 0\n"
 					+ "WHERE Student_ID = ?";
 				
 				ps = conn.prepareStatement(sql);
 				ps.setString(1, name);
 				ps.setString(2, gender);
 				ps.setString(3, bday);
-				ps.setString(4, id);
+				ps.setInt(4, group);
+				ps.setString(5, id);
 			}
 			
 			rs = ps.executeUpdate();
@@ -134,6 +152,7 @@ public class StudentManage {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
+			Dbconn.closeall(rs2, ps2, conn);
 			if(ps!=null)
 				ps.close();
 			if(conn!=null)
@@ -143,5 +162,60 @@ public class StudentManage {
 		return 0;
 	}
 
+	public static int addStudent(String id, String name, String gender, String bday, 
+			String groupname) throws SQLException
+	{
+		//声明结果集
+		int rs = 0;
+		ResultSet rs2 = null;
+		
+		//获取连接对象
+		Connection conn = Dbconn.getconn();
+		
+		PreparedStatement ps = null;
+		PreparedStatement ps2 = null;
+		String sql = "";
+		
+		try {
+			int group = 0;
+			sql = "SELECT Group_ID FROM GroupInfo WHERE Group_Name = ?";
+			ps2 = conn.prepareStatement(sql);
+			ps2.setString(1, groupname);
+			rs2 = ps2.executeQuery();
+			while(rs2.next()) {
+				group = rs2.getInt("Group_ID");
+			}
+			
+			if (group == 0) {
+				return 0;
+			}
+				
+			sql = "INSERT INTO StudentInfo VALUES(?, ?, '123456', ?, ?, ?, 0)";
+			
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ps.setString(2, name);
+			ps.setString(3, gender);
+			ps.setString(4, bday);
+			ps.setInt(5, group);
+			
+			rs = ps.executeUpdate();
+			
+			if (rs > 0)
+				return 1;
+			
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			Dbconn.closeall(rs2, ps2, conn);
+			if(ps!=null)
+				ps.close();
+			if(conn!=null)
+				conn.close();
+		}
+		
+		return 0;
+	}
 
 }

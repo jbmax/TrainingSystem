@@ -30,6 +30,7 @@ public class Groupscore {
 					"				StudentGrade.Train_ID = TrainInfo.Train_ID AND \n" + 
 					"				TrainInfo.Train_State = 2 AND \n" + 
 					"				TrainInfo.Leader_ID = LeaderInfo.Leader_ID AND\n" + 
+					"				StudentInfo.Group_ID = LeaderInfo.Group_ID AND \n" + 
 					"				LeaderInfo.Group_ID = ? AND StudentInfo.Is_Del = 0 \n" +
 					" AND TrainInfo.Is_Del = 0 ";
 			
@@ -68,6 +69,7 @@ public class Groupscore {
 					"				StudentGrade.Train_ID = TrainInfo.Train_ID AND \n" + 
 					"				TrainInfo.Train_State = 2 AND \n" + 
 					"				TrainInfo.Leader_ID = LeaderInfo.Leader_ID AND\n" + 
+					"				StudentInfo.Group_ID = LeaderInfo.Group_ID AND \n" + 
 					"				LeaderInfo.Group_ID = ?  AND StudentInfo.Is_Del = 0\n" + 
 					" AND StudentInfo.Student_ID = ?" + 
 					" AND TrainInfo.Is_Del = 0 ";
@@ -112,6 +114,7 @@ public class Groupscore {
 					"				StudentGrade.Train_ID = TrainInfo.Train_ID AND \n" + 
 					"				TrainInfo.Train_State = 2 AND \n" + 
 					"				TrainInfo.Leader_ID = LeaderInfo.Leader_ID AND\n" + 
+					"				StudentInfo.Group_ID = LeaderInfo.Group_ID AND \n" + 
 					"				LeaderInfo.Group_ID = ?  AND StudentInfo.Is_Del = 0 \n" + 
 					" AND TrainInfo.Is_Del = 0 " +
 					"ORDER BY TrainInfo.Train_Date DESC LIMIT ?, ?";
@@ -165,6 +168,7 @@ public class Groupscore {
 					"WHERE StudentInfo.Student_ID = StudentGrade.Student_ID AND\n" + 
 					"				StudentGrade.Train_ID = TrainInfo.Train_ID AND \n" + 
 					"				TrainInfo.Train_State = 2 AND \n" + 
+					"				StudentInfo.Group_ID = LeaderInfo.Group_ID AND \n" + 
 					"				TrainInfo.Leader_ID = LeaderInfo.Leader_ID AND\n" + 
 					"				LeaderInfo.Group_ID = ? " +
 					" AND TrainInfo.Is_Del = 0 AND StudentInfo.Is_Del = 0 AND " +

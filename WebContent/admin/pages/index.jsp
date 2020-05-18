@@ -91,7 +91,7 @@
                         </a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" lay-id="51" data-url="student-manage.html">学员管理</a></dd>
-                            <dd><a href="javascript:;" lay-id="52" data-url="leader-manage.html">队干部管理</a></dd>
+                            <dd><a href="javascript:;" lay-id="52" data-url="leader-manage.html">队领导管理</a></dd>
                             <dd><a href="javascript:;" lay-id="53" data-url="admin-manage.html">管理员</a></dd>
                             <!-- <dd><a href="javascript:;" lay-id="54" data-url="user-upload.html">人员导入</a></dd>
                             <dd><a href="javascript:;" lay-id="55" data-url="user-download.html">人员导出</a></dd> -->
@@ -133,7 +133,7 @@
                 <ul id="tabTitle" class="layui-tab-title ok-tab-title not-scroll">
                     <li  class="layui-this"><strong style="display: none;" is-close="false" ></strong>
                         <i is-close="true" class="layui-icon layui-icon-file-b"></i>
-                        计划管理
+                        
                     </li>
                 </ul>
                 <div id="tabContent" class="layui-tab-content ok-tab-content">

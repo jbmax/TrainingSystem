@@ -64,10 +64,13 @@ public class AjaxAlterStudent extends HttpServlet {
 		String pwd = request.getParameter("pwd");
 		String gender = request.getParameter("gender");
 		String bday = request.getParameter("bday");
+		String groupname = request.getParameter("group");
+		
+		//System.out.println(groupname);
 		
 		try {
 			if ( is_del != null && is_del.equals("1")) {
-				if (StudentManage.updateStudent(id, name, gender, bday, 1, 0) == 1)
+				if (StudentManage.updateStudent(id, name, gender, bday, groupname, 1, 0) == 1)
 				{
 					response.getWriter().write("true");
 				}
@@ -75,14 +78,14 @@ public class AjaxAlterStudent extends HttpServlet {
 					response.getWriter().write("false");
 			}
 			else if ( pwd != null && pwd.equals("1")) {
-				if (StudentManage.updateStudent(id, name, gender, bday, 0, 1) == 1)
+				if (StudentManage.updateStudent(id, name, gender, bday, groupname, 0, 1) == 1)
 				{
 					response.getWriter().write("true");
 				}
 				else
 					response.getWriter().write("false");
 			}
-			else if (StudentManage.updateStudent(id, name, gender, bday, 0, 0) == 1) {
+			else if (StudentManage.updateStudent(id, name, gender, bday, groupname, 0, 0) == 1) {
 				response.getWriter().write("true");
 			}
 			else {

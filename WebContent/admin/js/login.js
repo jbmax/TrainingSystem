@@ -1,5 +1,8 @@
 $(function(){
 	layui.use('layer', function() {
+		if(window.top.window.document.title=="体能训练信息系统"){
+            window.top.location.href="login.html";
+        }
 		var layer = layui.layer;
 		$(function() {
 			var victor = new Victor("body", "container");

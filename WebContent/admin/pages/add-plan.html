@@ -13,7 +13,7 @@
         }
 
         .layui-container {
-            width: 40% !important;
+            width: 30% !important;
             margin-top: 30px;
         }
     </style>
@@ -38,7 +38,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">参加人</label>
                 <div class="layui-input-block">
-                    <input type="text" value="所有人员" class="layui-input layui-disabled" lay-verify="required" readonly id="attend"
+                    <input type="text" value="所有人员" class="layui-input" lay-verify="required" readonly id="attend"
                         name="attend">
                 </div>
             </div>
@@ -48,8 +48,9 @@
                     <input type="text" value="1" class="layui-input" lay-verify="required" id="remark" name="remark">
                 </div>
             </div> -->
-            <div class="layui-form-item">
+            <div class="layui-form-item"">
                 <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="alter-manage">添加</button>
+                <!-- <button class="layui-btn" lay-submit="" lay-filter="alter-manage" >添加</button> -->
             </div>
         </form>
     </div>

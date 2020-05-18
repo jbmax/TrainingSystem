@@ -135,5 +135,40 @@ public class AdminManage {
 		
 		return 0;
 	}
-
+	public static int addAdmin(String id, String name) throws SQLException
+	{
+		//声明结果集
+		int rs = 0;
+		
+		//获取连接对象
+		Connection conn = Dbconn.getconn();
+		
+		PreparedStatement ps = null;
+		String sql = "";
+		
+		try {
+			
+			sql = "INSERT INTO AdminInfo VALUES(?, ?, '123456', 0)";
+			
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ps.setString(2, name);
+			
+			rs = ps.executeUpdate();
+			
+			if (rs > 0)
+				return 1;
+			
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if(ps!=null)
+				ps.close();
+			if(conn!=null)
+				conn.close();
+		}
+		
+		return 0;
+	}
 }

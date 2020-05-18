@@ -36,14 +36,14 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">队名</label>
                 <div class="layui-input-block">
-                    <input type="text" value="" class="layui-input" lay-verify="required" id="gname" 
+                    <input type="text" value=<%=request.getParameter("gname") %> class="layui-input" lay-verify="required" id="gname" 
                         name="gname">
                 </div>
             </div>
              <div class="layui-form-item">
                 <label class="layui-form-label">创建时间</label>
                 <div class="layui-input-block">
-                    <input id="uDate" type="text" value="" placeholder="" lay-verify="required" class="layui-input" 
+                    <input type="text" value=<%=request.getParameter("gdate") %> placeholder="" lay-verify="required" class="layui-input" 
                      name="gdate">
             	</div>
             </div>

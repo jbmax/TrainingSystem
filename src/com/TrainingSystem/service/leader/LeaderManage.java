@@ -85,14 +85,16 @@ public class LeaderManage {
 		return lmap;	
 	}
 		
-	public static int updateLeader(String id, String name, int Is_Del, int pwd) throws SQLException
+	public static int updateLeader(String id, String name, String groupname, int Is_Del, int pwd) throws SQLException
 	{
 		//声明结果集
 		int rs = 0;
+		ResultSet rs2 = null;
 		//获取连接对象
 		Connection conn = Dbconn.getconn();
 		
 		PreparedStatement ps = null;
+		PreparedStatement ps2 = null;
 		String sql = "";
 		
 		try {
@@ -111,13 +113,27 @@ public class LeaderManage {
 				ps.setInt(1, Integer.parseInt(id));
 			}
 			else {
+				int group = 0;
+				sql = "SELECT Group_ID FROM GroupInfo WHERE Group_Name = ?";
+				ps2 = conn.prepareStatement(sql);
+				ps2.setString(1, groupname);
+				rs2 = ps2.executeQuery();
+				while(rs2.next()) {
+					group = rs2.getInt("Group_ID");
+				}
+				
+				if (group == 0) {
+					return 0;
+				}
+				
 				sql = "UPDATE LeaderInfo SET Leader_Name = ?, \n"
-					+ "Is_Del = 0\n"
+					+ "Group_ID = ?, Is_Del = 0\n"
 					+ "WHERE LeaderInfo.Leader_ID = ?";
 				
 				ps = conn.prepareStatement(sql);
 				ps.setString(1, name);
-				ps.setInt(2, Integer.parseInt(id));
+				ps.setInt(2, group);
+				ps.setInt(3, Integer.parseInt(id));
 			}
 			
 			rs = ps.executeUpdate();
@@ -129,6 +145,7 @@ public class LeaderManage {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
+			Dbconn.closeall(rs2, ps2, conn);
 			if(ps!=null)
 				ps.close();
 			if(conn!=null)
@@ -138,5 +155,55 @@ public class LeaderManage {
 		return 0;
 	}
 
-
+	public static int addLeader(String name, String groupname) throws SQLException
+	{
+		//声明结果集
+		int rs = 0;
+		ResultSet rs2 = null;
+		
+		//获取连接对象
+		Connection conn = Dbconn.getconn();
+		
+		PreparedStatement ps = null;
+		PreparedStatement ps2 = null;
+		String sql = "";
+		
+		try {
+			int group = 0;
+			sql = "SELECT Group_ID FROM GroupInfo WHERE Group_Name = ?";
+			ps2 = conn.prepareStatement(sql);
+			ps2.setString(1, groupname);
+			rs2 = ps2.executeQuery();
+			while(rs2.next()) {
+				group = rs2.getInt("Group_ID");
+			}
+			
+			if (group == 0) {
+				return 0;
+			}
+				
+			sql = "INSERT INTO LeaderInfo VALUES(0, ?, ?, '123456', 0)";
+			
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setInt(2, group);
+			
+			rs = ps.executeUpdate();
+			
+			if (rs > 0)
+				return 1;
+			
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			Dbconn.closeall(rs2, ps2, conn);
+			if(ps!=null)
+				ps.close();
+			if(conn!=null)
+				conn.close();
+		}
+		
+		return 0;
+	}
 }

@@ -85,24 +85,24 @@
 				},
 				limit: 10,
 				limits: [10, 20],
-				method: 'get',
+				method: 'post',
 				cols: [[ //表头
-					 {
+					  /* {
 						field: 'num',
 						title: '序号',
 						fixed: 'left',
 						type: "numbers",
 						width: "8%"
-					},   {
+					}, */ {
 						field: 'SID',
 						title: '学号',
 						sort: true,
-						//fixed: 'left'
-						width:"15%"
+						//fixed: 'left',
+						width: "16%"
 					}, {
 						field: 'SName',
 						title: '姓名',
-						width:"15%"
+						width: "15%"
 					}
 					, /* {
 						field: 'age',
@@ -202,26 +202,27 @@
 							skin: 'line' //行边框风格
 							,
 							even: true,
-							url: "/TrainingSystem/Groupsearchscore?page=1&limit=10&sname=" + $("#username").val() //数据接口,同时考虑用户名或者日期是否为空情况
-							,
 							page: true //开启分页
+							,
+							url: "/TrainingSystem/Groupsearchscore?sname=" + $("#username").val() //数据接口,同时考虑用户名或者日期是否为空情况
 							,
 							text: {
 								none: '暂无相关数据'
 							},
 							method: 'post',
-							//limit: 10,
+							limit: 10,
+							limits: [10, 20],
 							cols: [[ //表头
-								 {
+								 /* {
 									field: 'num',
 									title: '序号',
 									fixed: 'left',
 									type: "numbers",
 									//width: "5%"
-								},  {
+								},  */ {
 									field: 'SID',
 									title: '学号',
-									// width:"5%"
+									//width: "16%"
 								}, {
 									field: 'SName',
 									title: '姓名',

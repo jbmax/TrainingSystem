@@ -62,14 +62,8 @@ public class Studentscoredao {
 		String sql = "";
 		
 		try {
-			sql = "SELECT StudentInfo.Student_ID SID, TrainInfo.Train_Date Date, \n" + 
-					"				StudentGrade.Item1_Grade Run3k, StudentGrade.Item2_Grade Snake, \n" + 
-					"				StudentGrade.Item3_Grade Situp, StudentGrade.Item4_Grade Pullup\n" + 
-					"FROM StudentInfo, StudentGrade, TrainInfo\n" + 
-					"WHERE StudentInfo.Student_ID = StudentGrade.Student_ID AND\n" + 
-					"				StudentGrade.Train_ID = TrainInfo.Train_ID AND \n" + 
-					"				TrainInfo.Train_State = 2 AND \n" + 
-					"				StudentInfo.Student_ID = ?\n" + 
+			sql = "SELECT *  FROM StudentItemScore \n" + 
+					"WHERE StudentItemScore.SID = ?\n" + 
 					"ORDER BY Date DESC LIMIT ?, ?";
 			
 			ps = conn.prepareStatement(sql);
@@ -79,10 +73,10 @@ public class Studentscoredao {
 			rs = ps.executeQuery();
 			 while(rs.next()) {
 				 Map<String, String> mapObj = new HashMap<String, String>();
-				 mapObj.put("Run3k", rs.getString("Run3k"));
-				 mapObj.put("Snake", rs.getString("Snake"));
-				 mapObj.put("Situp", rs.getString("Situp"));
-				 mapObj.put("Pullup", rs.getString("Pullup"));
+				 mapObj.put("Run3k", rs.getString("Run3k") + " / " + rs.getString("Item1Score"));
+				 mapObj.put("Snake", rs.getString("Snake") + " / " + rs.getString("Item2Score"));
+				 mapObj.put("Situp", rs.getString("Situp") + " / " + rs.getString("Item3Score"));
+				 mapObj.put("Pullup", rs.getString("Pullup") + " / " + rs.getString("Item4Score"));
 				 mapObj.put("Date", rs.getString("Date"));
 				
 				 mapList.add(mapObj);

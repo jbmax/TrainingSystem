@@ -60,6 +60,12 @@ public class AjaxAlterPlan extends HttpServlet {
 		String sdate = request.getParameter("sdate");
 		String edate = request.getParameter("edate");
 		
+		if (sdate.compareTo(edate) >= 0)
+		{
+			response.getWriter().write("false");
+			return;
+		}
+		
 		try {
 			if (PlanManage.updatePlan(pid, sdate, edate) == 1) {
 				response.getWriter().write("true");

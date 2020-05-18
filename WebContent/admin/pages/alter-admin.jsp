@@ -28,7 +28,7 @@
 </head>
 
 <body class="childrenBody seting-pass">
-    <form class="layui-form alter-form" action="/TrainingSystem/AjaxAlterAdmin" type="get" lay-filter="alter-form">
+    <form class="layui-form alter-form" action="/TrainingSystem/AjaxAlterAdmin" type="post" lay-filter="alter-form">
         <div class="layui-form-item">
             <label class="layui-form-label">管理员编号</label>
             <div class="layui-input-block">
@@ -38,7 +38,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">管理员姓名</label>
             <div class="layui-input-block">
-                <input type="text" value=<%=request.getParameter("name") %> placeholder="用户名" lay-verify="required" class="layui-input" id="username"
+                <input type="text" value=<%=request.getParameter("name") %> placeholder="姓名" lay-verify="required" class="layui-input" id="username"
                     name="name">
             </div>
         </div>
@@ -72,7 +72,7 @@
         </div> -->
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit="" lay-filter="add-manage">添加</button>
+                <button class="layui-btn" lay-submit="" lay-filter="add-manage">修改</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>

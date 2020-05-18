@@ -2,7 +2,6 @@ package com.TrainingSystem.servlet.leader;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,19 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.TrainingSystem.service.leader.PlanManage;
+import com.TrainingSystem.service.leader.LeaderManage;
 
 /**
- * Servlet implementation class AjaxAddPlan
+ * Servlet implementation class AjaxAddLeader
  */
-@WebServlet("/AjaxAddPlan")
-public class AjaxAddPlan extends HttpServlet {
+@WebServlet("/AjaxAddLeader")
+public class AjaxAddLeader extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxAddPlan() {
+    public AjaxAddLeader() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,11 +41,11 @@ public class AjaxAddPlan extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=utf-8");	
+		response.setContentType("text/html;charset=utf-8");
 		
 		HttpSession session = request.getSession();
+
 		String uid = (String) session.getAttribute("userID");
 		if (uid == "" || uid == null) {
 			response.getWriter().write("false");
@@ -57,20 +56,13 @@ public class AjaxAddPlan extends HttpServlet {
 			return;
 		}
 		
-		//String pid = request.getParameter("ID");
-		String sdate = request.getParameter("sdate");
-		String edate = request.getParameter("edate");
+		String name = request.getParameter("name");
+		String groupname = request.getParameter("group");
 		
-		String nowdate = new java.text.SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		//System.out.println(groupname);
 		
-		if (sdate.compareTo(edate) >= 0 || edate.compareTo(nowdate) < 0)
-		{
-			response.getWriter().write("false");
-			return;
-		}
-
 		try {
-			if (PlanManage.insertPlan(sdate, edate) == 1) {
+			if (LeaderManage.addLeader(name, groupname) == 1) {
 				response.getWriter().write("true");
 			}
 			else {
