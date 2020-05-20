@@ -46,7 +46,7 @@ SELECT StudentAgeClass.SID, StudentScore.date,
 			 WHEN StudentScore.Run3k <= Item1Stand.Item1_Grade1 THEN 60
 			ELSE 50
 			END
-			AS Item1Score
+			AS Item1Score, StudentScore.Run3k Run3k
 			FROM StudentAgeClass, Item1Stand, StudentScore
 WHERE Item1Stand.Student_Gender = StudentAgeClass.SGender
 		AND Item1Stand.Age_Class = StudentAgeClass.SAge_Class
@@ -66,7 +66,7 @@ SELECT StudentAgeClass.SID, StudentScore.date,
 			 WHEN StudentScore.Snake <= Item2Stand.Item2_Grade1 THEN 60
 			ELSE 50
 			END
-			AS Item2Score
+			AS Item2Score, StudentScore.Snake Snake
 			FROM StudentAgeClass, Item2Stand, StudentScore
 WHERE Item2Stand.Student_Gender = StudentAgeClass.SGender
 		AND Item2Stand.Age_Class = StudentAgeClass.SAge_Class
@@ -88,7 +88,7 @@ SELECT StudentAgeClass.SID, StudentScore.date,
 			 WHEN StudentScore.Situp >= Item3Stand.Item3_Grade1 THEN 60
 			ELSE 50
 			END
-			AS Item3Score
+			AS Item3Score, StudentScore.Situp Situp
 			FROM StudentAgeClass, Item3Stand, StudentScore
 WHERE Item3Stand.Student_Gender = StudentAgeClass.SGender
 		AND Item3Stand.Age_Class = StudentAgeClass.SAge_Class
@@ -110,7 +110,7 @@ SELECT StudentAgeClass.SID, StudentScore.date,
 			 WHEN LENGTH(StudentScore.Pullup) = LENGTH(Item4Stand.Item4_Grade1) AND StudentScore.Pullup >= Item4Stand.Item4_Grade1 THEN 60
 			ELSE 50
 			END
-			AS Item4Score
+			AS Item4Score, StudentScore.Pullup Pullup
 			FROM StudentAgeClass, Item4Stand, StudentScore
 WHERE Item4Stand.Student_Gender = StudentAgeClass.SGender
 		AND Item4Stand.Age_Class = StudentAgeClass.SAge_Class
@@ -118,8 +118,9 @@ WHERE Item4Stand.Student_Gender = StudentAgeClass.SGender
 
 DROP VIEW IF EXISTS StudentItemScore;
 CREATE VIEW StudentItemScore AS
-SELECT StudentItem1Score.*, StudentItem2Score.Item2Score, 
-		StudentItem3Score.Item3Score, StudentItem4Score.Item4Score
+SELECT StudentItem1Score.*, StudentItem2Score.Item2Score, StudentItem2Score.Snake, 
+		StudentItem3Score.Item3Score, StudentItem3Score.Situp, 
+		StudentItem4Score.Item4Score, StudentItem4Score.Pullup
 FROM StudentItem1Score, StudentItem2Score, StudentItem3Score, StudentItem4Score
 WHERE StudentItem1Score.SID = StudentItem2Score.SID AND
 			StudentItem1Score.SID = StudentItem3Score.SID AND
@@ -201,10 +202,6 @@ FROM HealthInfo hh, StudentInfo si, StudentAgeCal sa
 WHERE hh.Student_ID = si.Student_ID AND 
 		hh.Student_ID = sa.SID;
 
-SELECT gi.Group_ID
-FROM GroupInfo gi
-WHERE gi.Leader1_ID = 19001 OR gi.Leader2_ID = 19001;
-
 SELECT ts.*
 FROM StudentScore ts
 WHERE ts.GroupID =001 AND ts.SName LIKE "%张%" AND ts.date IN
@@ -214,14 +211,6 @@ FROM StudentScore ss
 WHERE ss.GroupID = 001
 GROUP BY ss.SID
 );
-
-SELECT count(*) num
-FROM StudentScore ss
-WHERE ss.GroupID = 001;
-
-SELECT *
-FROM StudentScore ss
-WHERE ss.GroupID = 001 AND ss.SName LIKE "张%";
 
 SELECT ss.*
 FROM StudentScore ss
